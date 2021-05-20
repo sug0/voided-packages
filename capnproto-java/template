@@ -13,7 +13,7 @@ distfiles="https://github.com/capnproto/capnproto-java/archive/v${version}.tar.g
 checksum=2cec73165fe2b6e721c9d609b60d40ec00b714072ca223e3ff2f9f96a9942109
 
 do_build() {
-    make
+	make
 }
 
 do_install() {
