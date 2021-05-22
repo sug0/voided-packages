@@ -1,0 +1,44 @@
+# Template file for 'NoiseTorch'
+pkgname=NoiseTorch
+archs="x86_64*"
+version=0.11.2
+revision=1
+wrksrc=${pkgname}-${version}
+hostmakedepends="go upx tar"
+short_desc="Real-time microphone noise suppression on Linux"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="GPLv3"
+homepage="https://github.com/lawl/NoiseTorch"
+distfiles="https://github.com/lawl/NoiseTorch/archive/${version}.tar.gz"
+checksum=01512e90f5f29f81b22b81ed83bdc4df91d2ef86c26a848c4d34a2c3eba260bf
+nostrip=1
+
+pre_build() {
+	# Copy the modified makefile
+	cp ${FILESDIR}/Makefile Makefile
+}
+
+do_build() {
+	make release
+}
+
+do_install() {
+	# Create directories
+	mkdir -p ${DESTDIR}/usr/bin
+	mkdir -p ${DESTDIR}/usr/share/applications
+	mkdir -p ${DESTDIR}/usr/share/icons/hicolor/256x256/apps
+
+	# Unpack release archive
+	mkdir -p tmp
+	tar xf bin/NoiseTorch_x64.tgz -C tmp
+
+	# Install files
+	cp tmp/.local/bin/noisetorch ${DESTDIR}/usr/bin
+	cp tmp/.local/share/applications/noisetorch.desktop ${DESTDIR}/usr/share/applications
+	cp tmp/.local/share/icons/hicolor/256x256/apps/noisetorch.png ${DESTDIR}/usr/share/icons/hicolor/256x256/apps
+}
+
+post_install() {
+	vdoc README.md
+	vlicense LICENSE
+}
