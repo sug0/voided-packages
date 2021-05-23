@@ -1,0 +1,18 @@
+# Template file for 'ytpriv'
+pkgname=ytpriv
+version=1.2.1
+revision=1
+build_style=go
+go_import_path=github.com/terorie/ytpriv/v1.2.1
+hostmakedepends="git"
+short_desc="YouTube metadata exporter"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="GPLv3"
+homepage="https://github.com/terorie/ytpriv"
+distfiles="https://github.com/terorie/ytpriv/archive/v${version}.tar.gz"
+checksum=18c4357253638b3ddd31488c9df9abd6ac0157ad53331767972228b3c2f7abaf
+
+post_install() {
+	vdoc README.md
+	vlicense LICENSE
+}
