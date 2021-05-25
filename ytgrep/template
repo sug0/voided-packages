@@ -4,14 +4,11 @@ version=0.3.3
 revision=1
 build_style=cargo
 wrksrc=${pkgname}-${version}
+hostmakedepends="pkg-config"
+makedepends="openssl-devel"
 short_desc="Loop up videos on YouTube from the terminal"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="MIT"
 homepage="https://github.com/sug0/ytgrep"
 distfiles="https://github.com/sug0/ytgrep/archive/v${version}.tar.gz"
 checksum=cf204b5038fc1d5bf9fbe00b9e3866dd302a4fd90d306d257922e2f370018353
-
-post_install() {
-	#vlicense LICENSE
-	#vdoc README.md
-}
