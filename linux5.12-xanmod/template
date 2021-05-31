@@ -307,7 +307,7 @@ do_install() {
 	# ... and run depmod again.
 	depmod -b ${DESTDIR}/usr -F System.map ${_kernver}
 }
-linux5.12-headers_package() {
+linux5.12-xanmod-headers_package() {
 	preserve=yes
 	nostrip=yes
 	noshlibprovides=yes
@@ -317,7 +317,7 @@ linux5.12-headers_package() {
 		vmove usr/lib/modules/${_kernver}/build
 	}
 }
-linux5.12-dbg_package() {
+linux5.12-xanmod-dbg_package() {
 	preserve=yes
 	nostrip=yes
 	noverifyrdeps=yes
