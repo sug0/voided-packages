@@ -2,16 +2,13 @@
 pkgname=linux5.10-rt-xanmod
 version=5.10.35
 revision=1
-wrksrc="linux-${version}"
+wrksrc="linux-${version}-rt39-xanmod1"
 short_desc="Linux kernel and modules (${version%.*} series)"
 maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="GPL-2.0-only"
 homepage="https://www.kernel.org"
-distfiles="https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-${version}.tar.xz
- https://github.com/xanmod/linux/releases/download/${version}-rt39-xanmod1/patch-${version}-rt39-xanmod1.xz"
-checksum="ac37a19d45b77a87e58e3aae8b127a6e7eb85ed7467fc8e58474b387bfd498fd
- a24419d72044f021fda88bbd6acf28469383c55b951a15fdf48a88a78abb6a19"
-skip_extraction="patch-${version}-rt39-xanmod1.xz"
+distfiles="https://github.com/xanmod/linux/archive/${version}-rt39-xanmod1.tar.gz"
+checksum=381d4ba3245f085927becd4758cce5083d202c4f99bbcb147eefac30c74564e3
 python_version=3
 patch_args="-Np1"
 
@@ -55,10 +52,6 @@ fi
 if [ "${_patchver}" ]; then
 	_version="EXTRAVERSION=${_patchver}"
 fi
-
-pre_patch() {
-	xzcat $XBPS_SRCDISTDIR/$pkgname-$version/patch-${version}-rt39-xanmod1.xz | patch -Np1
-}
 
 do_configure() {
 	# 5.8 misses Documentation/DocBook. We ship the directory from 4.12 here.
