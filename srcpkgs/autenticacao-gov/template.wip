@@ -1,0 +1,25 @@
+# Template file for 'autenticacao-gov'
+pkgname=autenticacao-gov
+version=f8d511717a12fe82c8082819afc91fb194e2ace6
+revision=1
+build_style=cargo
+wrksrc=zz-${version}
+depends="z3"
+short_desc="Symbolic verifier and transpiler to bare metal C"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT"
+homepage="https://github.com/zetzit/zz"
+distfiles="https://github.com/zetzit/zz/archive/${version}.tar.gz"
+checksum=8cad24959a936c2dc562818e49ffec56dbf8038dc9c852465159ff91d0ce32e6
+
+pre_build() {
+	# Change default modules directory
+	vsed "s|env!(\"CARGO_MANIFEST_DIR\")|\"/usr/lib/${pkgname}\"|" -i src/lib.rs
+}
+
+post_install() {
+	vlicense LICENSE
+	vdoc README.md
+	vmkdir usr/lib/${pkgname}/modules
+	vcopy modules usr/lib/${pkgname}
+}
