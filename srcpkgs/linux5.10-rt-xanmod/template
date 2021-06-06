@@ -9,7 +9,7 @@ maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="GPL-2.0-only"
 homepage="https://www.kernel.org"
 distfiles="https://github.com/xanmod/linux/archive/${version}-rt${rtversion}-xanmod1.tar.gz"
-checksum=381d4ba3245f085927becd4758cce5083d202c4f99bbcb147eefac30c74564e3
+checksum=2bed4c07bbd694d11f6d07908f9e9e3dd87c4d8c82adbd760cb8e78434bca5fc
 python_version=3
 patch_args="-Np1"
 
