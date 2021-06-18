@@ -12,6 +12,8 @@ homepage="https://github.com/zetzit/zz"
 distfiles="https://github.com/zetzit/zz/archive/${version}.tar.gz"
 checksum=8cad24959a936c2dc562818e49ffec56dbf8038dc9c852465159ff91d0ce32e6
 
+# https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=autenticacao-gov-pt
+
 pre_build() {
 	# Change default modules directory
 	vsed "s|env!(\"CARGO_MANIFEST_DIR\")|\"/usr/lib/${pkgname}\"|" -i src/lib.rs
