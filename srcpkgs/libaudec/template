@@ -1,0 +1,33 @@
+# Template file for 'libaudec'
+pkgname=libaudec
+version=0.3.4
+revision=1
+wrksrc=${pkgname}
+build_style=meson
+configure_args="-Ddebug=true -Doptimization=3 -Dextra_optimizations=true"
+hostmakedepends="pkg-config"
+short_desc="Library for reading and resampling audio files"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="AGPLv3"
+homepage="https://git.zrythm.org/zrythm/libaudec"
+distfiles="https://git.zrythm.org/zrythm/libaudec/archive/v${version}.tar.gz"
+checksum=b1c391eda6431aa6cd57d8b7ab0c70ff3345a7c2a1e11dfe4143195438f509ff
+
+# No error for several warnings
+CXXFLAGS="-Wno-deprecated-declarations -Wno-class-memaccess -Wno-format-truncation"
+
+post_install() {
+	vlicense COPYING
+	vdoc README.md
+}
+
+libyaml-devel_package() {
+	depends="${sourcepkg}>=${version}_${revision}"
+	short_desc+=" - development files"
+	pkg_install() {
+		vmove usr/include
+		vmove usr/lib/pkgconfig
+		vmove "usr/lib/*.a"
+		vmove "usr/lib/*.so"
+	}
+}
