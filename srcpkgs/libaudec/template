@@ -6,7 +6,7 @@ wrksrc=${pkgname}
 build_style=meson
 configure_args="-Ddebug=true -Doptimization=3 -Dextra_optimizations=true --wrap-mode=nodownload"
 hostmakedepends="pkg-config"
-makedepends="ffmpeg-devel"
+#makedepends="ffmpeg-devel"
 short_desc="Library for reading and resampling audio files"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="AGPLv3"
