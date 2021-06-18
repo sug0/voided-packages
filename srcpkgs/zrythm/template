@@ -1,0 +1,32 @@
+# Template file for 'zrythm'
+pkgname=zrythm
+version=1.0.0
+alpha=18.2.1
+revision=1
+wrksrc=${pkgname}-${version}-alpha.${alpha}
+build_style=meson
+#configure_args="-Ddebug=true -Doptimization=3 -Dextra_optimizations=true"
+hostmakedepends="pkg-config"
+makedepends="fftw-devel gtk+3-devel gtksourceview-devel guile-devel
+ libaudec-devel libbacktrace-devel libcyaml-devel reproc-devel
+ lilv-devel pcre2-devel xxHash-devel zstd-devel
+ $(vopt_if SDL2 SDL2-devel)"
+depends="breeze-icons"
+short_desc="A highly automated and intuitive digital audio workstation"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="AGPLv3"
+homepage="https://www.zrythm.org"
+distfiles="https://www.zrythm.org/releases/zrythm-${version}-alpha.${alpha}.tar.xz"
+checksum=d00c476a54c730bc89780aff2968bef8d57d1d6540cf95d470deeb577a599997
+
+build_options="SDL2"
+build_options_default="SDL2"
+
+# No error for several warnings
+CXXFLAGS="-Wno-deprecated-declarations -Wno-class-memaccess -Wno-format-truncation"
+
+post_install() {
+	#rm -f ${DESTDIR}/usr/lib/*.a
+	vlicense COPYING
+	vdoc README.md
+}
