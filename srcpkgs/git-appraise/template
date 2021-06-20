@@ -1,0 +1,23 @@
+# Template file for 'git-appraise'
+pkgname=git-appraise
+version=0.7
+revision=1
+build_style=go
+go_import_path=github.com/google/git-appraise/git-appraise
+hostmakedepends="git"
+short_desc="Distributed code review system for Git repos"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="Apache v2.0"
+homepage="https://github.com/google/git-appraise"
+distfiles="https://github.com/google/git-appraise/archive/v${version}.tar.gz"
+checksum=b57dd4ac4746486e253658b2c93422515fd8dc6fdca873b5450a6fb0f9487fb3
+
+pre_build() {
+	go mod init github.com/google/git-appraise
+	go mod tidy
+}
+
+post_install() {
+	vdoc README.md
+	vlicense LICENSE
+}
