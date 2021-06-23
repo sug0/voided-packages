@@ -1,7 +1,7 @@
 # Template file for 'NoiseTorch'
 pkgname=NoiseTorch
 archs="x86_64*"
-version=0.11.2
+version=0.11.3
 revision=1
 wrksrc=${pkgname}-${version}
 hostmakedepends="go upx tar"
@@ -10,7 +10,7 @@ maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="GPLv3"
 homepage="https://github.com/lawl/NoiseTorch"
 distfiles="https://github.com/lawl/NoiseTorch/archive/${version}.tar.gz"
-checksum=01512e90f5f29f81b22b81ed83bdc4df91d2ef86c26a848c4d34a2c3eba260bf
+checksum=b67155211278affc72f15d0ded9da560524e7bb0659012f9d41e69b531b9265c
 nostrip=1
 
 pre_build() {
