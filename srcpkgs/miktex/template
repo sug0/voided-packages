@@ -18,7 +18,7 @@ maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="custom"
 homepage="https://miktex.org"
 distfiles="https://github.com/MiKTeX/miktex/archive/${version}.tar.gz"
-checksum=1e04e38070c70a27810ae5fd2a17010186f9bc900859db5ab9eca4b5639efd8f
+checksum=7fbdd4d44bb5a686513bfe0ac03a2aba75915342ca6c1ee0ccef1ac5f4c5266f
 
 # No error for several warnings
 CXXFLAGS="-Wno-deprecated-declarations -Wno-class-memaccess -Wno-format-truncation"
