@@ -1,6 +1,6 @@
 # Template file for 'miktex'
 pkgname=miktex
-version=21.6.28
+version=21.6
 revision=1
 build_style=cmake
 configure_args="-DCMAKE_INSTALL_PREFIX=/opt/miktex -DWITH_UI_QT=ON -DUSE_SYSTEM_POPPLER=TRUE -DUSE_SYSTEM_POPPLER_QT5=TRUE"
