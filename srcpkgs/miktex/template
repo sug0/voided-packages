@@ -1,0 +1,25 @@
+# Template file for 'miktex'
+pkgname=miktex
+version=21.6.28
+revision=1
+build_style=cmake
+configure_args="-DCMAKE_INSTALL_PREFIX=/opt/miktex -DWITH_UI_QT=ON -DUSE_SYSTEM_POPPLER=TRUE -DUSE_SYSTEM_POPPLER_QT5=TRUE"
+hostmakedepends="apache-fop libxslt"
+makedepends="apr-devel apr-util-devel bzip2-devel cairo-devel expat-devel
+ fontconfig-devel freetype-devel fribidi-devel gd-devel gmp-devel graphite-devel
+ liblzma-devel mpfr-devel libmspack-devel openssl-devel pixman-devel libpng-devel
+ harfbuzz-devel hunspell-devel icu-devel libjpeg-turbo-devel log4cxx-devel
+ poppler-devel popt-devel potrace-devel uriparser-devel zziplib-devel
+ qt5-tools-devel qt5-script-devel poppler-qt5 qt5-declarative-devel"
+depends="hicolor-icon-theme"
+short_desc="A distribution of the TeX/LaTeX typesetting system"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="custom"
+homepage="https://miktex.org"
+distfiles="https://github.com/MiKTeX/miktex/archive/${version}.tar.gz"
+checksum=
+
+post_install() {
+	vlicense COPYING.md
+	vdoc README.md
+}
