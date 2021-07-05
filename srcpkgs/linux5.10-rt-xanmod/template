@@ -1,15 +1,15 @@
 # Template file for 'linux5.10-rt-xanmod'
 pkgname=linux5.10-rt-xanmod
-version=5.10.41
-rtversion=42
+version=5.10.47
+rtversion=45
 revision=1
 wrksrc="linux-${version}-rt${rtversion}-xanmod1"
 short_desc="Linux kernel and modules (${version%.*} series)"
-maintainer="Leah Neukirchen <leah@vuxu.org>"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="GPL-2.0-only"
 homepage="https://xanmod.org"
 distfiles="https://github.com/xanmod/linux/archive/${version}-rt${rtversion}-xanmod1.tar.gz"
-checksum=2bed4c07bbd694d11f6d07908f9e9e3dd87c4d8c82adbd760cb8e78434bca5fc
+checksum=dea3631b20c2d33ef225fa2bd5e66a017e8bf8c25c99c0d45dbfb688fab7acf9
 python_version=3
 patch_args="-Np1"
 
