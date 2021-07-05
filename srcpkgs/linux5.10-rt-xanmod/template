@@ -14,7 +14,7 @@ python_version=3
 patch_args="-Np1"
 
 # XXX Restrict archs until a proper <arch>-dotconfig is available in FILESDIR.
-archs="x86_64*"
+archs="x86_64"
 
 nodebug=yes  # -dbg package is generated below manually
 nostrip=yes
@@ -90,6 +90,7 @@ do_configure() {
 	#	msg_normal "Defaulting to 'allmodconfig'.\n"
 	#	make ${makejobs} ARCH=$arch ${_cross} allmodconfig
 	#fi
+    cp -f ${FILESDIR}/x86_64-dotconfig .config
 
 	# Always use our revision to CONFIG_LOCALVERSION to match our pkg version.
 	sed -i -e "s|^\(CONFIG_LOCALVERSION=\).*|\1\"_${revision}\"|" .config
