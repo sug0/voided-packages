@@ -1,0 +1,3 @@
+#!/bin/sh
+hyprspace up hs0
+exec chpst -b hyprspace-hs0 pause

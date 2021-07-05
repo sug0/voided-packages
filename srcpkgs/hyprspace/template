@@ -1,0 +1,19 @@
+# Template file for 'hyprspace'
+pkgname=hyprspace
+version=0.1.5
+revision=1
+build_style=go
+go_import_path=github.com/hyprspace/hyprspace
+hostmakedepends="git"
+short_desc="A Lightweight VPN Built on top of Libp2p for Truly Distributed Networks"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="Apache v2.0"
+homepage="https://github.com/hyprspace/hyprspace"
+distfiles="https://github.com/hyprspace/hyprspace/archive/v${version}.tar.gz"
+checksum=4e37bce4c3deac695eb3d6c7ef63cc2be577e0ada85952f83ac3ef77ef4d41b1
+
+post_install() {
+	vdoc README.md
+	vlicense LICENSE
+    vsv hyprspace-hs0
+}
