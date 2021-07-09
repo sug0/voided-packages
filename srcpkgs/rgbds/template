@@ -3,12 +3,37 @@ pkgname=rgbds
 version=0.5.1
 revision=1
 build_style=gnu-makefile
+hostmakedepends="pkg-config bison"
+makedepends="libpng-devel"
 short_desc="An assembly toolchain for the Nintendo Game Boy & Game Boy Color "
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="MIT"
 homepage="https://github.com/gbdev/rgbds"
 distfiles="https://github.com/gbdev/rgbds/archive/v${version}.tar.gz"
 checksum=1e5331b5638076c1f099a961f8663256e9f8be21135427277eb0000d3d6ee887
+
+do_install() {
+	vmkdir usr/bin
+	vinstall rgbasm 755 usr/bin
+	vinstall rgbfix 755 usr/bin
+	vinstall rgblink 755 usr/bin
+	vinstall rgbgfx 755 usr/bin
+
+	vmkdir usr/share/man/man1
+	vinstall src/asm/rgbasm.1 644 usr/share/man/man1
+	vinstall src/fix/rgbfix.1 644 usr/share/man/man1
+	vinstall src/gfx/rgbgfx.1 644 usr/share/man/man1
+	vinstall src/link/rgblink.1 644 usr/share/man/man1
+
+	vmkdir usr/share/man/man5
+	vinstall src/rgbds.5 644 usr/share/man/man5
+	vinstall src/asm/rgbasm.5 644 usr/share/man/man5
+	vinstall src/link/rgblink.5 644 usr/share/man/man5
+
+	vmkdir usr/share/man/man7
+	vinstall src/rgbds.7 644 usr/share/man/man7
+	vinstall src/gbz80.7 644 usr/share/man/man7
+}
 
 post_install() {
 	vlicense LICENSE
