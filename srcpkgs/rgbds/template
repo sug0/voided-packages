@@ -1,0 +1,15 @@
+# Template file for 'rgbds'
+pkgname=rgbds
+version=0.5.1
+revision=1
+build_style=gnu-makefile
+short_desc="An assembly toolchain for the Nintendo Game Boy & Game Boy Color "
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT"
+homepage="https://github.com/gbdev/rgbds"
+distfiles="https://github.com/gbdev/rgbds/archive/v${version}.tar.gz"
+checksum=1e5331b5638076c1f099a961f8663256e9f8be21135427277eb0000d3d6ee887
+
+post_install() {
+	vlicense LICENSE
+}
