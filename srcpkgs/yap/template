@@ -1,16 +1,17 @@
 # Template file for 'yap'
 pkgname=yap
-version=6.3.4
+version=6.2
 revision=1
-build_style=cmake
-hostmakedepends="pkg-config bison swig"
-makedepends="gmp-devel readline-devel python3-devel"
+wrksrc=yap-6.3-${version}
+build_style=gnu-configure
+hostmakedepends="pkg-config bison"
+makedepends="gmp-devel readline-devel openssl-devel"
 short_desc="A high-performance Prolog compiler developed at Universidade do Porto"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="Artistic"
 homepage="https://github.com/vscosta/yap-6.3"
-distfiles="https://github.com/vscosta/yap-6.3/archive/YAP-${version}.tar.gz"
-checksum=bf7b46d4844020aa45c28ad32ec50c6517e9f538e355fb4d88c887015cefd1a3
+distfiles="https://github.com/vscosta/yap-6.3/archive/${version}.tar.gz"
+checksum=d06eba7ce944684b6b6fc9150d5b28553f1e4f0b6498691635ec89e3ea916f6c
 
 post_install() {
 	vlicense Artistic
