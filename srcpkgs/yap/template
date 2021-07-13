@@ -4,6 +4,11 @@ version=6.2
 revision=1
 wrksrc=yap-6.3-${version}
 build_style=gnu-configure
+configure_args="
+ --enable-threads
+ --enable-dynamic-loading
+ --enable-max-performance
+ --enable-max-memory"
 hostmakedepends="pkg-config bison"
 makedepends="gmp-devel readline-devel openssl-devel"
 short_desc="A high-performance Prolog compiler developed at Universidade do Porto"
