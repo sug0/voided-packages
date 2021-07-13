@@ -1,5 +1,5 @@
 --- Makefile.in	2011-10-21 19:15:54.000000000 +0100
-+++ Makefile.in	2021-07-13 05:03:57.585610221 +0100
++++ MK	2021-07-13 05:23:20.151375685 +0100
 @@ -681,33 +681,6 @@
  	$(CC) $(CFLAGS) $(srcdir)/mycb.c -o mycb
  
@@ -34,3 +34,43 @@
  
  startup.yss: yap@EXEC_SUFFIX@ $(PL_SOURCES)
  	-rm -f startup.yss
+@@ -754,31 +727,11 @@
+ 	@INSTALL_DLLS@ (cd library/rltree; $(MAKE) install)
+ 	@INSTALL_DLLS@ (cd library/system; $(MAKE) install)
+ 	@INSTALL_DLLS@ (cd library/tries; $(MAKE) install)
+-	@ENABLE_GECODE@ @INSTALL_DLLS@ (cd library/gecode; $(MAKE) install)
+-	@ENABLE_CLIB@ @INSTALL_DLLS@ (cd packages/clib; $(MAKE) install)
+-	@ENABLE_HTTP@ @INSTALL_DLLS@ (cd packages/http; $(MAKE) install)
+-	@ENABLE_PLDOC@ @INSTALL_DLLS@ (cd packages/pldoc; $(MAKE) install)
+-	@ENABLE_PLUNIT@ @INSTALL_DLLS@ (cd packages/plunit; $(MAKE) install)
+-	@ENABLE_R@ @INSTALL_DLLS@ (cd packages/R; $(MAKE) install)
+-	@ENABLE_RDF@ @INSTALL_DLLS@ (cd packages/RDF; $(MAKE) install)
+-	@ENABLE_SEMWEB@ @INSTALL_DLLS@ (cd packages/semweb; $(MAKE) install)
+-	@ENABLE_SGML@ @INSTALL_DLLS@ (cd packages/sgml; $(MAKE) install)
+-	@ENABLE_ZLIB@ @INSTALL_DLLS@ (cd packages/zlib; $(MAKE) @ZLIB_INSTALL@)
+-	@ENABLE_CLPBN_BP@ @INSTALL_DLLS@ (cd packages/CLPBN/clpbn/bp ; $(MAKE) install)
+-	@ENABLE_MINISAT@ (cd packages/swi-minisat2/C; $(MAKE) install)
+-	@INSTALL_MATLAB@ (cd library/matlab; $(MAKE) install)
+-	@ENABLE_YAPR@ (cd packages/YapR; $(MAKE) install)
+-	@ENABLE_JPL@ @INSTALL_DLLS@ (cd packages/jpl; $(MAKE) install)
+-	#@ENABLE_JPL@ @INSTALL_DLLS@ (cd packages/pyswip; $(MAKE) install)
+ 	mkdir -p $(DESTDIR)$(INCLUDEDIR)
+ 	$(INSTALL) $(HEADERS) $(DESTDIR)$(INCLUDEDIR)
+ 	for h in $(INTERFACE_HEADERS); do $(INSTALL) $$h $(DESTDIR)$(INCLUDEDIR); done
+ 	$(INSTALL) config.h $(DESTDIR)$(INCLUDEDIR)/config.h
+ 	$(INSTALL) parms.h $(DESTDIR)$(INCLUDEDIR)/parms.h
+-	@ENABLE_CPLINT@ (cd packages/cplint; $(MAKE) install)
+-	@ENABLE_CPLINT@ (cd packages/cplint/approx/simplecuddLPADs; $(MAKE) install)
+-	@ENABLE_CUDD@ (cd packages/ProbLog/simplecudd; $(MAKE) install)
+-	@ENABLE_CUDD@ (cd packages/ProbLog/simplecudd_lfi; $(MAKE) install)
+ 
+ 
+ install_win32: startup.yss
+@@ -838,7 +791,6 @@
+ 
+ install_copied_files:
+ 	(cd library ; $(MAKE) install)
+-	@ENABLE_MINISAT@ (cd packages/swi-minisat2; $(MAKE) install)
+ 	(cd LGPL ; $(MAKE) install)
+ 	(cd GPL ; $(MAKE) install)
+ 	$(INSTALL_DATA) $(srcdir)/LGPL/pillow/icon_address.pl $(DESTDIR)$(SHAREDIR)/Yap/
