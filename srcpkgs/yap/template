@@ -12,6 +12,7 @@ license="Artistic"
 homepage="https://github.com/vscosta/yap-6.3"
 distfiles="https://github.com/vscosta/yap-6.3/archive/${version}.tar.gz"
 checksum=d06eba7ce944684b6b6fc9150d5b28553f1e4f0b6498691635ec89e3ea916f6c
+patch_args="-p0"
 
 post_install() {
 	vlicense Artistic
