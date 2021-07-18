@@ -11,15 +11,15 @@ distfiles="https://github.com/onivim/oni2/archive/v${version}.tar.gz"
 checksum=82f4a7a78f36cf5a14583a001243e87f49ef6b01d7d2e5ccf21b7a13e5789d18
 
 pre_build() {
-    npm install -g esy
+	npm install -g esy
 }
 
 do_build() {
-    esy
+	esy
 }
 
 do_install() {
-    true
+	true
 }
 
 post_install() {
