@@ -1,15 +1,15 @@
 # Template file for 'linux5.10-rt-xanmod'
 pkgname=linux5.10-rt-xanmod
 version=5.10.47
-rtversion=45
+_rtversion=46
 revision=1
-wrksrc="linux-${version}-rt${rtversion}-xanmod1"
+wrksrc="linux-${version}-rt${_rtversion}-xanmod1"
 short_desc="Linux kernel and modules (${version%.*} series)"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="GPL-2.0-only"
 homepage="https://xanmod.org"
-distfiles="https://github.com/xanmod/linux/archive/${version}-rt${rtversion}-xanmod1.tar.gz"
-checksum=dea3631b20c2d33ef225fa2bd5e66a017e8bf8c25c99c0d45dbfb688fab7acf9
+distfiles="https://github.com/xanmod/linux/archive/${version}-rt${_rtversion}-xanmod1.tar.gz"
+checksum=8db53b7c7bcd9b6744a0a0d58813c43526c76bd6c39c407fb30cb81d981180a8
 python_version=3
 patch_args="-Np1"
 
@@ -25,7 +25,7 @@ preserve=yes
 hostmakedepends="tar xz bc elfutils-devel flex gmp-devel kmod libmpc-devel
  openssl-devel perl uboot-mkimage cpio pahole python3 zstd"
 
-_kernver="${version}-rt${rtversion}-xanmod1_${revision}"
+_kernver="${version}-rt${_rtversion}-xanmod1_${revision}"
 triggers="kernel-hooks"
 kernel_hooks_version="${_kernver}"
 
