@@ -2,7 +2,8 @@
 pkgname=oni2
 version=0.5.6
 revision=1
-hostmakedepends="pkg-config nodejs git"
+hostmakedepends="pkg-config nodejs git curl tar unzip nasm python clang"
+makedepends="fontconfig-devel ncurses-devel"
 short_desc="Native, lightweight modal code editor"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="custom:Proprietary"
