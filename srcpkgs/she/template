@@ -1,0 +1,12 @@
+# Template file for 'she'
+pkgname=she
+version=1.0
+revision=1
+build_style=gnu-makefile
+makedepends="termbox-devel"
+short_desc="Simple hex editor"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="CC0"
+homepage="https://github.com/sug0/she"
+distfiles="https://github.com/sug0/she/archive/v${version}.tar.gz"
+checksum=6b4f52b5bed9f708a47a1bd31291fe6d82f6c3ed8d35bbfbbf78cb7dd8e636cc
