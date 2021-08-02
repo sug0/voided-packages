@@ -1,0 +1,23 @@
+# Template file for 'phantomjs-bin'
+pkgname=phantomjs-bin
+version=2.1.1
+revision=1
+archs="x86_64"
+wrksrc="phantomjs-${version}-linux-x86_64"
+depends="fontconfig"
+short_desc="Scriptable headless browser"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="BSD"
+homepage="https://phantomjs.org"
+distfiles="https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-${version}-linux-x86_64.tar.bz2"
+checksum=86dd9a4bf4aee45f1a84c9f61cf1947c1d6dce9b9e8d2a907105da7852460d2f
+nopie=true
+
+do_install() {
+	vmkdir usr/bin
+	vcopy bin/phantomjs usr/bin
+}
+
+post_install() {
+	vlicense LICENSE.BSD
+}
