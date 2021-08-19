@@ -1,0 +1,22 @@
+# Template file for 'font-new-heterodox-mono'
+pkgname=font-new-heterodox-mono
+version=0.0.2
+revision=2
+depends="font-util"
+short_desc=" A Modern-style Monospaced Typeface"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="OFL"
+homepage="https://www.joypixels.com"
+distfiles="https://github.com/hckiang/font-new-heterodox-mono/archive/v${version}.tar.gz"
+checksum=82ca3ed33e265040a1cef11d822eac3104ecb84ddfc9a73d47c8710088ee09c0
+font_dirs=/usr/share/fonts/NewHeterodox
+
+do_install() {
+	vmkdir usr/share/fonts/NewHeterodox
+	vcopy *.otf usr/share/fonts/NewHeterodox
+	#vcopy New-Heterodox-Mono.otf usr/share/fonts/NewHeterodox
+}
+
+post_install() {
+	vlicense OFL.txt
+}
