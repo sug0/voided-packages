@@ -1,0 +1,18 @@
+# Template file for 'keyd'
+pkgname=keyd
+version=1.0.1
+revision=1
+build_style=gnu-makefile
+make_use_env=1
+hostmakedepends="pkg-config"
+makedepends="libudev-devel"
+short_desc="A key remapping daemon for linux"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT"
+homepage="https://github.com/rvaiya/keyd"
+distfiles="https://github.com/rvaiya/keyd/archive/v${version}.tar.gz"
+checksum=7189463abbfa8b944b3e12ee9e50134f6cb77cd04deaaa26b672a69bb88c5739
+
+post_install() {
+	vlicense LICENSE
+}

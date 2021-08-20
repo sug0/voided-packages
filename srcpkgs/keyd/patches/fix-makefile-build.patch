@@ -1,0 +1,20 @@
+diff --git a/Makefile b/Makefile
+index f4671df..a7d4e8a 100644
+--- a/Makefile
++++ b/Makefile
+@@ -4,12 +4,12 @@ DESTDIR=
+ PREFIX=/usr
+ 
+ VERSION=1.0.1
+-GIT_HASH=$(shell git describe --no-match --always --abbrev=40 --dirty)
+-CFLAGS=-DVERSION=\"$(VERSION)\" -DGIT_COMMIT_HASH=\"$(GIT_HASH)\"
++GIT_HASH=bc1c91a
++CFLAGS=-O3
+ 
+ all:
+ 	mkdir -p bin
+-	$(CC) $(CFLAGS) -O3 src/*.c -o bin/keyd -ludev
++	$(CC) $(CFLAGS) -DGIT_HASH=$(GIT_HASH) -DVERSION=$(VERSION) src/*.c -o bin/keyd -ludev
+ debug:
+ 	mkdir -p bin
+ 	$(CC) $(CFLAGS) -Wall -Wextra -pedantic -DDEBUG -g  src/*.c -o bin/keyd -ludev
