@@ -1,0 +1,22 @@
+# Template file for 'budgie-desktop-view'
+pkgname=budgie-desktop-view
+version=1.1.1
+revision=1
+build_style=meson
+#configure_args="-Ddebug=true -Doptimization=3 -Dextra_optimizations=true --wrap-mode=nodownload"
+hostmakedepends="pkg-config vala git intltool"
+makedepends="glib-devel gtk+3-devel"
+short_desc="Official Budgie desktop icons implementation, developed by Solus"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="Apache v2.0"
+homepage="https://github.com/getsolus/budgie-desktop-view"
+distfiles="https://github.com/getsolus/budgie-desktop-view/archive/v${version}.tar.gz"
+checksum=c3c5c3d1aec117bd32c860640ad3a34acee93fb35698712aa3d3f66c841c03f5
+
+# No error for several warnings
+CXXFLAGS="-Wno-deprecated-declarations -Wno-class-memaccess -Wno-format-truncation"
+
+post_install() {
+	vlicense LICENSE.md
+	vdoc README.md
+}
