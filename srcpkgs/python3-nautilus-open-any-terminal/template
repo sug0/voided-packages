@@ -1,0 +1,19 @@
+# Template file for 'python3-nautilus-open-any-terminal'
+pkgname=python3-nautilus-open-any-terminal
+version=0.2.12
+revision=1
+wrksrc="${pkgname#*-}-${version}"
+build_style=python3-module
+hostmakedepends="python3-setuptools"
+depends="nautilus-python"
+short_desc="Extension for nautilus which adds a context-entry for opening terminal emulators"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="GPLv3"
+homepage="https://github.com/Stunkymonkey/nautilus-open-any-terminal"
+distfiles="https://github.com/Stunkymonkey/nautilus-open-any-terminal/archive/${version}.tar.gz"
+checksum=1c22cd961c0edcceb3c0a3e251056634c920816baaaa36010eaadca30d1db45c
+
+post_install() {
+	vlicense LICENSE
+    vdoc README.md
+}
