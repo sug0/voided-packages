@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=WolkenWelten
+GenericName=Fast-paced Multiplayer Voxel Survival Game
+Comment=Fast-paced Multiplayer Voxel Survival Game in C and LISP
+Icon=WolkenWelten
+Exec=/bin/WolkenWelten
+Terminal=false
+Type=Application
+Categories=Game;

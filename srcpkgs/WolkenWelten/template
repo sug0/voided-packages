@@ -1,0 +1,34 @@
+# Template file for 'WolkenWelten'
+pkgname=WolkenWelten
+version=ae514e2871fa4a6ed8d06a201fed44ae4a6fa994
+revision=3
+build_style=gnu-makefile
+hostmakedepends="pkg-config which ffmpeg"
+makedepends="SDL2-devel SDL2_mixer-devel"
+depends="hicolor-icon-theme"
+short_desc="Fast-paced Multiplayer Voxel Survival Game in C and LISP"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="AGPLv3"
+homepage="https://wolkenwelten.net/"
+distfiles="https://github.com/Melchizedek6809/WolkenWelten/archive/${version}.tar.gz"
+checksum=a382fb2cb3331acd4b7310a2a7913b7b8484754da6921759c3189c1ddf63c3ba
+
+CFLAGS+="-D_GNU_SOURCE"
+
+do_install() {
+	# install binaries
+	vmkdir usr/bin
+	vcopy nujel usr/bin
+	vcopy wolkenwelten usr/bin
+	vcopy wolkenwelten-server usr/bin
+
+	# install desktop file and icon
+	vmkdir usr/share/icons/hicolor/512x512/apps
+	vmkdir usr/share/applications
+	cp ${FILESDIR}/WolkenWelten.png ${DESTDIR}/usr/share/icons/hicolor/512x512/apps
+	cp ${FILESDIR}/WolkenWelten.desktop ${DESTDIR}/usr/share/applications
+
+	# license and docs
+	vdoc README.md
+	vlicense COPYING
+}
