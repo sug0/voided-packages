@@ -1,0 +1,18 @@
+# Template file for 'undocker'
+pkgname=undocker
+version=1.0.1
+revision=1
+build_style=go
+wrksrc="${pkgname}-v${version}"
+go_import_path="git.sr.ht/~motiejus/undocker"
+short_desc="Converts a Docker image (a bunch of layers) to a flattened \"rootfs\" tarball"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT"
+homepage="https://sr.ht/~motiejus/undocker/"
+distfiles="https://git.sr.ht/~motiejus/undocker/archive/v${version}.tar.gz"
+checksum=58711d771a69ddd324966388aa5f158b58bf1d79ee61c9a5b340710ea0047aa5
+
+post_install() {
+	vdoc README.md
+	vlicense LICENSE
+}
