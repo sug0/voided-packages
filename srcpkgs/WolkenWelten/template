@@ -1,7 +1,7 @@
 # Template file for 'WolkenWelten'
 pkgname=WolkenWelten
 version=ae514e2871fa4a6ed8d06a201fed44ae4a6fa994
-revision=3
+revision=4
 build_style=gnu-makefile
 hostmakedepends="pkg-config which ffmpeg"
 makedepends="SDL2-devel SDL2_mixer-devel"
