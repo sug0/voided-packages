@@ -1,6 +1,6 @@
 # Template file for 'yt-dlp'
 pkgname=yt-dlp
-version=2021.08.10
+version=2021.09.02
 revision=1
 build_style=python3-module
 hostmakedepends="python3-setuptools"
@@ -11,7 +11,7 @@ maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="Unlicense"
 homepage="https://github.com/yt-dlp/yt-dlp"
 distfiles="https://github.com/yt-dlp/yt-dlp/archive/${version}.tar.gz"
-checksum=d847e32bc18767be2f27183f5da2ba05d0142e194e95ac6b3e69494353ee366b
+checksum=d73ab004bd4006103fe01d28870904005832bb9cfb758d2fdea8a5aba7ae2a8b
 
 do_check() {
 	PYTHON=/usr/bin/python3 make offlinetest
