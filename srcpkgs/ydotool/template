@@ -1,0 +1,40 @@
+# Template file for 'ydotool'
+pkgname=ydotool
+version=0.2.0
+revision=2
+build_style=cmake
+cmake_builddir=build
+hostmakedepends="pkg-config git scdoc"
+short_desc="Generic command-line automation tool (no X!)"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="AGPLv3"
+homepage="https://github.com/ReimuNotMoe/ydotool"
+distfiles="https://github.com/ReimuNotMoe/ydotool/archive/v${version}.tar.gz"
+checksum=2311b003d2ff383f3348f17101f0df74f56616d530d66d0a014a52ba85a5dcf1
+
+# No error for several warnings
+CXXFLAGS="-Wno-deprecated-declarations -Wno-class-memaccess -Wno-format-truncation"
+
+post_build() {
+	scdoc < manpage/ydotool.1.scd > ${cmake_builddir}/ydotool.1
+	scdoc < manpage/ydotoold.8.scd > ${cmake_builddir}/ydotoold.8
+}
+
+do_install() {
+	# create dirs
+	vmkdir usr/bin
+	vmkdir usr/share/man/man1
+	vmkdir usr/share/man/man8
+
+	# install binaries
+	vcopy ${cmake_builddir}/ydotool usr/bin
+	vcopy ${cmake_builddir}/ydotoold usr/bin
+
+	# install man docs
+	vcopy ${cmake_builddir}/ydotool.1 usr/share/man/man1
+	vcopy ${cmake_builddir}/ydotoold.8 usr/share/man/man8
+
+	# install license and other docs
+	vlicense LICENSE
+	vdoc README.md
+}
