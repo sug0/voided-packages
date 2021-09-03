@@ -1,7 +1,7 @@
 # Template file for 'ydotool'
 pkgname=ydotool
 version=0.2.0
-revision=2
+revision=3
 build_style=cmake
 cmake_builddir=build
 hostmakedepends="pkg-config git scdoc"
@@ -33,6 +33,9 @@ do_install() {
 	# install man docs
 	vcopy ${cmake_builddir}/ydotool.1 usr/share/man/man1
 	vcopy ${cmake_builddir}/ydotoold.8 usr/share/man/man8
+
+	# create ydotool runit service
+	vsv ydotoold
 
 	# install license and other docs
 	vlicense LICENSE
