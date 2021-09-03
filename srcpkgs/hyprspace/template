@@ -15,5 +15,5 @@ checksum=4e37bce4c3deac695eb3d6c7ef63cc2be577e0ada85952f83ac3ef77ef4d41b1
 post_install() {
 	vdoc README.md
 	vlicense LICENSE
-    vsv hyprspace-hs0
+	vsv hyprspace-hs0
 }

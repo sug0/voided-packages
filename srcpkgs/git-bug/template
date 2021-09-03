@@ -13,7 +13,7 @@ distfiles="https://github.com/MichaelMure/git-bug/archive/v${version}.tar.gz"
 checksum=b6313e10af13ce0ba288a6c9de92191ca1ab700d9c64bae11202c233ebdb4fc1
 
 pre_build() {
-    go generate
+	go generate
 }
 
 post_install() {

@@ -90,7 +90,7 @@ do_configure() {
 	#	msg_normal "Defaulting to 'allmodconfig'.\n"
 	#	make ${makejobs} ARCH=$arch ${_cross} allmodconfig
 	#fi
-    cp -f ${FILESDIR}/x86_64-dotconfig .config
+	cp -f ${FILESDIR}/x86_64-dotconfig .config
 
 	# Always use our revision to CONFIG_LOCALVERSION to match our pkg version.
 	sed -i -e "s|^\(CONFIG_LOCALVERSION=\).*|\1\"_${revision}\"|" .config
