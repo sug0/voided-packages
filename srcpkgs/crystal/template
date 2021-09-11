@@ -2,14 +2,16 @@
 pkgname=crystal
 _commit=99ebbb08f2ad49498d42310bc4eced22ab93e846
 version=1.2.0
-revision=2
+revision=3
 archs="x86_64" # figure out how to cross compile
 wrksrc="crystal-${_commit}"
 short_desc="The Crystal Programming Language"
 hostmakedepends="crystal-bin llvm lld pkg-config git"
 makedepends="
  libbsd-devel gmp-devel libedit-devel libevent-devel
- libxml2-devel libyaml-devel openssl-devel pcre-devel"
+ libxml2-devel libyaml-devel openssl-devel pcre-devel
+ gc-devel"
+depends="${makedepends}"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="Apache v2.0"
 homepage="https://crystal-lang.org"
@@ -17,7 +19,7 @@ distfiles="https://github.com/crystal-lang/crystal/archive/${_commit}.tar.gz"
 checksum=8c1b7844f249f7adb9c4cd56036e2515d1ab9d7cb3912d6e3c4325fcd511e171
 
 do_build() {
-	make threads=${XBPS_MAKEJOBS}
+	make threads=${XBPS_MAKEJOBS} release=1
 }
 
 do_install() {
