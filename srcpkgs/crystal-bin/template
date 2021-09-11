@@ -1,0 +1,19 @@
+# Template file for 'crystal-bin'
+pkgname=crystal-bin
+version=1.1.1
+_rev=1
+revision=1
+archs="x86_64"
+wrksrc="crystal-${version}-${_rev}"
+short_desc="The Crystal Programming Language - binary package"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="Apache v2.0"
+homepage="https://crystal-lang.org"
+distfiles="https://github.com/crystal-lang/crystal/releases/download/${version}/crystal-${version}-${_rev}-linux-x86_64.tar.gz"
+checksum=e78873f8185b45f8c6e480a6d2a6a4f3a8b4ee7ca2594e8170dd123a41566704
+nopie=true
+
+do_install() {
+	vmkdir usr
+	cp -R ./* ${DESTDIR}/usr
+}
