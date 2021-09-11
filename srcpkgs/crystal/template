@@ -2,7 +2,7 @@
 pkgname=crystal
 _commit=99ebbb08f2ad49498d42310bc4eced22ab93e846
 version=1.2.0
-revision=1
+revision=2
 archs="x86_64" # figure out how to cross compile
 wrksrc="crystal-${_commit}"
 short_desc="The Crystal Programming Language"
@@ -24,13 +24,15 @@ do_install() {
 	vmkdir usr/bin
 	vmkdir usr/lib/crystal/bin
 	vmkdir usr/share/man/man1
+	vmkdir usr/share/crystal
 
-    vcopy bin/crystal usr/bin
+	cp ${FILESDIR}/crystal ${DESTDIR}/usr/bin
 	vcopy .build/crystal usr/lib/crystal/bin
-    vcopy man/crystal.1 usr/share/man/man1
+	vcopy man/crystal.1 usr/share/man/man1
+	cp -r src ${DESTDIR}/usr/share/crystal
 }
 
 post_install() {
-    vdoc README.md
-    vlicense LICENSE
+	vdoc README.md
+	vlicense LICENSE
 }
