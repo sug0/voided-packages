@@ -1,0 +1,17 @@
+# Template file for 'gnome-paint'
+pkgname=gnome-paint
+version=0.4.0
+revision=1
+build_style=gnu-configure
+hostmakedepends="pkg-config"
+makedepends="gtk+-devel"
+short_desc="A simple, easy to use paint program for GNOME"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="GPLv3"
+homepage="https://code.google.com/archive/p/gnome-paint/"
+distfiles="https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/gnome-paint/gnome-paint-${version}.tar.gz"
+checksum=2028d539354acd29d8d480a0588991b1edf90d2a3d43ab00d76a0a607d5398c9
+
+post_install() {
+	vlicense COPYING
+}
