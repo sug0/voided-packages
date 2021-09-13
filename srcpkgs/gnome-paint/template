@@ -3,6 +3,7 @@ pkgname=gnome-paint
 version=0.4.0
 revision=1
 build_style=gnu-configure
+make_install_args="gnome_paintdocdir=${DESTDIR}/usr/share/doc/${pkgname}"
 hostmakedepends="pkg-config intltool"
 makedepends="gtk+-devel"
 short_desc="A simple, easy to use paint program for GNOME"
@@ -14,4 +15,5 @@ checksum=2028d539354acd29d8d480a0588991b1edf90d2a3d43ab00d76a0a607d5398c9
 
 post_install() {
 	vlicense COPYING
+	rm ${DESTDIR}/usr/share/doc/${pkgname}/COPYING
 }
