@@ -1,0 +1,47 @@
+From: Dominik Danelski <dominik@danelski.pl>
+Date: Thu, 2 Nov 2017 01:58:38 +0100
+Subject: Included patch by Logan Rosen and one other (gdk functions and ftbfs
+ security)
+
+Applied-Upstream: https://bazaar.launchpad.net/~gnome-paint-developers/gnome-paint/trunk/revision/89
+Last-Update: 2019-02-26
+
+---
+ src/Makefile.am | 1 -
+ src/toolbar.c   | 4 ++--
+ 2 files changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/src/Makefile.am b/src/Makefile.am
+index 852ae55..fe405ff 100644
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -78,7 +78,6 @@ gnome_paint_SOURCES = \
+ gnome_paint_CFLAGS = \
+ 	-DG_DISABLE_DEPRECATED\
+ 	-DG_DISABLE_SINGLE_INCLUDES\
+-	-DGDK_DISABLE_DEPRECATED\
+ 	-DGTK_DISABLE_DEPRECATED\
+ 	-DGDK_DISABLE_SINGLE_INCLUDES\
+ 	-DGTK_DISABLE_SINGLE_INCLUDES
+diff --git a/src/toolbar.c b/src/toolbar.c
+index 94bf7e0..3e03c83 100644
+--- a/src/toolbar.c
++++ b/src/toolbar.c
+@@ -1,7 +1,7 @@
+ /***************************************************************************
+  *            toolbar.c
+  *
+- *  Last update: 2011-05-24
++ *  Last update: 2017-11-02
+  *  Copyright (C) Rogério Ferro do Nascimento 2009 
+  *  <rogerioferro@gmail.com>
+  *  Copyright (C) Juan Balderas 2011 
+@@ -605,7 +605,7 @@ static void quick_message (GtkWidget *widget, gchar *message)
+ 				   GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+ 				   GTK_MESSAGE_INFO,
+ 				   GTK_BUTTONS_OK,
+-				   message);
++				   "%s", message);
+ 
+     gtk_dialog_run (GTK_DIALOG (dialog));
+     gtk_widget_destroy (dialog);

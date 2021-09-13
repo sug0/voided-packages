@@ -1,0 +1,37 @@
+From: Dominik Danelski <dominik@danelski.pl>
+Date: Tue, 31 Oct 2017 22:14:19 +0100
+Subject: Now builds using -lm
+
+Applied-Upstream: https://bazaar.launchpad.net/~gnome-paint-developers/gnome-paint/trunk/revision/87
+Last-Update: 2019-02-26
+---
+ src/Makefile.am | 2 +-
+ src/Makefile.in | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/Makefile.am b/src/Makefile.am
+index 2bea3b4..852ae55 100644
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -87,7 +87,7 @@ gnome_paint_LDFLAGS = \
+ 	-Wl,--export-dynamic
+ 
+ gnome_paint_LDADD = \
+-	$(GNOME_PAINT_LIBS) -lX11
++	$(GNOME_PAINT_LIBS) -lX11 -lm
+ 
+ SUBDIRS = \
+ 	pixmaps
+diff --git a/src/Makefile.in b/src/Makefile.in
+index c739333..986250b 100644
+--- a/src/Makefile.in
++++ b/src/Makefile.in
+@@ -352,7 +352,7 @@ gnome_paint_LDFLAGS = \
+ 	-Wl,--export-dynamic
+ 
+ gnome_paint_LDADD = \
+-	$(GNOME_PAINT_LIBS) -lX11
++	$(GNOME_PAINT_LIBS) -lX11 -lm
+ 
+ SUBDIRS = \
+ 	pixmaps

@@ -1,0 +1,180 @@
+From: Dominik Danelski <dominik@danelski.pl>
+Date: Tue, 31 Oct 2017 00:25:37 +0100
+Subject: Added Polish translation
+
+Applied-Upstream: https://bazaar.launchpad.net/~gnome-paint-developers/gnome-paint/trunk/revision/86
+Last-Update: 2019-02-26
+---
+ po/LINGUAS |   1 +
+ po/cs.po   |   2 +-
+ po/pl.po   | 136 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 138 insertions(+), 1 deletion(-)
+ create mode 100644 po/pl.po
+
+diff --git a/po/LINGUAS b/po/LINGUAS
+index f9463e4..21b07e1 100644
+--- a/po/LINGUAS
++++ b/po/LINGUAS
+@@ -10,6 +10,7 @@ fr
+ he
+ it
+ nb
++pl
+ pt_BR
+ pt
+ ru
+diff --git a/po/cs.po b/po/cs.po
+index 738bf4d..d1ca415 100644
+--- a/po/cs.po
++++ b/po/cs.po
+@@ -5,7 +5,7 @@
+ #
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: gnome-paint 0.4.0-1\n"
++"Project-Id-Version: gnome-paint 0.4.1\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2010-12-13 18:22+0800\n"
+ "PO-Revision-Date: 2010-12-18 16:01+0100\n"
+diff --git a/po/pl.po b/po/pl.po
+new file mode 100644
+index 0000000..c316e7d
+--- /dev/null
++++ b/po/pl.po
+@@ -0,0 +1,136 @@
++# Polish translation for gnome-paint
++# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
++# This file is distributed under the same license as the gnome-paint package.
++# Dominik Danelski <dominik@danelski.pl>, 2017.
++#
++msgid ""
++msgstr ""
++"Project-Id-Version: gnome-paint-0.4.1\n"
++"Report-Msgid-Bugs-To: \n"
++"POT-Creation-Date: 2010-06-04 20:10-0300\n"
++"PO-Revision-Date: 2017-10-30 22:53+0000\n"
++"Last-Translator: Dominik Danelski <dominik@danelski.pl>\n"
++"Language-Team: Polish <debian-l10n-polish@lists.debian.org>\n"
++"MIME-Version: 1.0\n"
++"Content-Type: text/plain; charset=UTF-8\n"
++"Content-Transfer-Encoding: 8bit\n"
++"X-Launchpad-Export-Date: 2017-10-30 22:56+0000\n"
++"X-Generator: Launchpad (build 18493)\n"
++
++#: ../data/desktop/gnome-paint.desktop.in.in.h:1
++msgid "Create and Edit Drawings or Images"
++msgstr "Twórz i edytuj rysunki oraz zdjęcia"
++
++#: ../data/desktop/gnome-paint.desktop.in.in.h:2
++msgid "Gnome Paint Drawing Editor"
++msgstr "Gnome Paint"
++
++#: ../data/ui/gnome_paint.ui.h:1
++msgid "Free select tool"
++msgstr "Lasso"
++
++#: ../data/ui/gnome_paint.ui.h:2
++msgid "_Color"
++msgstr "_Kolor"
++
++#: ../data/ui/gnome_paint.ui.h:3
++msgid "_Edit"
++msgstr "_Edytuj"
++
++#: ../data/ui/gnome_paint.ui.h:4
++msgid "_File"
++msgstr "_Plik"
++
++#: ../data/ui/gnome_paint.ui.h:5
++msgid "_Help"
++msgstr "_Pomoc"
++
++#: ../data/ui/gnome_paint.ui.h:6
++msgid "_Image"
++msgstr "_Obraz"
++
++#: ../data/ui/gnome_paint.ui.h:7
++msgid "_View"
++msgstr "_Widok"
++
++#: ../src/color.c:142
++msgid "Select Background Color"
++msgstr "Wybierz kolor tła"
++
++#: ../src/color.c:155
++msgid "Select Foreground Color"
++msgstr "Wybierz kolor pierwszego planu"
++
++#: ../src/color.c:214
++msgid "Select Color"
++msgstr "Wybierz kolor"
++
++#: ../src/file.c:98
++#, c-format
++msgid "Do you want to save the changes you made to \"%s\"?"
++msgstr "Czy chcesz zapisać zmiany w pliku \"%s\"?"
++
++#: ../src/file.c:102
++msgid "Your changes will be lost if you don't save them."
++msgstr "Wprowadzone zmiany zostaną utracone, jeśli ich nie zapiszesz."
++
++#: ../src/file.c:175
++#, c-format
++msgid "Error loading file \"%s\""
++msgstr "Nie można odczytać pliku \"%s\""
++
++#: ../src/file.c:272
++#, c-format
++msgid "%s - gnome-paint"
++msgstr "%s - gnome-paint"
++
++#: ../src/file.c:313
++msgid "untitled"
++msgstr "bez tytułu"
++
++#: ../src/file.c:326
++#, c-format
++msgid "Error saving file \"%s\""
++msgstr "Nie można zapisać pliku \"%s\""
++
++#: ../src/file.c:340
++msgid "unknown error"
++msgstr "nieznany błąd"
++
++#: ../src/main.c:183
++msgid "gnome-paint is a simple, easy to use paint program for GNOME."
++msgstr ""
++"gnome-paint to prosty i łatwy w obsłudze program do rysowania, dla "
++"środowiska graficznego GNOME"
++
++#: ../src/main.c:185
++msgid ""
++"This program is free software; you may redistribute it and/or modify it "
++"under the terms of the GNU General Public License as published by the Free "
++"Software Foundation, either version 3, or (at your opinion) any later "
++"version.\n"
++msgstr ""
++"To jest wolne oprogramowanie; możesz je dalej rozpowszechniać i/lub "
++"modyfikować na warunkach Powszechnej Licencji Publicznej GNU (GNU General "
++"Public License) w postaci opublikowanej przez Free Software Foundation w "
++"wersji 3 lub dowolnej późniejszej.\n"
++
++#: ../src/pixbuf-file-chooser.c:234
++msgid "All Images"
++msgstr "Wszystkie obrazy"
++
++#: ../src/pixbuf-file-chooser.c:353
++msgid "All Files"
++msgstr "Wszystkie pliki"
++
++#: ../src/pixbuf-file-chooser.c:427
++msgid "Load Image"
++msgstr "Wczytaj obraz"
++
++#: ../src/pixbuf-file-chooser.c:435
++msgid "Save Image"
++msgstr "Zapisz obraz"
++
++#: ../src/pixbuf-file-chooser.c:443
++msgid "Open Folder"
++msgstr "Otwórz katalog"

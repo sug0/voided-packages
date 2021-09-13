@@ -1,0 +1,43 @@
+From: Marc-Antoine Perennou <Marc-Antoine@Perennou.com>
+Date: Tue, 15 Mar 2011 09:50:44 +0100
+Subject: Make it compatible with latest gtk2
+
+Applied-Upstream: https://bazaar.launchpad.net/~gnome-paint-developers/gnome-paint/trunk/revision/84
+Last-Update: 2019-02-26
+
+Use gtk_widget_get_state instead of the deprecated GTK_WIDGET_STATE macro
+---
+ src/cv_drawing.c | 2 +-
+ src/cv_resize.c  | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/cv_drawing.c b/src/cv_drawing.c
+index 72d48a9..31ccb48 100644
+--- a/src/cv_drawing.c
++++ b/src/cv_drawing.c
+@@ -380,7 +380,7 @@ on_cv_drawing_expose_event	(   GtkWidget	   *widget,
+     	                event->area.width, event->area.height);	
+ #else
+ 	gdk_draw_drawable (	widget->window,
+-                    	widget->style->fg_gc[GTK_WIDGET_STATE(widget)],
++                    	widget->style->fg_gc[gtk_widget_get_state(widget)],
+     	                cv.pixmap,
+     	                event->area.x, event->area.y,
+     	                event->area.x, event->area.y,
+diff --git a/src/cv_resize.c b/src/cv_resize.c
+index 69208ac..7f511eb 100644
+--- a/src/cv_resize.c
++++ b/src/cv_resize.c
+@@ -204,10 +204,10 @@ on_cv_other_edge_expose_event	(   GtkWidget	   *widget,
+                     0,0,widget->allocation.width,0);
+ #else
+ 	gdk_draw_line ( widget->window,
+-                    widget->style->fg_gc[GTK_WIDGET_STATE(widget)],
++                    widget->style->fg_gc[gtk_widget_get_state(widget)],
+                     0,0,0,widget->allocation.height);
+ 	gdk_draw_line ( widget->window,
+-                    widget->style->fg_gc[GTK_WIDGET_STATE(widget)],
++                    widget->style->fg_gc[gtk_widget_get_state(widget)],
+                     0,0,widget->allocation.width,0);
+ #endif
+ 	return TRUE;
