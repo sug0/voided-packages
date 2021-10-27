@@ -8,7 +8,7 @@ configure_args="--no-default-features --features=serialization,external-harfbuzz
 hostmakedepends="pkg-config"
 makedepends="harfbuzz-devel openssl-devel libcurl-devel"
 short_desc="Modernized, complete, self-contained TeX/LaTeX engine"
-maintainer="Chinmay Pai <chinmaydpai@gmail.com>"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="MIT"
 homepage="https://tectonic-typesetting.github.io"
 distfiles="https://github.com/tectonic-typesetting/tectonic/archive/tectonic@${version}.tar.gz"
