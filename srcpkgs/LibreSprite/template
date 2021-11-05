@@ -2,9 +2,10 @@
 pkgname=LibreSprite
 version=1.0
 _beta=1
-revision=2
+revision=3
 build_style=cmake
 cmake_builddir=build
+configure_args="-DWITH_DESKTOP_INTEGRATION=ON"
 hostmakedepends="pkg-config git gtest-devel"
 makedepends="
  libcurl-devel freetype-devel giflib-devel libjpeg-turbo-devel libpng-devel
@@ -16,8 +17,7 @@ license="GPLv2"
 homepage="https://libresprite.github.io"
 
 # No error for several warnings
-CXXFLAGS="-Wno-deprecated-declarations -Wno-class-memaccess -Wno-format-truncation
- -DWITH_DESKTOP_INTEGRATION=ON"
+CXXFLAGS="-Wno-deprecated-declarations -Wno-class-memaccess -Wno-format-truncation"
 
 # You are an ugly son of a bitch
 do_fetch() {
