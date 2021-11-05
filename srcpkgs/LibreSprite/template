@@ -1,0 +1,34 @@
+# Template file for 'LibreSprite'
+pkgname=LibreSprite
+version=1.0
+_beta=1
+revision=2
+build_style=cmake
+cmake_builddir=build
+hostmakedepends="pkg-config git gtest-devel"
+makedepends="
+ libcurl-devel freetype-devel giflib-devel libjpeg-turbo-devel libpng-devel
+ libwebp-devel pixman-devel tinyxml-devel zlib-devel SDL2-devel SDL2_image-devel
+ lua54-devel"
+short_desc="Fork of the last GPL version of aseprite"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="GPLv2"
+homepage="https://libresprite.github.io"
+
+# No error for several warnings
+CXXFLAGS="-Wno-deprecated-declarations -Wno-class-memaccess -Wno-format-truncation
+ -DWITH_DESKTOP_INTEGRATION=ON"
+
+# You are an ugly son of a bitch
+do_fetch() {
+	git clone https://github.com/LibreSprite/LibreSprite LibreSprite-${version}
+	cd LibreSprite-${version}
+	git checkout "v${version}-beta.${_beta}"
+	git submodule update --init --recursive
+	cd ..
+}
+
+post_install() {
+	vlicense LICENSE.txt
+	vdoc README.md
+}
