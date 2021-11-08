@@ -1,0 +1,22 @@
+# Template file for 'neovide'
+pkgname=neovide
+version=0.7.0
+revision=1
+build_style=cargo
+configure_args="--no-default-features --features=winit"
+hostmakedepends="pkg-config"
+makedepends="openssl-devel freetype-devel expat-devel"
+depends="neovim"
+short_desc="No Nonsense Neovim Client in Rust "
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT"
+homepage="https://github.com/neovide/neovide"
+distfiles="https://github.com/neovide/neovide/archive/${version}.tar.gz"
+checksum=59a4bc94348d1e71b402a6202f6dfaba7248d1d5f4bbeeaff6965a7c421afc40
+
+export CMAKE_POLICY_DEFAULT_CMP0004=OLD
+
+post_install() {
+	vlicense LICENSE
+	vdoc README.md
+}
