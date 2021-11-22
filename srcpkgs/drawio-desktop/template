@@ -1,7 +1,7 @@
 # Template file for 'drawio-desktop'
 pkgname=drawio-desktop
 version=15.7.3
-revision=1
+revision=2
 _electron_ver=13
 hostmakedepends="yarn app-builder"
 makedepends="electron${_electron_ver}"
@@ -34,7 +34,7 @@ do_build() {
 	export USE_SYSTEM_APP_BUILDER=true
 	export NODE_ENV=production
 
-	yarn add electron-builder electron-notarize # for electron-builder
+	yarn add electron-builder electron-notarize dotenv # for electron-builder
 	yarn install
 	yarn sync
 	yarn run electron-builder --linux --x64 --dir \

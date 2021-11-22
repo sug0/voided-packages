@@ -1,2 +1,2 @@
 #!/bin/sh
-exec electron12 /usr/lib/drawio-desktop.asar "$@"
+exec electron13 /usr/lib/drawio-desktop.asar "$@"
