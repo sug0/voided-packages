@@ -1,0 +1,30 @@
+# Template file for 'deadbeef-gnome-mmkeys'
+pkgname=deadbeef-gnome-mmkeys
+version=20211124
+_commit=895deabd56405cdc71a93418ffb101bb5e35dcfe
+wrksrc="${pkgname}-${_commit}"
+revision=2
+hostmakedepends="pkg-config"
+makedepends="libglib-devel deadbeef-devel"
+short_desc="Add GNOME multimedia keys support in DeadBeef player using DBus"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="GPLv2"
+homepage="https://github.com/zhanghai/deadbeef-gnome-mmkeys"
+distfiles="https://github.com/zhanghai/deadbeef-gnome-mmkeys/archive/${_commit}.tar.gz"
+checksum=68d2ebea5e70bce0e71fca70b5164bc673974f102e8a9b7c2393dfaf62d67c23
+
+post_extract() {
+	cp ${FILESDIR}/LICENSE .
+}
+
+do_build() {
+	make ROOTDIR="${DESTDIR}/"
+}
+
+do_install() {
+	make ROOTDIR="${DESTDIR}/" install
+}
+
+post_install() {
+	vlicense LICENSE
+}
