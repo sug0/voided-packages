@@ -1,6 +1,6 @@
 # Template file for 'hyprspace'
 pkgname=hyprspace
-version=0.1.5
+version=0.1.7
 revision=1
 build_style=go
 go_import_path=github.com/hyprspace/hyprspace
@@ -10,7 +10,7 @@ maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="Apache v2.0"
 homepage="https://github.com/hyprspace/hyprspace"
 distfiles="https://github.com/hyprspace/hyprspace/archive/v${version}.tar.gz"
-checksum=4e37bce4c3deac695eb3d6c7ef63cc2be577e0ada85952f83ac3ef77ef4d41b1
+checksum=b004f4a7776f8a83b6849d7fcf8dca88a29674af20fa64572447d6b2d5b2113f
 
 post_install() {
 	vdoc README.md
