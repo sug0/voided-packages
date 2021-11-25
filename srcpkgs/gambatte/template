@@ -1,0 +1,27 @@
+# Template file for 'gambatte'
+pkgname=gambatte
+version=0.4.2
+revision=2
+hostmakedepends="scons"
+_sdl=SDL
+makedepends="${_sdl}-devel zlib-devel"
+short_desc="An accurate Game Boy emulator"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="GPLv2"
+homepage="https://github.com/sug0/gambatte"
+changelog="https://raw.githubusercontent.com/sug0/gambatte/master/changelog"
+distfiles="https://github.com/sug0/gambatte/archive/v${version}.tar.gz"
+checksum=11ac689024d84aa2d5add12228d5af7ceb59a161428e1e564fbf589ba690e0ab
+
+do_build() {
+	cd libgambatte
+	scons
+
+	cd ../gambatte_sdl
+	scons
+}
+
+do_install() {
+	vmkdir usr/bin
+	vcopy gambatte_sdl/gambatte_sdl usr/bin
+}
