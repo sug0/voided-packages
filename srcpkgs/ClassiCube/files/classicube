@@ -1,0 +1,13 @@
+#!/bin/sh
+
+DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}"
+CLASSICUBE_ROOT="${DATA_DIR}/classicube"
+
+init_data_dir() {
+    mkdir -p "$CLASSICUBE_ROOT"
+    cp /usr/lib/classicube/bin/ClassiCube "$CLASSICUBE_ROOT"
+}
+
+[ -d "$CLASSICUBE_ROOT" ] || init_data_dir
+
+exec "${CLASSICUBE_ROOT}/ClassiCube"
