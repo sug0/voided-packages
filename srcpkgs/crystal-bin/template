@@ -2,8 +2,8 @@
 pkgname=crystal-bin
 version=1.2.2
 _rev=1
-revision=1
-archs="x86_64"
+revision=2
+archs="x86_64*"
 wrksrc="crystal-${version}-${_rev}"
 short_desc="The Crystal Programming Language - binary package"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
