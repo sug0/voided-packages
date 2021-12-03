@@ -1,0 +1,46 @@
+# Template file for 'terra'
+pkgname=terra
+version=1.0.0beta3
+revision=1
+build_style=cmake
+cmake_builddir=build
+_commit=a337b4fd12c84c3dc802803f566d7607a2195c56
+wrksrc="terra-${_commit}"
+configure_args="
+  -DCMAKE_BUILD_TYPE=Release
+  -DTERRA_STATIC_LINK_LLVM=ON
+  -DTERRA_STATIC_LINK_LUAJIT=ON
+  -DDEFAULT_TERRA_SLIB_INCLUDE_LUAJIT=ON"
+short_desc="Low-level system programming language, embedded in and meta-programmed by Lua"
+hostmakedepends="llvm12 pkg-config git clang clang-tools-extra"
+makedepends="libedit-devel zlib-devel ncurses-devel libxml2-devel libffi-devel"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT"
+homepage="https://terralang.org"
+distfiles="https://github.com/terralang/terra/archive/${_commit}.tar.gz"
+checksum=d7c40f8dd23f61a9f841da472d127ed24f531d2d831bb2de50f33b145e01ac09
+
+post_install() {
+	vdoc README.md
+	vlicense release/share/terra/LICENSE.txt
+
+	# Remove tests
+	rm -rf ${DESTDIR}/usr/share/terra/tests
+}
+
+libterra_package() {
+	pkgname=libterra
+	short_desc+=" - shared library"
+	pkg_install() {
+		vmove "usr/lib/*"
+	}
+}
+
+libterra-devel_package() {
+	pkgname=libterra-devel
+	depends="${makedepends} ${sourcepkg}>=${version}_${revision}"
+	short_desc+=" - development files"
+	pkg_install() {
+		vmove usr/include/terra
+	}
+}
