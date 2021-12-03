@@ -1,7 +1,7 @@
 # Template file for 'terra'
 pkgname=terra
 version=1.0.0beta3
-revision=1
+revision=2
 build_style=cmake
 cmake_builddir=build
 _commit=a337b4fd12c84c3dc802803f566d7607a2195c56
@@ -24,8 +24,8 @@ post_install() {
 	vdoc README.md
 	vlicense release/share/terra/LICENSE.txt
 
-	# Remove tests
-	rm -rf ${DESTDIR}/usr/share/terra/tests
+	# Remove things we do not need to package
+	rm -rf ${DESTDIR}/usr/share/terra
 }
 
 libterra_package() {
