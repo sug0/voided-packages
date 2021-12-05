@@ -1,7 +1,7 @@
 # Template file for 'xbps-gitlab'
 pkgname=xbps-gitlab
 version=21.1
-revision=2
+revision=3
 bootstrap=yes
 build_style=configure
 wrksrc="xbps-${version}"
@@ -41,6 +41,9 @@ post_install() {
 	vlicense 3RDPARTY
 
 	echo "" > ${DESTDIR}/usr/share/xbps.d/void-virtualpkgs.conf
+
+	vmkdir var/db/xbps/keys
+	vcopy ${FILESDIR}/*.plist var/db/xbps/keys
 }
 
 libxbps-gitlab_package() {
