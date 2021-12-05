@@ -1,0 +1,18 @@
+# Template file for 'p2prime'
+pkgname=p2prime
+version=20211204
+revision=1
+build_style=go
+go_import_path=github.com/sug0/p2prime
+hostmakedepends="git"
+short_desc="Go implementation of peerflix"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT"
+homepage="https://github.com/sug0/p2prime"
+distfiles="https://github.com/sug0/p2prime/archive/${version}.tar.gz"
+checksum=c72d343059e2f80e310cfd712133ced0775c27820677dc184178e09790c6ed51
+
+post_install() {
+	vdoc README.md
+	vlicense LICENSE
+}
