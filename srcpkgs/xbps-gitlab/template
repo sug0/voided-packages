@@ -1,0 +1,64 @@
+# Template file for 'xbps-gitlab'
+pkgname=xbps-gitlab
+version=21.1
+revision=2
+bootstrap=yes
+build_style=configure
+wrksrc="xbps-${version}"
+short_desc="XBPS package system utilities (GitLab version)"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="BSD-2-Clause, BSD-3-Clause, ISC"
+homepage="https://gitlab.com/xtraeme/xbps"
+changelog="https://gitlab.com/xtraeme/xbps/-/raw/${version}/NEWS.md"
+distfiles="https://gitlab.com/xtraeme/xbps/-/archive/${version}/xbps-${version}.tar.gz"
+checksum=51a8ab75ece07bea64ea325e2c62314f9477bab06de297e8d3577f0fb4f48578
+replaces="xbps>=0"
+
+hostmakedepends="pkgconf"
+makedepends="zlib-devel openssl-devel libarchive-devel"
+depends="ca-certificates xbps-triggers"
+
+make_dirs="/etc/xbps.d 0755 root root"
+
+do_configure() {
+	./configure --prefix=/usr --sysconfdir=/etc
+}
+
+post_install() {
+	local repo="https://alpha.de.repo.voidlinux.org/current" suffix=
+	case "$XBPS_TARGET_MACHINE" in
+		aarch64*)     suffix="/aarch64";;
+		*-musl)       suffix="/musl";;
+	esac
+
+	vmkdir usr/share/xbps.d
+	echo "repository=${repo}${suffix}" > \
+		${DESTDIR}/usr/share/xbps.d/00-repository-main.conf
+	echo "architecture=${XBPS_TARGET_MACHINE}" > \
+		${DESTDIR}/usr/share/xbps.d/xbps-arch.conf
+
+	vlicense LICENSE
+	vlicense 3RDPARTY
+
+	echo "" > ${DESTDIR}/usr/share/xbps.d/void-virtualpkgs.conf
+}
+
+libxbps-gitlab_package() {
+	short_desc+=" - runtime library"
+	replaces="libxbps>=0"
+	pkg_install() {
+		vmove "usr/lib/*.so.*"
+	}
+}
+
+libxbps-gitlab-devel_package() {
+	short_desc+=" - runtime library (development files)"
+	depends="${makedepends} libxbps-gitlab>=${version}_${revision}"
+	replaces="libxbps-devel>=0"
+	pkg_install() {
+		vmove usr/include
+		vmove "usr/lib/*.a"
+		vmove "usr/lib/*.so"
+		vmove usr/lib/pkgconfig
+	}
+}
