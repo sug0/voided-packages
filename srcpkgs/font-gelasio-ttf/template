@@ -1,0 +1,20 @@
+# Template file for 'font-gelasio-ttf'
+pkgname=font-gelasio-ttf
+version=20191203
+revision=1
+depends="font-util"
+create_wrksrc=1
+wrksrc="Gelasio-${version}"
+short_desc="An original typeface which is metrics compatible with Georgia"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="OFL"
+homepage="https://github.com/SorkinType/Gelasio"
+distfiles="https://fonts.google.com/download?family=Gelasio>Gelasio-${version}.zip"
+checksum=1bc17bb9033852590cc4cbbcccef0d41559d51a59694a09b192c2f27a74f4725
+font_dirs=/usr/share/fonts/Gelasio
+
+do_install() {
+	vmkdir usr/share/fonts/Gelasio
+	vcopy *.ttf usr/share/fonts/Gelasio
+	vlicense OFL.txt
+}
