@@ -1,7 +1,7 @@
 # Template file for 'qbe'
 pkgname=qbe
 version=20211029
-revision=1
+revision=2
 build_style=gnu-makefile
 _commit=4420727667b915042050b9bfa6eb381ce7a97ba5
 wrksrc="${pkgname}-${_commit}"
@@ -16,4 +16,9 @@ export CFLAGS="-Wall -Wextra -std=c99 -g -pedantic"
 
 post_install() {
 	vlicense LICENSE
+
+	vdoc doc/abi.txt
+	vdoc doc/il.txt
+	vdoc doc/llvm.txt
+	vdoc doc/win.txt
 }
