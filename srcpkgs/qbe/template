@@ -1,0 +1,19 @@
+# Template file for 'qbe'
+pkgname=qbe
+version=20211029
+revision=1
+build_style=gnu-makefile
+_commit=4420727667b915042050b9bfa6eb381ce7a97ba5
+wrksrc="${pkgname}-${_commit}"
+short_desc="Pure C embeddable compiler backend"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT"
+homepage="https://c9x.me/compile"
+distfiles="https://git.sr.ht/~mcf/qbe/archive/${_commit}.tar.gz"
+checksum=7fa1267f382338ea9d8484de77d20590c846f96b82d1cd8ac7637bb29b2bf757
+
+export CFLAGS="-Wall -Wextra -std=c99 -g -pedantic"
+
+post_install() {
+	vlicense LICENSE
+}
