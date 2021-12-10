@@ -1,0 +1,17 @@
+# Template file for 'cproc'
+pkgname=cproc
+version=20211206
+revision=1
+build_style=gnu-makefile
+_commit=aefb830ede6316f5fcf4c3c48b79a661c66c9f2e
+wrksrc="${pkgname}-${_commit}"
+short_desc="C11 compiler using QBE as a backend"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="ISC"
+homepage="https://git.sr.ht/~mcf/cproc"
+distfiles="https://git.sr.ht/~mcf/cproc/archive/${_commit}.tar.gz"
+checksum=e8c7116ed34de955cd71564c2be45306d81c2911614b8cac7332c0255ebf64ee
+
+post_install() {
+	vlicense LICENSE
+}
