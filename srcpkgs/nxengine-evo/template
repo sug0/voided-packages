@@ -3,7 +3,7 @@ pkgname=nxengine-evo
 _ver=2.6.5
 _rev=1
 version=${_ver}rev${_rev}
-revision=2
+revision=3
 build_style=cmake
 cmake_builddir=build
 create_wrksrc=yes
@@ -24,13 +24,16 @@ checksum="
   db9b78b0c4005959ab8f3a6a05c02d86e764e6593cdd11a2178c581bb03a0699
   aa87fa30bee9b4980640c7e104791354e0f1f6411ee0d45a70af70046aa0685f"
 
-pre_configure() {
-	# game assets from the Aeon Genesis version
+post_install() {
+	# install missing game assets from the Aeon Genesis version
 	cp -r ${wrksrc}/CaveStory/data/* data/
 	cp ${wrksrc}/CaveStory/Doukutsu.exe .
-}
+	${DESTDIR}/usr/bin/nxextract
+	cp -r data/* ${DESTDIR}/usr/share/nxengine/data/
 
-post_install() {
+	# remove unnecessary files
+	rm ${DESTDIR}/usr/bin/nxextract
+
 	# install license
 	vlicense LICENSE
 }
