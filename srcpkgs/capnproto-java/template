@@ -1,7 +1,7 @@
 # Template file for 'capnproto-java'
 pkgname=capnproto-java
-version=0.1.11
-revision=2
+version=0.1.13
+revision=1
 wrksrc="${pkgname}-${version}"
 hostmakedepends="pkg-config"
 makedepends="capnproto-devel"
@@ -10,7 +10,7 @@ maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="MIT"
 homepage="https://github.com/capnproto/capnproto-java"
 distfiles="https://github.com/capnproto/capnproto-java/archive/v${version}.tar.gz"
-checksum=fb1d87ea685fb964665909d077a408a60e9e6cdabd6861c711cc23ec31356799
+checksum=a9f1e453df358ee18e67d96193ce2a30db694b9d743b563f5c8546d3c8406a14
 
 do_build() {
 	make
