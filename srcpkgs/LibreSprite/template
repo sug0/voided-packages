@@ -1,8 +1,7 @@
 # Template file for 'LibreSprite'
 pkgname=LibreSprite
 version=1.0
-_beta=1
-revision=3
+revision=1
 build_style=cmake
 cmake_builddir=build
 configure_args="-DWITH_DESKTOP_INTEGRATION=ON"
@@ -21,9 +20,10 @@ CXXFLAGS="-Wno-deprecated-declarations -Wno-class-memaccess -Wno-format-truncati
 
 # You are an ugly son of a bitch
 do_fetch() {
-	git clone https://github.com/LibreSprite/LibreSprite LibreSprite-${version}
+	[ -d LibreSprite-${version} ] || \
+		git clone https://github.com/LibreSprite/LibreSprite LibreSprite-${version}
 	cd LibreSprite-${version}
-	git checkout "v${version}-beta.${_beta}"
+	git checkout "v${version}"
 	git submodule update --init --recursive
 	cd ..
 }
