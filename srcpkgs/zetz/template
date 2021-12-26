@@ -1,16 +1,17 @@
 # Template file for 'zetz'
 pkgname=zetz
-version=f8d511717a12fe82c8082819afc91fb194e2ace6
+version=20211118
+_commit=5a86bbd0a5676cc4644942174bb5b29cae58a2c8
 revision=1
 build_style=cargo
-wrksrc=zz-${version}
+wrksrc=zz-${_commit}
 depends="z3"
 short_desc="Symbolic verifier and transpiler to bare metal C"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="MIT"
 homepage="https://github.com/zetzit/zz"
-distfiles="https://github.com/zetzit/zz/archive/${version}.tar.gz"
-checksum=8cad24959a936c2dc562818e49ffec56dbf8038dc9c852465159ff91d0ce32e6
+distfiles="https://github.com/zetzit/zz/archive/${_commit}.tar.gz"
+checksum=9c7dffb9335eea165629e3aabc70782fbe19c2f74b41ef9406cd9793f18a5a60
 
 pre_build() {
 	# Change default modules directory
