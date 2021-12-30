@@ -1,0 +1,47 @@
+# Template file for 'box64'
+pkgname=box64
+version=0.1.6
+revision=1
+build_style=cmake
+cmake_builddir=build
+configure_args="-DNOGIT=ON -DCMAKE_BUILD_TYPE=Release"
+short_desc="Linux userspace x86_64 emulator with a twist"
+hostmakedepends="pkg-config python3"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT"
+homepage="https://box86.org"
+distfiles="https://github.com/ptitseb/box64/archive/v${version}.tar.gz"
+checksum=c77d4d0a0b480584c644c3929aff388db42a6d4ec13d922df4253463e752bb98
+build_options="rpi4"
+desc_option_rpi4="Enables targeting the Raspberry Pi 4"
+archs="x86_64* ppc64le* aarch64*"
+nopie=1
+
+case "$XBPS_TARGET_MACHINE" in
+	x86_64*)
+		configure_args+=" -DLD80BITS=ON -DNOALIGN=ON"
+		;;
+	ppc64le*)
+		configure_args+=" -DPPC64LE=ON"
+		;;
+	aarch64*)
+		configure_args+=" -DARM_DYNAREC=ON $(vopt_if rpi4 -DRPI4ARM64=ON)"
+		;;
+	*)
+		broken="This package does not work for ${XBPS_TARGET_MACHINE}"
+		;;
+esac
+
+do_install() {
+	vbin build/box64
+
+	# Install docs
+	vmkdir usr/share/doc/${pkgname}/img
+	vcopy docs/img/Box64Logo.png usr/share/doc/${pkgname}/img
+	vcopy docs/img/Box64Icon.png usr/share/doc/${pkgname}/img
+	vcopy docs/README.md usr/share/doc/${pkgname}
+	vcopy docs/USAGE.md usr/share/doc/${pkgname}
+
+	# Install license
+	vlicense LICENSE
+}
