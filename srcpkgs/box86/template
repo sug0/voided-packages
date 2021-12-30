@@ -1,0 +1,49 @@
+# Template file for 'box86'
+pkgname=box86
+version=0.2.4
+revision=1
+build_style=cmake
+cmake_builddir=build
+configure_args="-DNOGIT=ON -DCMAKE_BUILD_TYPE=Release"
+short_desc="Linux userspace x86 emulator with a twist"
+hostmakedepends="pkg-config python3"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT"
+homepage="https://box86.org"
+distfiles="https://github.com/ptitseb/box86/archive/v${version}.tar.gz"
+checksum=e15667eb34207c382cbc1906222c6b0a66f79c3afe7e37fd67f4960e1f98b4b7
+build_options="rpi2 rpi3 rpi4"
+desc_option_rpi2="Enables targeting the Raspberry Pi 2"
+desc_option_rpi3="Enables targeting the Raspberry Pi 3"
+desc_option_rpi4="Enables targeting the Raspberry Pi 4"
+archs="i686* arm*"
+nopie=1
+
+case "$XBPS_TARGET_MACHINE" in
+	i686*)
+		configure_args+=" -DLD80BITS=ON -DNOALIGN=ON"
+		;;
+	arm*)
+		configure_args+=" -DARM_DYNAREC=ON \
+		  $(vopt_if rpi2 -DRPI2=ON) \
+		  $(vopt_if rpi3 -DRPI3=ON) \
+		  $(vopt_if rpi4 -DRPI4=ON)"
+		;;
+	*)
+		broken="This package does not work for ${XBPS_TARGET_MACHINE}"
+		;;
+esac
+
+do_install() {
+	vbin build/box86
+
+	# Install docs
+	vmkdir usr/share/doc/${pkgname}/img
+	vcopy docs/img/Box64Logo.png usr/share/doc/${pkgname}/img
+	vcopy docs/img/Box64Icon.png usr/share/doc/${pkgname}/img
+	vcopy docs/README.md usr/share/doc/${pkgname}
+	vcopy docs/USAGE.md usr/share/doc/${pkgname}
+
+	# Install license
+	vlicense LICENSE
+}
