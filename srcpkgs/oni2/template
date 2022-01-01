@@ -1,29 +1,30 @@
 # Template file for 'oni2'
 pkgname=oni2
-version=0.5.6
+version=0.5.7
 revision=1
 hostmakedepends="pkg-config nodejs git curl tar unzip nasm python clang"
-makedepends="fontconfig-devel ncurses-devel"
+makedepends="fontconfig-devel ncurses-devel libsanitizer-devel libglvnd-devel
+ libX11-devel libXrandr-devel libXinerama-devel libXcursor-devel libXi-devel
+ libXxf86vm-devel libXt-devel glu-devel acl-devel libICE-devel libSM-devel
+ libxkbfile-devel"
 short_desc="Native, lightweight modal code editor"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="custom:Proprietary"
 homepage="https://github.com/onivim/oni2"
 distfiles="https://github.com/onivim/oni2/archive/v${version}.tar.gz"
-checksum=82f4a7a78f36cf5a14583a001243e87f49ef6b01d7d2e5ccf21b7a13e5789d18
-
-pre_build() {
-	npm install -g esy
-}
+checksum=d0a9973d37c1b257f30284e751bce4bbf2c40cba86ad70ba1986de0fbac66b8c
 
 do_build() {
+	npm install -g esy
+    #yarn add vscode-exthost
 	esy
 }
 
 do_install() {
-	true
-}
+	# Dummy install phase
+	return 1
 
-post_install() {
+	# Docs & license
 	vdoc README.md
 	vlicense Outrun-Labs-EULA-v1.1.md
 }
