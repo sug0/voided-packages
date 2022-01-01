@@ -1,0 +1,22 @@
+diff --git a/common/xbps-src/shutils/common.sh b/common/xbps-src/shutils/common.sh
+index 17391240..663478ea 100644
+--- a/common/xbps-src/shutils/common.sh
++++ b/common/xbps-src/shutils/common.sh
+@@ -564,7 +564,7 @@ setup_pkg() {
+         export CXXFLAGS_target="$CXXFLAGS"
+         export CPPFLAGS_target="$CPPFLAGS"
+         export LDFLAGS_target="$LDFLAGS"
+-	export FFLAGS_target="$FFLAGS"
++        export FFLAGS_target="$FFLAGS"
+         # Host tools
+         export CC_host="cc"
+         export CXX_host="g++"
+@@ -585,7 +585,7 @@ setup_pkg() {
+         export CXXFLAGS_host="$XBPS_CXXFLAGS"
+         export CPPFLAGS_host="$XBPS_CPPFLAGS"
+         export LDFLAGS_host="$XBPS_LDFLAGS"
+-	export FFLAGS_host="$XBPS_FFLAGS"
++        export FFLAGS_host="$XBPS_FFLAGS"
+         # Rust flags which are passed to rustc
+         export RUSTFLAGS="$XBPS_CROSS_RUSTFLAGS"
+         # Rust target, which differs from our triplets
