@@ -16,7 +16,7 @@ checksum=d0a9973d37c1b257f30284e751bce4bbf2c40cba86ad70ba1986de0fbac66b8c
 
 do_build() {
 	npm install -g esy
-    #yarn add vscode-exthost
+	#yarn add vscode-exthost
 	esy
 }
 
