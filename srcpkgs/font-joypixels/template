@@ -1,6 +1,6 @@
 # Template file for 'font-joypixels'
 pkgname=font-joypixels
-version=6.5.0
+version=6.6.0
 revision=1
 build_style=fetch
 depends="font-util"
@@ -8,8 +8,14 @@ short_desc="JoyPixels emoji font"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="custom: Proprietary license"
 homepage="https://www.joypixels.com"
-distfiles="https://cdn.joypixels.com/arch-linux/font/${version}/joypixels-android.ttf https://cdn.joypixels.com/arch-linux/license/free-license.pdf https://cdn.joypixels.com/arch-linux/appendix/joypixels-license-appendix.pdf"
-checksum="06596a2dad8c8f540dc8f3c838ca54f6d8f7847238c9a261f7eadb0531f8d0ec f98c05ac7ea2ee47468f7a43816205bbf2bd614898cf0e431554de6ad48a4526 05084e4ddbbb0c241bb0ff4e307853a9e6236fa1c617b7cba44af31b6bfc5e2d"
+distfiles="
+  https://cdn.joypixels.com/arch-linux/font/${version}/joypixels-android.ttf
+  https://cdn.joypixels.com/arch-linux/license/free-license.pdf
+  https://cdn.joypixels.com/arch-linux/appendix/joypixels-license-appendix.pdf"
+checksum="
+  9600d3b0d0aac55322dcdb22e4f84559f81d71009718dd6abefe8f32ce57f29d
+  f98c05ac7ea2ee47468f7a43816205bbf2bd614898cf0e431554de6ad48a4526
+  05084e4ddbbb0c241bb0ff4e307853a9e6236fa1c617b7cba44af31b6bfc5e2d"
 font_dirs="/usr/share/fonts/JoyPixels"
 
 do_install() {
