@@ -1,8 +1,8 @@
 # Template file for 'crystal'
 pkgname=crystal
 version=1.3.2
-revision=1
-archs="x86_64*"
+revision=2
+#archs="x86_64*"
 short_desc="The Crystal Programming Language"
 hostmakedepends="crystal-bin llvm lld pkg-config git"
 makedepends="
@@ -16,13 +16,6 @@ homepage="https://crystal-lang.org"
 distfiles="https://github.com/crystal-lang/crystal/archive/${version}.tar.gz"
 checksum=0dceb2fde610c479466ebe1ce03745c51ba9def9f0da3aff1601532693741e0a
 
-# TODO: cross compile
-#
-# * https://crystal-lang.org/reference/syntax_and_semantics/cross-compilation.html
-#
-# * make target=$(llvm-config --host-target)
-# 	+ make target="x86_64-unknown-linux-gnu"
-
 case ${XBPS_MACHINE} in
 	x86_64*)
 		;;
@@ -31,8 +24,20 @@ case ${XBPS_MACHINE} in
 		;;
 esac
 
+# https://crystal-lang.org/reference/syntax_and_semantics/cross-compilation.html
+if [ -n "${CROSS_BUILD}" ]; then
+	case ${XBPS_CROSS_TRIPLET} in
+		powerpc*|mips*|arm*-musleabihf|arm-*-gnueabi|arm-*-musleabi)
+			broken="Unsupported cross build target."
+			;;
+	esac
+fi
+
 do_build() {
-	make threads=${XBPS_MAKEJOBS} release=1
+	if [ -n "${CROSS_BUILD}" ]; then
+		_target="target=${XBPS_CROSS_RUST_TARGET}"
+	fi
+	make threads=${XBPS_MAKEJOBS} release=1 ${_target}
 }
 
 do_install() {
@@ -42,6 +47,13 @@ do_install() {
 	vmkdir usr/share/crystal
 
 	cp ${FILESDIR}/crystal ${DESTDIR}/usr/bin
+
+	if [ -n "${CROSS_BUILD}" ]; then
+		cross-${XBPS_CROSS_TRIPLET} .build/crystal.o -o .build/crystal \
+			-rdynamic -L/usr/bin/../lib/crystal/lib \
+			-lpcre -lm -lgc -lpthread -levent -lrt
+	fi
+
 	vcopy .build/crystal usr/lib/crystal/bin
 	vcopy man/crystal.1 usr/share/man/man1
 	cp -r src ${DESTDIR}/usr/share/crystal
