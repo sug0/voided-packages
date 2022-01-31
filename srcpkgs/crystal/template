@@ -8,7 +8,7 @@ hostmakedepends="crystal-bin llvm lld pkg-config git"
 makedepends="
  libbsd-devel gmp-devel libedit-devel libevent-devel
  libxml2-devel libyaml-devel openssl-devel pcre-devel
- gc-devel"
+ gc-devel ${CROSS_BUILD:+llvm}"
 depends="${makedepends} pkg-config"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="Apache v2.0"
@@ -37,7 +37,15 @@ do_build() {
 	if [ -n "${CROSS_BUILD}" ]; then
 		_target="target=${XBPS_CROSS_RUST_TARGET}"
 	fi
+
 	make threads=${XBPS_MAKEJOBS} release=1 ${_target}
+
+	if [ -n "${CROSS_BUILD}" ]; then
+		cross-${XBPS_CROSS_TRIPLET} .build/crystal.o -o .build/crystal \
+            ${XBPS_CROSS_CFLAGS} \
+			-rdynamic -L/usr/bin/../lib/crystal/lib \
+			-lpcre -lm -lgc -lpthread -levent -lrt
+	fi
 }
 
 do_install() {
@@ -47,13 +55,6 @@ do_install() {
 	vmkdir usr/share/crystal
 
 	cp ${FILESDIR}/crystal ${DESTDIR}/usr/bin
-
-	if [ -n "${CROSS_BUILD}" ]; then
-		cross-${XBPS_CROSS_TRIPLET} .build/crystal.o -o .build/crystal \
-			-rdynamic -L/usr/bin/../lib/crystal/lib \
-			-lpcre -lm -lgc -lpthread -levent -lrt
-	fi
-
 	vcopy .build/crystal usr/lib/crystal/bin
 	vcopy man/crystal.1 usr/share/man/man1
 	cp -r src ${DESTDIR}/usr/share/crystal
