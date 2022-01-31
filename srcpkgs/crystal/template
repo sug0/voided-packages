@@ -42,7 +42,7 @@ do_build() {
 
 	if [ -n "${CROSS_BUILD}" ]; then
 		cross-${XBPS_CROSS_TRIPLET} .build/crystal.o -o .build/crystal \
-            ${XBPS_CROSS_CFLAGS} \
+			${XBPS_CROSS_CFLAGS} \
 			-rdynamic -L/usr/bin/../lib/crystal/lib \
 			-lpcre -lm -lgc -lpthread -levent -lrt
 	fi
