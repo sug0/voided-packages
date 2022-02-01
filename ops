@@ -1,0 +1,1 @@
+{"version":1,"ops":[{"type":1,"author":{"id":"896d2c2f75f6a7c6dde442279001166910eb784a"},"timestamp":1643683812,"title":"mold: fixes","message":"* `mold -run` is broken, because it imports `/usr/local/lib/mold/mold-wrapper.so`\n* we are not using the system `mimalloc`\n\npossible fixes include change `=` to `:=` in the `Makefile` of `mold`","files":null}]}
