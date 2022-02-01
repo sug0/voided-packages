@@ -1,34 +1,51 @@
-From 949c64180adb847d34e2387670e83fed992a2d50 Mon Sep 17 00:00:00 2001
+From b6ee61f623f4ed57e1383b83d18e01eb93eac00f Mon Sep 17 00:00:00 2001
 From: Tiago Carvalho <sugoiuguu@tfwno.gf>
-Date: Tue, 1 Feb 2022 01:49:35 +0000
+Date: Tue, 1 Feb 2022 02:11:26 +0000
 Subject: [PATCH] mold: update to 1.0.3
 
 ---
- srcpkgs/mold/template | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ srcpkgs/mold/template | 17 +++++++++++------
+ 1 file changed, 11 insertions(+), 6 deletions(-)
 
 diff --git a/srcpkgs/mold/template b/srcpkgs/mold/template
-index 37abe81e..802d2bf2 100644
+index 37abe81e..3663b9af 100644
 --- a/srcpkgs/mold/template
 +++ b/srcpkgs/mold/template
-@@ -1,7 +1,7 @@
+@@ -1,12 +1,15 @@
  # Template file for 'mold'
  pkgname=mold
- _commit_hash=ec3319b37f653dccfa4d1a859a5c687565ab722d
+-_commit_hash=ec3319b37f653dccfa4d1a859a5c687565ab722d
 -version=0.9.3
++_commit_hash=bda68f94a4cb6b01649bb15865d6a6fecbef9db9
 +version=1.0.3
  revision=1
  archs=x86_64*
  build_style=gnu-makefile
-@@ -14,7 +14,7 @@ license="AGPL-3.0-or-later"
++make_build_args="SYSTEM_MIMALLOC=1 SYSTEM_XXHASH=1
++ GIT_HASH=${_commit_hash} $(vopt_if mimalloc USE_MIMALLOC=1)"
+ hostmakedepends="cmake"
+-makedepends="mimalloc-devel openssl-devel xxHash-devel zlib-devel"
++makedepends="openssl-devel xxHash-devel zlib-devel xxHash-devel
++ $(vopt_if mimalloc mimalloc-devel)"
+ checkdepends="ripgrep libdwarf clang tar"
+ short_desc="High performance drop-in replacement for existing Unix linkers"
+ maintainer="Artur Sinila <freesoftware@logarithmus.dev>"
+@@ -14,10 +17,12 @@ license="AGPL-3.0-or-later"
  homepage="https://github.com/rui314/mold"
  changelog="https://github.com/rui314/mold/releases"
  distfiles="https://github.com/rui314/mold/archive/refs/tags/v${version}.tar.gz"
 -checksum=bb4dea1e6b04ef989ffd4bd32c91a4f03fcd4853c849a9d0aae2a28e56aaa99f
 +checksum=488c12058b4c7c77bff94c6f919e40b2f12c304214e2e0d7d4833c21167837c0
  
- export SYSTEM_MIMALLOC=1
- export GIT_HASH=$_commit_hash
+-export SYSTEM_MIMALLOC=1
+-export GIT_HASH=$_commit_hash
++build_options="mimalloc"
++build_options_default="mimalloc"
++
++desc_option_mimalloc="Enables the mimalloc memory allocator"
+ 
+ pre_patch() {
+ 	# chroot-grep is built without PCRE support, so we use ripgrep instead
 -- 
 2.35.0
 
