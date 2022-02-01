@@ -1,0 +1,34 @@
+From 949c64180adb847d34e2387670e83fed992a2d50 Mon Sep 17 00:00:00 2001
+From: Tiago Carvalho <sugoiuguu@tfwno.gf>
+Date: Tue, 1 Feb 2022 01:49:35 +0000
+Subject: [PATCH] mold: update to 1.0.3
+
+---
+ srcpkgs/mold/template | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/srcpkgs/mold/template b/srcpkgs/mold/template
+index 37abe81e..802d2bf2 100644
+--- a/srcpkgs/mold/template
++++ b/srcpkgs/mold/template
+@@ -1,7 +1,7 @@
+ # Template file for 'mold'
+ pkgname=mold
+ _commit_hash=ec3319b37f653dccfa4d1a859a5c687565ab722d
+-version=0.9.3
++version=1.0.3
+ revision=1
+ archs=x86_64*
+ build_style=gnu-makefile
+@@ -14,7 +14,7 @@ license="AGPL-3.0-or-later"
+ homepage="https://github.com/rui314/mold"
+ changelog="https://github.com/rui314/mold/releases"
+ distfiles="https://github.com/rui314/mold/archive/refs/tags/v${version}.tar.gz"
+-checksum=bb4dea1e6b04ef989ffd4bd32c91a4f03fcd4853c849a9d0aae2a28e56aaa99f
++checksum=488c12058b4c7c77bff94c6f919e40b2f12c304214e2e0d7d4833c21167837c0
+ 
+ export SYSTEM_MIMALLOC=1
+ export GIT_HASH=$_commit_hash
+-- 
+2.35.0
+

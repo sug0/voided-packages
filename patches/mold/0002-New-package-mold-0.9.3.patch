@@ -1,0 +1,52 @@
+From 8d624061a0d3ea66f0ae4c4d39694b1431eb7805 Mon Sep 17 00:00:00 2001
+From: Artur Sinila <freesoftware@logarithmus.dev>
+Date: Tue, 29 Jun 2021 03:31:54 +0300
+Subject: [PATCH 2/2] New package: mold-0.9.3
+
+---
+ srcpkgs/mold/template | 33 +++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+ create mode 100644 srcpkgs/mold/template
+
+diff --git a/srcpkgs/mold/template b/srcpkgs/mold/template
+new file mode 100644
+index 00000000..37abe81e
+--- /dev/null
++++ b/srcpkgs/mold/template
+@@ -0,0 +1,33 @@
++# Template file for 'mold'
++pkgname=mold
++_commit_hash=ec3319b37f653dccfa4d1a859a5c687565ab722d
++version=0.9.3
++revision=1
++archs=x86_64*
++build_style=gnu-makefile
++hostmakedepends="cmake"
++makedepends="mimalloc-devel openssl-devel xxHash-devel zlib-devel"
++checkdepends="ripgrep libdwarf clang tar"
++short_desc="High performance drop-in replacement for existing Unix linkers"
++maintainer="Artur Sinila <freesoftware@logarithmus.dev>"
++license="AGPL-3.0-or-later"
++homepage="https://github.com/rui314/mold"
++changelog="https://github.com/rui314/mold/releases"
++distfiles="https://github.com/rui314/mold/archive/refs/tags/v${version}.tar.gz"
++checksum=bb4dea1e6b04ef989ffd4bd32c91a4f03fcd4853c849a9d0aae2a28e56aaa99f
++
++export SYSTEM_MIMALLOC=1
++export GIT_HASH=$_commit_hash
++
++pre_patch() {
++	# chroot-grep is built without PCRE support, so we use ripgrep instead
++	vsed -i test/*.sh -e "s/grep -P/rg -P/;s/rg -\([a-yA-Z]*\)z/rg -\1U/"
++}
++
++pre_install() {
++	vmkdir usr/bin
++}
++
++post_install() {
++	vlicense LICENSE
++}
+-- 
+2.35.0
+

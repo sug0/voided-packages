@@ -1,0 +1,251 @@
+From 3eae7788c9a98178135f22fbc2e1190f84616582 Mon Sep 17 00:00:00 2001
+From: Artur Sinila <freesoftware@logarithmus.dev>
+Date: Tue, 29 Jun 2021 03:30:50 +0300
+Subject: [PATCH 1/2] New package: mimalloc-1.7.2
+
+---
+ srcpkgs/mimalloc-devel                        |   1 +
+ .../mimalloc/patches/00-fix-cmakelists.patch  |  20 ++++
+ srcpkgs/mimalloc/patches/01-fix-test.patch    |  11 ++
+ srcpkgs/mimalloc/patches/03-libatomic.patch   | 112 ++++++++++++++++++
+ ...4-remove-secure-suffix-from-basename.patch |  15 +++
+ srcpkgs/mimalloc/template                     |  32 +++++
+ 7 files changed, 192 insertions(+)
+ create mode 120000 srcpkgs/mimalloc-devel
+ create mode 100644 srcpkgs/mimalloc/patches/00-fix-cmakelists.patch
+ create mode 100644 srcpkgs/mimalloc/patches/01-fix-test.patch
+ create mode 100644 srcpkgs/mimalloc/patches/03-libatomic.patch
+ create mode 100644 srcpkgs/mimalloc/patches/04-remove-secure-suffix-from-basename.patch
+ create mode 100644 srcpkgs/mimalloc/template
+
+diff --git a/srcpkgs/mimalloc-devel b/srcpkgs/mimalloc-devel
+new file mode 120000
+index 00000000..9af584a9
+--- /dev/null
++++ b/srcpkgs/mimalloc-devel
+@@ -0,0 +1 @@
++mimalloc
+\ No newline at end of file
+diff --git a/srcpkgs/mimalloc/patches/00-fix-cmakelists.patch b/srcpkgs/mimalloc/patches/00-fix-cmakelists.patch
+new file mode 100644
+index 00000000..1d18ccd7
+--- /dev/null
++++ b/srcpkgs/mimalloc/patches/00-fix-cmakelists.patch
+@@ -0,0 +1,20 @@
++--- a/CMakeLists.txt
+++++ b/CMakeLists.txt
++@@ -210,7 +210,7 @@ endif()
++ if (MI_INSTALL_TOPLEVEL)
++   set(mi_install_libdir   "lib")
++   set(mi_install_incdir   "include")
++-  set(mi_install_cmakedir "cmake")
+++  set(mi_install_cmakedir "share/cmake")
++ else()
++   set(mi_install_libdir   "lib/mimalloc-${mi_version}")
++   set(mi_install_incdir   "include/mimalloc-${mi_version}")
++@@ -224,7 +224,7 @@ else()
++ endif()
++ 
++ string(TOLOWER "${CMAKE_BUILD_TYPE}" CMAKE_BUILD_TYPE_LC)
++-if(NOT(CMAKE_BUILD_TYPE_LC MATCHES "^(release|relwithdebinfo|minsizerel)$"))
+++if(NOT(CMAKE_BUILD_TYPE_LC MATCHES "^(release|relwithdebinfo|minsizerel|none)$"))
++   set(mi_basename "${mi_basename}-${CMAKE_BUILD_TYPE_LC}") #append build type (e.g. -debug) if not a release version
++ endif()
++ if(MI_BUILD_SHARED)
+diff --git a/srcpkgs/mimalloc/patches/01-fix-test.patch b/srcpkgs/mimalloc/patches/01-fix-test.patch
+new file mode 100644
+index 00000000..f1c35c37
+--- /dev/null
++++ b/srcpkgs/mimalloc/patches/01-fix-test.patch
+@@ -0,0 +1,11 @@
++--- a/test/test-api.c
+++++ b/test/test-api.c
++@@ -83,7 +83,7 @@ int main() {
++     void* p = mi_malloc(0); mi_free(p);
++   });
++   CHECK_BODY("malloc-nomem1",{
++-    result = (mi_malloc(SIZE_MAX/2) == NULL);
+++    result = (mi_malloc((size_t)PTRDIFF_MAX + (size_t)1) == NULL);
++   });
++   CHECK_BODY("malloc-null",{
++     mi_free(NULL);
+diff --git a/srcpkgs/mimalloc/patches/03-libatomic.patch b/srcpkgs/mimalloc/patches/03-libatomic.patch
+new file mode 100644
+index 00000000..ca9af8dd
+--- /dev/null
++++ b/srcpkgs/mimalloc/patches/03-libatomic.patch
+@@ -0,0 +1,112 @@
++--- a/CMakeLists.txt
+++++ b/CMakeLists.txt
++@@ -203,6 +203,9 @@ else()
++   endif()
++ endif()
++ 
+++include("cmake/atomic.cmake")
+++list(APPEND mi_libraries ${CMAKE_REQUIRED_LIBRARIES})
+++
++ # -----------------------------------------------------------------------------
++ # Install and output names
++ # -----------------------------------------------------------------------------
++--- /dev/null
+++++ b/cmake/atomic.cmake
++@@ -0,0 +1,97 @@
+++# Based on:
+++# https://github.com/llvm/llvm-project/blob/d4dcb55c7050fd908af2378fa551078d859d994f/llvm/cmake/modules/DetermineGCCCompatible.cmake
+++# https://github.com/llvm/llvm-project/blob/d4dcb55c7050fd908af2378fa551078d859d994f/llvm/cmake/modules/CheckAtomic.cmake
+++
+++INCLUDE(CheckCXXSourceCompiles)
+++INCLUDE(CheckLibraryExists)
+++
+++# Determine if the compiler has GCC-compatible command-line syntax.
+++
+++if(CMAKE_COMPILER_IS_GNUCXX)
+++  set(COMPILER_IS_GCC_COMPATIBLE ON)
+++elseif( MSVC )
+++  set(COMPILER_IS_GCC_COMPATIBLE OFF)
+++elseif( "${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang" )
+++  set(COMPILER_IS_GCC_COMPATIBLE ON)
+++elseif( "${CMAKE_CXX_COMPILER_ID}" MATCHES "Intel" )
+++  set(COMPILER_IS_GCC_COMPATIBLE ON)
+++endif()
+++
+++# Sometimes linking against libatomic is required for atomic ops, if
+++# the platform doesn't support lock-free atomics.
+++
+++function(check_working_cxx_atomics varname)
+++  set(OLD_CMAKE_REQUIRED_FLAGS ${CMAKE_REQUIRED_FLAGS})
+++  set(CMAKE_REQUIRED_FLAGS "${CMAKE_REQUIRED_FLAGS} -std=c++11")
+++  CHECK_CXX_SOURCE_COMPILES("
+++#include <atomic>
+++std::atomic<int> x;
+++std::atomic<short> y;
+++std::atomic<char> z;
+++int main() {
+++  ++z;
+++  ++y;
+++  return ++x;
+++}
+++" ${varname})
+++  set(CMAKE_REQUIRED_FLAGS ${OLD_CMAKE_REQUIRED_FLAGS})
+++endfunction(check_working_cxx_atomics)
+++
+++function(check_working_cxx_atomics64 varname)
+++  set(OLD_CMAKE_REQUIRED_FLAGS ${CMAKE_REQUIRED_FLAGS})
+++  set(CMAKE_REQUIRED_FLAGS "-std=c++11 ${CMAKE_REQUIRED_FLAGS}")
+++  CHECK_CXX_SOURCE_COMPILES("
+++#include <atomic>
+++#include <cstdint>
+++std::atomic<uint64_t> x (0);
+++int main() {
+++  uint64_t i = x.load(std::memory_order_relaxed);
+++  (void)i;
+++  return 0;
+++}
+++" ${varname})
+++  set(CMAKE_REQUIRED_FLAGS ${OLD_CMAKE_REQUIRED_FLAGS})
+++endfunction(check_working_cxx_atomics64)
+++
+++
+++# Check for (non-64-bit) atomic operations.
+++if(MSVC)
+++  set(HAVE_CXX_ATOMICS_WITHOUT_LIB True)
+++elseif(COMPILER_IS_GCC_COMPATIBLE)
+++  # First check if atomics work without the library.
+++  check_working_cxx_atomics(HAVE_CXX_ATOMICS_WITHOUT_LIB)
+++  # If not, check if the library exists, and atomics work with it.
+++  if(NOT HAVE_CXX_ATOMICS_WITHOUT_LIB)
+++    check_library_exists(atomic __atomic_fetch_add_4 "" HAVE_LIBATOMIC)
+++    if(HAVE_LIBATOMIC)
+++      list(APPEND CMAKE_REQUIRED_LIBRARIES "atomic")
+++      check_working_cxx_atomics(HAVE_CXX_ATOMICS_WITH_LIB)
+++      if (NOT HAVE_CXX_ATOMICS_WITH_LIB)
+++        message(FATAL_ERROR "Host compiler must support std::atomic!")
+++      endif()
+++    else()
+++      message(FATAL_ERROR "Host compiler appears to require libatomic, but cannot find it.")
+++    endif()
+++  endif()
+++endif()
+++
+++# Check for 64 bit atomic operations.
+++if(MSVC)
+++  set(HAVE_CXX_ATOMICS64_WITHOUT_LIB True)
+++elseif(COMPILER_IS_GCC_COMPATIBLE)
+++  # First check if atomics work without the library.
+++  check_working_cxx_atomics64(HAVE_CXX_ATOMICS64_WITHOUT_LIB)
+++  # If not, check if the library exists, and atomics work with it.
+++  if(NOT HAVE_CXX_ATOMICS64_WITHOUT_LIB)
+++    check_library_exists(atomic __atomic_load_8 "" HAVE_CXX_LIBATOMICS64)
+++    if(HAVE_CXX_LIBATOMICS64)
+++      list(APPEND CMAKE_REQUIRED_LIBRARIES "atomic")
+++      check_working_cxx_atomics64(HAVE_CXX_ATOMICS64_WITH_LIB)
+++      if (NOT HAVE_CXX_ATOMICS64_WITH_LIB)
+++        message(FATAL_ERROR "Host compiler must support 64-bit std::atomic!")
+++      endif()
+++    else()
+++      message(FATAL_ERROR "Host compiler appears to require libatomic for 64-bit operations, but cannot find it.")
+++    endif()
+++  endif()
+++endif()
+diff --git a/srcpkgs/mimalloc/patches/04-remove-secure-suffix-from-basename.patch b/srcpkgs/mimalloc/patches/04-remove-secure-suffix-from-basename.patch
+new file mode 100644
+index 00000000..604df22d
+--- /dev/null
++++ b/srcpkgs/mimalloc/patches/04-remove-secure-suffix-from-basename.patch
+@@ -0,0 +1,15 @@
++--- a/CMakeLists.txt
+++++ b/CMakeLists.txt
++@@ -220,11 +220,7 @@ else()
++   set(mi_install_cmakedir "share/mimalloc-${mi_version}/cmake") 
++ endif()
++ 
++-if(MI_SECURE)
++-  set(mi_basename "mimalloc-secure")
++-else()
++-  set(mi_basename "mimalloc")
++-endif()
+++set(mi_basename "mimalloc")
++ 
++ string(TOLOWER "${CMAKE_BUILD_TYPE}" CMAKE_BUILD_TYPE_LC)
++ if(NOT(CMAKE_BUILD_TYPE_LC MATCHES "^(release|relwithdebinfo|minsizerel|none)$"))
+diff --git a/srcpkgs/mimalloc/template b/srcpkgs/mimalloc/template
+new file mode 100644
+index 00000000..fa14ba48
+--- /dev/null
++++ b/srcpkgs/mimalloc/template
+@@ -0,0 +1,32 @@
++# Template file for 'mimalloc'
++pkgname=mimalloc
++version=1.7.2
++revision=1
++build_style=cmake
++configure_args="-DMI_INSTALL_TOPLEVEL=ON -DMI_SECURE=ON"
++short_desc="MIcrosoft's malloc"
++maintainer="Artur Sinila <freesoftware@logarithmus.dev>"
++license="MIT"
++homepage="https://github.com/microsoft/mimalloc"
++distfiles="https://github.com/microsoft/mimalloc/archive/refs/tags/v${version}.tar.gz"
++checksum=b1912e354565a4b698410f7583c0f83934a6dbb3ade54ab7ddcb1569320936bd
++
++if [ "$XBPS_TARGET_NO_ATOMIC8" ]; then
++	makedepends+=" libatomic-devel"
++fi
++
++post_install() {
++	vlicense LICENSE
++}
++
++mimalloc-devel_package() {
++	depends="${pkgname}>=${version}_${revision}"
++	short_desc+=" - development files"
++	pkg_install() {
++		vmove usr/include
++		vmove usr/share/cmake
++		vmove usr/lib/*.a
++		vmove usr/lib/*.o
++		vmove usr/lib/*.so
++	}
++}
+-- 
+2.35.0
+

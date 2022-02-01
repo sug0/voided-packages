@@ -1,0 +1,21 @@
+From bdb8355bad423976a5aed1727fa5ca6cf1a6cd52 Mon Sep 17 00:00:00 2001
+From: Tiago Carvalho <sugoiuguu@tfwno.gf>
+Date: Tue, 1 Feb 2022 01:45:44 +0000
+Subject: [PATCH] mold: update common/shlibs
+
+---
+ common/shlibs | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/common/shlibs b/common/shlibs
+index edcf9dae..618eb048 100644
+--- a/common/shlibs
++++ b/common/shlibs
+@@ -4103,3 +4103,4 @@ libkaddressbookprivate.so.5 kaddressbook-21.08.3_1
+ libcodec2.so.1.0 codec2-1.0.1_1
+ libx86emu.so.3 libx86emu-3.4_1
+ libdeflate.so.0 libdeflate-1.8_1
++libmimalloc.so.1.7 mimalloc-1.7.2_1
+-- 
+2.35.0
+
