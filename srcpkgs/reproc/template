@@ -1,0 +1,26 @@
+# Template file for 'reproc'
+pkgname=reproc
+version=14.2.4
+revision=1
+build_style=cmake
+cmake_builddir=build
+configure_args="-DREPROC++=ON -DBUILD_SHARED_LIBS=ON"
+short_desc="Cross-platform library to work with external CLI applications from C and C++"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT"
+homepage="https://github.com/DaanDeMeyer/reproc"
+distfiles="https://github.com/DaanDeMeyer/reproc/archive/v${version}.tar.gz"
+checksum=55c780f7faa5c8cabd83ebbb84b68e5e0e09732de70a129f6b3c801e905415dd
+
+post_install() {
+	vlicense LICENSE
+}
+
+reproc-devel_package() {
+	pkgname=reproc-devel
+	depends="${makedepends} ${sourcepkg}>=${version}_${revision}"
+	short_desc+=" - development files"
+	pkg_install() {
+		vmove usr/include
+	}
+}
