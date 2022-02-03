@@ -1,7 +1,7 @@
 # Template file for 'libaudec'
 pkgname=libaudec
 version=0.3.4
-revision=1
+revision=2
 wrksrc=${pkgname}
 build_style=meson
 configure_args="--wrap-mode=nodownload"
@@ -19,7 +19,6 @@ CXXFLAGS="-Wno-deprecated-declarations -Wno-class-memaccess -Wno-format-truncati
 
 post_install() {
 	vlicense COPYING
-	vdoc README.md
 }
 
 libaudec-devel_package() {
@@ -28,7 +27,5 @@ libaudec-devel_package() {
 	pkg_install() {
 		vmove usr/include
 		vmove usr/lib/pkgconfig
-		vmove "usr/lib/*.a"
-		vmove "usr/lib/*.so"
 	}
 }
