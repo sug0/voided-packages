@@ -23,8 +23,10 @@ checksum=a7e83b9a4e5d3d84ae1a7f7faf05bcfdd06d7c4659d3d1bfc2f31a79dbd91b90
 build_options="graphviz rtaudio rtmidi SDL2"
 build_options_default="graphviz rtaudio rtmidi SDL2"
 
-# TODO: missing guile3
-# - https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=guile3
+# TODO:
+# - missing guile3
+#   + https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=guile3
+# - maybe add `jack-devel alsa-lib-devel` to deps
 
 # No error for several warnings
 CXXFLAGS="-Wno-deprecated-declarations -Wno-class-memaccess -Wno-format-truncation"
