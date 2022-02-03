@@ -1,32 +1,35 @@
 # Template file for 'zrythm'
 pkgname=zrythm
-version=1.0.0
+_version=1.0.0-alpha.28.1.3
+version=${_version/-/.}
 alpha=18.2.1
 revision=1
-wrksrc=${pkgname}-${version}-alpha.${alpha}
+wrksrc="${pkgname}-${_version}"
 build_style=meson
-#configure_args="-Ddebug=true -Doptimization=3 -Dextra_optimizations=true"
-hostmakedepends="pkg-config"
-makedepends="fftw-devel gtk+3-devel gtksourceview-devel guile-devel
- libaudec-devel libbacktrace-devel libcyaml-devel reproc-devel
- lilv-devel pcre2-devel xxHash-devel zstd-devel
- $(vopt_if SDL2 SDL2-devel)"
+hostmakedepends="pkg-config sassc guile gettext help2man flex xdg-utils"
+makedepends="Carla-devel fftw-devel gtk4-devel gtksourceview5-devel json-glib-devel
+ libadwaita-devel libaudec-devel libaudec-devel libbacktrace-devel libcyaml-devel
+ lilv-devel pcre2-devel reproc-devel vamp-plugin-sdk-devel xxHash-devel libzstd-devel
+ guile-devel $(vopt_if graphviz graphviz-devel) $(vopt_if rtaudio rtaudio-devel)
+ $(vopt_if rtmidi rtmidi-devel) $(vopt_if SDL2 SDL2-devel)"
 depends="breeze-icons"
 short_desc="A highly automated and intuitive digital audio workstation"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="AGPLv3"
 homepage="https://www.zrythm.org"
-distfiles="https://www.zrythm.org/releases/zrythm-${version}-alpha.${alpha}.tar.xz"
-checksum=d00c476a54c730bc89780aff2968bef8d57d1d6540cf95d470deeb577a599997
+distfiles="https://www.zrythm.org/releases/zrythm-${_version}.tar.xz"
+checksum=a7e83b9a4e5d3d84ae1a7f7faf05bcfdd06d7c4659d3d1bfc2f31a79dbd91b90
 
-build_options="SDL2"
-build_options_default="SDL2"
+build_options="graphviz rtaudio rtmidi SDL2"
+build_options_default="graphviz rtaudio rtmidi SDL2"
+
+# TODO: missing guile3
+# - https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=guile3
 
 # No error for several warnings
 CXXFLAGS="-Wno-deprecated-declarations -Wno-class-memaccess -Wno-format-truncation"
 
 post_install() {
-	#rm -f ${DESTDIR}/usr/lib/*.a
 	vlicense COPYING
 	vdoc README.md
 }
