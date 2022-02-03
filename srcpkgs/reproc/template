@@ -1,7 +1,7 @@
 # Template file for 'reproc'
 pkgname=reproc
 version=14.2.4
-revision=1
+revision=2
 build_style=cmake
 cmake_builddir=build
 configure_args="-DREPROC++=ON -DBUILD_SHARED_LIBS=ON"
@@ -22,5 +22,7 @@ reproc-devel_package() {
 	short_desc+=" - development files"
 	pkg_install() {
 		vmove usr/include
+		vmove usr/lib/pkgconfig
+		vmove usr/lib/cmake
 	}
 }
