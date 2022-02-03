@@ -1,0 +1,25 @@
+# Template file for 'gtksourceview5'
+pkgname=gtksourceview5
+version=5.3.2
+revision=1
+wrksrc="gtksourceview-${version}"
+build_style=meson
+hostmakedepends="pkg-config cmake gtk4-devel gobject-introspection vala"
+makedepends="gtk4-devel pcre2-devel"
+short_desc="Text widget that extends GTK+ GtkTextView widget"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="GPL-2.0-or-later"
+homepage="https://wiki.gnome.org/Projects/GtkSourceView"
+distfiles="${GNOME_SITE}/gtksourceview/${version%.*}/gtksourceview-${version}.tar.xz"
+checksum=af7736e2ee3cdbc1013090e8caf35fb89d65cf41c9c399cac5d8992d955ded30
+
+gtksourceview5-devel_package() {
+	#depends="gtk4-devel libglib-devel libxml2-devel ${sourcepkg}>=${version}_${revision}"
+	depends="${makedepends} ${sourcepkg}>=${version}_${revision}"
+	short_desc+=" - development files"
+	pkg_install() {
+		vmove usr/include
+		vmove usr/lib/pkgconfig
+		vmove "usr/lib/*.so"
+	}
+}
