@@ -6,13 +6,14 @@ alpha=18.2.1
 revision=1
 wrksrc="${pkgname}-${_version}"
 build_style=meson
-hostmakedepends="pkg-config sassc guile gettext help2man flex xdg-utils"
-makedepends="Carla-devel fftw-devel gtk4-devel gtksourceview5-devel json-glib-devel
+hostmakedepends="pkg-config sassc guile gettext help2man flex xdg-utils Carla"
+makedepends="rubberband-devel Carla-devel fftw-devel gtk4-devel gtksourceview5-devel
  libadwaita-devel libaudec-devel libaudec-devel libbacktrace-devel libcyaml-devel
  lilv-devel pcre2-devel reproc-devel vamp-plugin-sdk-devel xxHash-devel libzstd-devel
- guile-devel $(vopt_if graphviz graphviz-devel) $(vopt_if rtaudio rtaudio-devel)
+ guile3-devel jack-devel alsa-lib-devel json-glib-devel libcurl-devel
+ $(vopt_if graphviz graphviz-devel) $(vopt_if rtaudio rtaudio-devel)
  $(vopt_if rtmidi rtmidi-devel) $(vopt_if SDL2 SDL2-devel)"
-depends="breeze-icons"
+depends="breeze-icons Carla xdg-utils"
 short_desc="A highly automated and intuitive digital audio workstation"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="AGPLv3"
@@ -22,11 +23,6 @@ checksum=a7e83b9a4e5d3d84ae1a7f7faf05bcfdd06d7c4659d3d1bfc2f31a79dbd91b90
 
 build_options="graphviz rtaudio rtmidi SDL2"
 build_options_default="graphviz rtaudio rtmidi SDL2"
-
-# TODO:
-# - missing guile3
-#   + https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=guile3
-# - maybe add `jack-devel alsa-lib-devel` to deps
 
 # No error for several warnings
 CXXFLAGS="-Wno-deprecated-declarations -Wno-class-memaccess -Wno-format-truncation"
