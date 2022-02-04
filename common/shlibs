@@ -1,0 +1,6 @@
+/usr/lib/carla/libcarla_host-plugin.so Carla-2.4.1_2
+libcyaml.so.1 libcyaml-1.3.1_1
+libaudec.so libaudec-0.3.4_2
+libguile-3.0.so.1 guile3-3.0.7_1
+libreproc.so.14 reproc-14.2.4_2
+libgtksourceview-5.so.0 gtksourceview5-5.3.2_1
