@@ -7,13 +7,13 @@ revision=1
 wrksrc="${pkgname}-${_version}"
 build_style=meson
 hostmakedepends="pkg-config sassc guile gettext help2man flex xdg-utils Carla"
-makedepends="rubberband-devel Carla-devel fftw-devel gtk4-devel gtksourceview5-devel
- libadwaita-devel libaudec-devel libaudec-devel libbacktrace-devel libcyaml-devel
+makedepends="Carla-devel rubberband-devel fftw-devel gtk4-devel gtksourceview5-devel
+ guile3-devel jack-devel alsa-lib-devel json-glib-devel libcurl-devel chromaprint-devel
  lilv-devel pcre2-devel reproc-devel vamp-plugin-sdk-devel xxHash-devel libzstd-devel
- guile3-devel jack-devel alsa-lib-devel json-glib-devel libcurl-devel
+ libadwaita-devel libaudec-devel libaudec-devel libbacktrace-devel libcyaml-devel
  $(vopt_if graphviz graphviz-devel) $(vopt_if rtaudio rtaudio-devel)
  $(vopt_if rtmidi rtmidi-devel) $(vopt_if SDL2 SDL2-devel)"
-depends="breeze-icons Carla xdg-utils"
+depends="breeze-icons"
 short_desc="A highly automated and intuitive digital audio workstation"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="AGPLv3"
