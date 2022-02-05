@@ -6,6 +6,7 @@ alpha=18.2.1
 revision=1
 wrksrc="${pkgname}-${_version}"
 build_style=meson
+configure_args="-Dcarla_binaries_dir=/usr/lib/carla"
 hostmakedepends="pkg-config sassc guile gettext help2man flex xdg-utils Carla"
 makedepends="Carla-devel rubberband-devel fftw-devel gtk4-devel gtksourceview5-devel
  guile3-devel jack-devel alsa-lib-devel json-glib-devel libcurl-devel chromaprint-devel
