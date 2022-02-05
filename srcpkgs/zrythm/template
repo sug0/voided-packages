@@ -2,7 +2,6 @@
 pkgname=zrythm
 _version=1.0.0-alpha.28.1.3
 version=${_version/-/.}
-alpha=18.2.1
 revision=1
 wrksrc="${pkgname}-${_version}"
 build_style=meson
