@@ -1,0 +1,23 @@
+# Template file for 'pcsx2'
+archs="x86_64*"
+nopie=yes
+
+pkgname=pcsx2
+version=1.7.2337
+revision=1
+build_style=cmake
+configure_args="-DSDL2_API=1 -DPACKAGE_MODE=1 -DUSE_VULKAN=1 -DUSE_VTUNE=0
+ -DXDG_STD=1 -DDUSE_PGO_OPTIMIZE=1 -DUSE_PGO_GENERATE=1 -DUSE_ASAN=1
+ -DPLUGIN_DIR=/usr/lib/pcsx2 -DGAMEINDEX_DIR=/usr/share/pcsx2
+ -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++"
+hostmakedepends="pkg-config sparsehash perl clang"
+makedepends="alsa-lib-devel SDL2-devel glu-devel glew-devel libaio-devel
+ libcanberra-devel libjpeg-turbo-devel wxWidgets-devel portaudio-devel soundtouch-devel
+ libpcap-devel glib-devel libsanitizer-devel Vulkan-Headers"
+depends="desktop-file-utils"
+short_desc="Sony PlayStation 2 emulator"
+maintainer="Selfsigned <selfsigned@protonmail.ch>"
+license="GPL-3.0-or-later, GPL-2.0-or-later, LGPL-2.1-or-later, LGPL-3.0-or-later"
+homepage="http://www.pcsx2.net"
+distfiles="https://github.com/PCSX2/pcsx2/archive/v${version}.tar.gz"
+checksum=d7ce5fd03549168aed2d1c53abdcd09a19d51a819b44018dd7dde3ffbe3ef936
