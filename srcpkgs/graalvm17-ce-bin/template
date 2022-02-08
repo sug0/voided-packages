@@ -1,0 +1,71 @@
+# Template file for 'graalvm17-ce-bin'
+pkgname=graalvm17-ce-bin
+version=22.0.0.2
+revision=1
+archs="x86_64"
+wrksrc="graalvm-ce-java17-${version}"
+short_desc="Official Reference Implementation for Java SE 17"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="GPL-2.0-or-later"
+homepage="https://www.graalvm.org/"
+distfiles="https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-${version}/graalvm-ce-java17-linux-amd64-${version}.tar.gz"
+checksum=4f743e0ed3d974b7d619ca2ed6014554e8c12e5ebbb38b9bc9e820b182169bd4
+nopie=true
+
+alternatives="
+ java:/usr/bin/java:/usr/lib/jvm/graalvm17-ce-bin/bin/java
+ java:/usr/bin/javaws:/usr/lib/jvm/graalvm17-ce-bin/bin/javaws
+ java:/usr/bin/jcontrol:/usr/lib/jvm/graalvm17-ce-bin/bin/jcontrol
+ java:/usr/bin/jjs:/usr/lib/jvm/graalvm17-ce-bin/bin/jjs
+ java:/usr/bin/keytool:/usr/lib/jvm/graalvm17-ce-bin/bin/keytool
+ java:/usr/bin/orbd:/usr/lib/jvm/graalvm17-ce-bin/bin/orbd
+ java:/usr/bin/pack200:/usr/lib/jvm/graalvm17-ce-bin/bin/pack200
+ java:/usr/bin/policytool:/usr/lib/jvm/graalvm17-ce-bin/bin/policytool
+ java:/usr/bin/rmid:/usr/lib/jvm/graalvm17-ce-bin/bin/rmid
+ java:/usr/bin/rmiregistry:/usr/lib/jvm/graalvm17-ce-bin/bin/rmiregistry
+ java:/usr/bin/servertool:/usr/lib/jvm/graalvm17-ce-bin/bin/servertool
+ java:/usr/bin/tnameserv:/usr/lib/jvm/graalvm17-ce-bin/bin/tnameserv
+ java:/usr/bin/unpack200:/usr/lib/jvm/graalvm17-ce-bin/bin/unpack200
+
+ jdk:/usr/bin/ControlPanel:/usr/lib/jvm/graalvm17-ce-bin/bin/ControlPanel
+ jdk:/usr/bin/appletviewer:/usr/lib/jvm/graalvm17-ce-bin/bin/appletviewer
+ jdk:/usr/bin/extcheck:/usr/lib/jvm/graalvm17-ce-bin/bin/extcheck
+ jdk:/usr/bin/idlj:/usr/lib/jvm/graalvm17-ce-bin/bin/idlj
+ jdk:/usr/bin/jar:/usr/lib/jvm/graalvm17-ce-bin/bin/jar
+ jdk:/usr/bin/jarsigner:/usr/lib/jvm/graalvm17-ce-bin/bin/jarsigner
+ jdk:/usr/bin/java-rmi.cgi:/usr/lib/jvm/graalvm17-ce-bin/bin/java-rmi.cgi
+ jdk:/usr/bin/javac:/usr/lib/jvm/graalvm17-ce-bin/bin/javac
+ jdk:/usr/bin/javadoc:/usr/lib/jvm/graalvm17-ce-bin/bin/javadoc
+ jdk:/usr/bin/javafxpackager:/usr/lib/jvm/graalvm17-ce-bin/bin/javafxpackager
+ jdk:/usr/bin/javah:/usr/lib/jvm/graalvm17-ce-bin/bin/javah
+ jdk:/usr/bin/javap:/usr/lib/jvm/graalvm17-ce-bin/bin/javap
+ jdk:/usr/bin/javapackager:/usr/lib/jvm/graalvm17-ce-bin/bin/javapackager
+ jdk:/usr/bin/jcmd:/usr/lib/jvm/graalvm17-ce-bin/bin/jcmd
+ jdk:/usr/bin/jconsole:/usr/lib/jvm/graalvm17-ce-bin/bin/jconsole
+ jdk:/usr/bin/jdb:/usr/lib/jvm/graalvm17-ce-bin/bin/jdb
+ jdk:/usr/bin/jdeps:/usr/lib/jvm/graalvm17-ce-bin/bin/jdeps
+ jdk:/usr/bin/jhat:/usr/lib/jvm/graalvm17-ce-bin/bin/jhat
+ jdk:/usr/bin/jinfo:/usr/lib/jvm/graalvm17-ce-bin/bin/jinfo
+ jdk:/usr/bin/jmap:/usr/lib/jvm/graalvm17-ce-bin/bin/jmap
+ jdk:/usr/bin/jmc:/usr/lib/jvm/graalvm17-ce-bin/bin/jmc
+ jdk:/usr/bin/jmc.ini:/usr/lib/jvm/graalvm17-ce-bin/bin/jmc.ini
+ jdk:/usr/bin/jps:/usr/lib/jvm/graalvm17-ce-bin/bin/jps
+ jdk:/usr/bin/jrunscript:/usr/lib/jvm/graalvm17-ce-bin/bin/jrunscript
+ jdk:/usr/bin/jsadebugd:/usr/lib/jvm/graalvm17-ce-bin/bin/jsadebugd
+ jdk:/usr/bin/jstack:/usr/lib/jvm/graalvm17-ce-bin/bin/jstack
+ jdk:/usr/bin/jstat:/usr/lib/jvm/graalvm17-ce-bin/bin/jstat
+ jdk:/usr/bin/jstatd:/usr/lib/jvm/graalvm17-ce-bin/bin/jstatd
+ jdk:/usr/bin/jvisualvm:/usr/lib/jvm/graalvm17-ce-bin/bin/jvisualvm
+ jdk:/usr/bin/native2ascii:/usr/lib/jvm/graalvm17-ce-bin/bin/native2ascii
+ jdk:/usr/bin/rmic:/usr/lib/jvm/graalvm17-ce-bin/bin/rmic
+ jdk:/usr/bin/schemagen:/usr/lib/jvm/graalvm17-ce-bin/bin/schemagen
+ jdk:/usr/bin/serialver:/usr/lib/jvm/graalvm17-ce-bin/bin/serialver
+ jdk:/usr/bin/wsgen:/usr/lib/jvm/graalvm17-ce-bin/bin/wsgen
+ jdk:/usr/bin/wsimport:/usr/lib/jvm/graalvm17-ce-bin/bin/wsimport
+ jdk:/usr/bin/xjc:/usr/lib/jvm/graalvm17-ce-bin/bin/xjc
+"
+
+do_install() {
+	vmkdir /usr/lib/jvm/graalvm17-ce-bin
+	cp -R ./* ${DESTDIR}/usr/lib/jvm/graalvm17-ce-bin
+}
