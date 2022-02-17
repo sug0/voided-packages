@@ -1,7 +1,7 @@
 # Template file for 'deno'
 pkgname=deno
 version=1.18.2 # v1.19.0 requires Rust 1.58
-revision=1
+revision=2
 build_style=cargo
 hostmakedepends="pkg-config python3"
 makedepends="libzstd-devel libffi-devel"
@@ -24,7 +24,8 @@ else
 	esac
 fi
 
-post_install() {
+do_install() {
+	vbin target/${XBPS_CROSS_RUST_TARGET:-$XBPS_TRIPLET}/release/deno
 	vlicense LICENSE.md
 	vdoc README.md
 }
