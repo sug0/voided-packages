@@ -1,0 +1,30 @@
+# Template file for 'deno'
+pkgname=deno
+version=1.18.2 # v1.19.0 requires Rust 1.58
+revision=1
+build_style=cargo
+hostmakedepends="pkg-config python3"
+makedepends="libzstd-devel libffi-devel"
+short_desc="A modern runtime for JavaScript and TypeScript"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT"
+homepage="https://deno.land"
+distfiles="https://github.com/denoland/deno/archive/v${version}.tar.gz"
+checksum=c7d7e0170f9a277a229dbceda698099c258e8d0fdd5feeafb81829613f05b328
+
+build_options="v8src"
+desc_option_v8src="Build V8 from source"
+
+if [ $(vopt_if v8src 1 0) = 1 ]; then
+	export V8_FROM_SOURCE=1
+else
+	case ${XBPS_TARGET_MACHINE} in
+		aarch64*|x86_64*) ;;
+		*) broken="Only aarch64 and x86_64 V8 builds are available" ;;
+	esac
+fi
+
+post_install() {
+	vlicense LICENSE.md
+	vdoc README.md
+}
