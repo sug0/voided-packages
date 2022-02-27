@@ -1,13 +1,13 @@
 # Template file for 'ezflash'
 pkgname=ezflash
 version=0.2.1
-revision=1
+revision=2
 make_use_env=1
 build_style=gnu-makefile
 hostmakedepends="zlib-devel boost-devel tclap-devel"
 short_desc="Sam Hocevar's ezgba with no UI code"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
-license="WTFPL-2"
+license="WTFPL"
 homepage="https://gbatemp.net/threads/release-ezgba-v0-1-0a-an-ez4-compatible-rom-patcher.395464/"
 distfiles="https://github.com/carlossless/ezflash/archive/v${version}.tar.gz"
 checksum=9afed7e7224e429ae0c5e549da19398420bb687f65a252c40fc50157004c9b44
