@@ -1,0 +1,25 @@
+# Template file for 'tclap'
+pkgname=tclap
+version=1.2.5
+revision=1
+build_style=gnu-configure
+short_desc="Templatized C++ Command Line Parser"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT"
+homepage="http://tclap.sourceforge.net/"
+distfiles="${SOURCEFORGE_SITE}/tclap/tclap-${version}.tar.gz"
+checksum=bb649f76dae35e8d0dcba4b52acfd4e062d787e6a81b43f7a4b01275153165a6
+
+post_install() {
+	vlicense COPYING
+}
+
+tclap-devel_package() {
+	pkgname=tclap-devel
+	depends="${makedepends} ${sourcepkg}>=${version}_${revision}"
+	short_desc+=" - development files"
+	pkg_install() {
+		vmove usr/include
+		vmove usr/lib/pkgconfig
+	}
+}
