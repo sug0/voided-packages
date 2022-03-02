@@ -1,16 +1,16 @@
 # Template file for 'dwl'
 pkgname=dwl
-version=0.2.1
-revision=1
+version=0.2.2
+revision=2
 hostmakedepends="pkg-config wayland-devel"
 makedepends="wlroots-devel libxcb-devel libxkbcommon-devel libinput-devel"
 depends="wayland-protocols xorg-server-xwayland"
 short_desc="Dynamic window manager for Wayland"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
-license="GPLv3"
+license="GPL-3.0-only"
 homepage="https://github.com/djpohly/dwl"
 distfiles="https://github.com/djpohly/dwl/archive/v${version}.tar.gz"
-checksum=4c65ba86608adc0d37414ebfaf814957d3349518e44f3cc6f50f5f3bd827c150
+checksum=c629fa7f38050db9850dc0cdf487191c725e6fc68f0c497f6297b48e873c9e5e
 
 do_build() {
 	[ -e ${FILESDIR}/config.h ] && cp ${FILESDIR}/config.h config.h
@@ -20,8 +20,6 @@ do_build() {
 }
 
 do_install() {
-	vmkdir usr/bin
-	vcopy dwl usr/bin
-	vlicense LICENSE
+	vbin dwl
 	vdoc README.md
 }
