@@ -1,6 +1,6 @@
 # Template file for 'tectonic'
 pkgname=tectonic
-version=0.8.0
+version=0.8.2
 revision=1
 wrksrc="tectonic-tectonic-${version}"
 build_style=cargo
@@ -12,7 +12,7 @@ maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="MIT"
 homepage="https://tectonic-typesetting.github.io"
 distfiles="https://github.com/tectonic-typesetting/tectonic/archive/tectonic@${version}.tar.gz"
-checksum=794cf34aee017b8a4288ed509a4e9d550a36aadc2bc0d35b1727d1135dac8e02
+checksum=1f92a5ff25725a9a4c0eefd4ea306da1e63f57c40d4ceb0972c7e5bb73297b4f
 
 post_install() {
 	vlicense LICENSE
