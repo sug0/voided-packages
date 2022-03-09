@@ -1,0 +1,27 @@
+# Template file for 'kernel-orangepi-pc'
+pkgname=kernel-orangepi-pc
+version=5.16.12
+_armbian_ver=22.02.2
+_armbian_rel=jammy_edge
+revision=1
+archs="armv7l*"
+#wrksrc=""
+hostmakedepends="p7zip uboot-mkimage"
+short_desc="Pre-compiled Armbian kernel for the Orange Pi PC"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="GPL-2.0-only"
+homepage="https://www.armbian.com"
+_baseurl="https://imola.armbian.com/dl/orangepipc/archive"
+distfiles="${_baseurl}/Armbian_${_armbian_ver}_Orangepipc_${_armbian_rel}_${version}.img.xz"
+checksum=6e102e55d658f2cc0c56d23fcb50bd2edbd98959aa6b59b8e1210c6860651ed4
+nopie=true
+
+# TODO
+do_extract() {
+	:
+}
+
+# TODO
+do_install() {
+	:
+}
