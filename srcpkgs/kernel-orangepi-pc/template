@@ -16,8 +16,9 @@ distfiles="${_baseurl}/Armbian_${_armbian_ver}_Orangepipc_${_armbian_rel}_${vers
 checksum=6e102e55d658f2cc0c56d23fcb50bd2edbd98959aa6b59b8e1210c6860651ed4
 nopie=true
 
-# TODO
-do_extract() {
+# TODO: extract .img with 7z
+# https://github.com/void-linux/void-packages/blob/master/common/hooks/do-extract/00-distfiles.sh#L137
+post_extract() {
 	:
 }
 
