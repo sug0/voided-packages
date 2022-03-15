@@ -1,7 +1,7 @@
 # Template file for 'crystal'
 pkgname=crystal
 version=1.3.2
-revision=1
+revision=2
 archs="x86_64*"
 short_desc="The Crystal Programming Language"
 hostmakedepends="crystal-bin llvm lld pkg-config git"
@@ -11,7 +11,7 @@ makedepends="
  gc-devel"
 depends="${makedepends} pkg-config"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
-license="Apache v2.0"
+license="Apache-2.0"
 homepage="https://crystal-lang.org"
 distfiles="https://github.com/crystal-lang/crystal/archive/${version}.tar.gz"
 checksum=0dceb2fde610c479466ebe1ce03745c51ba9def9f0da3aff1601532693741e0a
@@ -24,11 +24,8 @@ checksum=0dceb2fde610c479466ebe1ce03745c51ba9def9f0da3aff1601532693741e0a
 # 	+ make target="x86_64-unknown-linux-gnu"
 
 case ${XBPS_MACHINE} in
-	x86_64*)
-		;;
-	*)
-		broken="This package can only be built from an x86_64 host."
-		;;
+	x86_64*) ;;
+	*) broken="This package can only be built from an x86_64 host." ;;
 esac
 
 do_build() {
