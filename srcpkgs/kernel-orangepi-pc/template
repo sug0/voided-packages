@@ -5,24 +5,58 @@ _armbian_ver=22.02.2
 _armbian_rel=jammy_edge
 revision=1
 archs="armv7l*"
-#wrksrc=""
-hostmakedepends="p7zip uboot-mkimage"
+create_wrksrc=1
+hostmakedepends="xz p7zip uboot-mkimage"
 short_desc="Pre-compiled Armbian kernel for the Orange Pi PC"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="GPL-2.0-only"
 homepage="https://www.armbian.com"
 _baseurl="https://imola.armbian.com/dl/orangepipc/archive"
-distfiles="${_baseurl}/Armbian_${_armbian_ver}_Orangepipc_${_armbian_rel}_${version}.img.xz"
-checksum=6e102e55d658f2cc0c56d23fcb50bd2edbd98959aa6b59b8e1210c6860651ed4
+_armbian="Armbian_${_armbian_ver}_Orangepipc_${_armbian_rel}_${version}"
+distfiles="${_baseurl}/${_armbian}.img.xz"
+checksum=a39c66b31e6f8162a6e0c94482137d95914b0a942246f3415dc4f57dfd35b3a4
 nopie=true
 
-# TODO: extract .img with 7z
-# https://github.com/void-linux/void-packages/blob/master/common/hooks/do-extract/00-distfiles.sh#L137
 post_extract() {
-	:
+	7z x ${_armbian}.img
+	rm ${_armbian}.img
 }
 
-# TODO
 do_install() {
-	:
+	# install boot script and kernel
+	vmkdir boot
+	mkimage \
+		-A arm \
+		-T script \
+		-C none \
+		-d ${FILESDIR}/boot.cmd \
+		${DESTDIR}/boot/boot.scr
+	mkimage \
+		-f auto \
+		-A arm \
+		-O linux \
+		-T kernel \
+		-C none \
+		-a 42000000 \
+		-e 42000000 \
+		-c "Linux kernel" \
+		-d boot/vmlinuz-${version}-sunxi \
+		-b boot/dtb-${version}-sunxi/sun8i-h3-orangepi-pc.dtb \
+		${DESTDIR}/boot/board.itb
+
+	# install kernel modules
+	vmkdir usr/lib/modules
+	cp -r usr/lib/modules/${version}-sunxi ${DESTDIR}/usr/lib/modules
+
+	# install firmware files
+	vmkdir usr/lib
+	cp -r usr/lib/firmware ${DESTDIR}/usr/lib
+}
+
+firmware-orangepi-pc_package() {
+	pkgname=firmware-orangepi-pc
+	short_desc="Armbian firmware files for the Orange Pi PC"
+	pkg_install() {
+		vmove usr/lib/firmware
+	}
 }
