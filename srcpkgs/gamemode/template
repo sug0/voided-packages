@@ -12,7 +12,7 @@ maintainer="toluschr <toluschr@protonmail.com>"
 license="BSD-3-Clause"
 homepage="https://github.com/FeralInteractive/gamemode"
 distfiles="https://github.com/FeralInteractive/gamemode/archive/${version}.tar.gz"
-checksum=10c2a3f142eae472f5a09e42616e38c666c05b25ca3e61e562a543bb3fda66c5
+checksum=4377b88b5147ebf8d3f9a7a1f94c6d00f1e9624cd171d5af942ce9766be3747f
 
 post_install() {
 	vsconf example/gamemode.ini
