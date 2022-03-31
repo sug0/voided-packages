@@ -6,3 +6,5 @@ libaudec.so libaudec-0.3.4_2
 libguile-3.0.so.1 guile3-3.0.7_1
 libreproc.so.14 reproc-14.2.4_2
 libgtksourceview-5.so.0 gtksourceview5-5.3.2_1
+libgamemode.so.0 libgamemode-1.6.1_1
+libgamemodeauto.so.0 libgamemode-1.6.1_1
