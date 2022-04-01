@@ -1,6 +1,6 @@
 # Template file for 'python3-nautilus-open-any-terminal'
 pkgname=python3-nautilus-open-any-terminal
-version=0.2.12
+version=0.2.16
 revision=1
 wrksrc="${pkgname#*-}-${version}"
 build_style=python3-module
@@ -11,7 +11,7 @@ maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="GPLv3"
 homepage="https://github.com/Stunkymonkey/nautilus-open-any-terminal"
 distfiles="https://github.com/Stunkymonkey/nautilus-open-any-terminal/archive/${version}.tar.gz"
-checksum=1c22cd961c0edcceb3c0a3e251056634c920816baaaa36010eaadca30d1db45c
+checksum=14fe467251b672d3687731a08352a1a2c6db14cd4a5db4bdf6559fb00bfdd716
 
 post_install() {
 	vlicense LICENSE
