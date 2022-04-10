@@ -1,6 +1,6 @@
 # Template file for 'ds4batlevel'
 pkgname=ds4batlevel
-version=0.2.0
+version=0.2.1
 revision=1
 hostmakedepends="pkgconf"
 makedepends="libnotify-devel"
@@ -9,7 +9,7 @@ maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="0BSD"
 homepage="https://github.com/sug0/ds4batlevel"
 distfiles="https://github.com/sug0/ds4batlevel/archive/v${version}.tar.gz"
-checksum=2d3457d83650a78151a1f7c9b03f76139d66cd5ee02551b428074ca024688905
+checksum=e70cf332929f79dd0f6959dde1ebb23907c9f18615f72063dc2c3153fe52542f
 
 do_build() {
 	cp ${FILESDIR}/config.h .
