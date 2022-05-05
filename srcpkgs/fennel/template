@@ -1,0 +1,20 @@
+# Template file for 'fennel'
+pkgname=fennel
+version=1.1.0
+revision=1
+build_style=gnu-makefile
+_lua=lua54
+depends="$_lua"
+hostmakedepends="$_lua"
+short_desc="Lua Lisp Language"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT"
+homepage="https://fennel-lang.org/"
+distfiles="https://git.sr.ht/~technomancy/fennel/archive/${version}.tar.gz"
+checksum=a44792698deaa57c3829d24371481d5a8674a804505f6313a570aee59941ec6c
+
+post_install() {
+    vmkdir usr/share
+    mv ${DESTDIR}/usr/man ${DESTDIR}/usr/share/
+	vlicense LICENSE
+}
