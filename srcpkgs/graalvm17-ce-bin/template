@@ -1,6 +1,6 @@
 # Template file for 'graalvm17-ce-bin'
 pkgname=graalvm17-ce-bin
-version=22.0.0.2
+version=22.1.0
 revision=1
 archs="x86_64"
 wrksrc="graalvm-ce-java17-${version}"
@@ -9,7 +9,7 @@ maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="GPL-2.0-or-later"
 homepage="https://www.graalvm.org/"
 distfiles="https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-${version}/graalvm-ce-java17-linux-amd64-${version}.tar.gz"
-checksum=4f743e0ed3d974b7d619ca2ed6014554e8c12e5ebbb38b9bc9e820b182169bd4
+checksum=f11d46098efbf78465a875c502028767e3de410a31e45d92a9c5cf5046f42aa2
 nopie=true
 
 _jdk_home="graalvm17-ce-bin"
@@ -48,7 +48,6 @@ alternatives="
  jdk:/usr/bin/keytool:/${_jdk_home}/bin/keytool
  jdk:/usr/bin/rmiregistry:/${_jdk_home}/bin/rmiregistry
  jdk:/usr/bin/serialver:/${_jdk_home}/bin/serialver
-
 "
 
 do_install() {
