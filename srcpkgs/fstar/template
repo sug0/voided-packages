@@ -1,0 +1,40 @@
+# Template file for 'fstar'
+pkgname=fstar
+version=2022.05.06
+revision=1
+wrksrc="FStar-${version}"
+build_style=gnu-makefile
+make_install_args="PREFIX=${DESTDIR}"
+hostmakedepends="python pkg-config ocaml ocamlbuild ocaml-findlib opam tar"
+makedepends="gmp-devel"
+depends="z3"
+short_desc="Proof-oriented programming language"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="Apache-2.0"
+homepage="https://www.fstar-lang.org"
+distfiles="https://github.com/FStarLang/FStar/archive/v${version}.tar.gz"
+checksum=3c85d27146c4d49397e78a6c47d95e9617f3c607de578f41ba013f18467b4cc8
+nocross="opam is nocross"
+disable_parallel_build=yes
+
+case "$XBPS_TARGET_MACHINE" in
+	ppc64*) ;;
+	ppc*) broken="relocation out of range";;
+esac
+
+pre_build() {
+	opam init -y --compiler=ocaml-system --disable-sandboxing
+	eval $(opam env)
+	CHECK_IF_PREINSTALLED=false opam install --deps-only -y .
+}
+
+do_install() {
+	# TODO: this is not sufficient to make fstar execute!
+	# check the bin release
+	#
+	#vmkdir usr/lib/fstar
+	#vcopy 'bin/*' usr/lib/fstar/
+
+	# XXX: fail on purpose for now
+	return 1
+}
