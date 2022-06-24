@@ -1,6 +1,6 @@
 # Template file for 'undocker'
 pkgname=undocker
-version=1.0.1
+version=1.0.3
 revision=1
 build_style=go
 wrksrc="${pkgname}-v${version}"
@@ -10,7 +10,7 @@ maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="MIT"
 homepage="https://sr.ht/~motiejus/undocker/"
 distfiles="https://git.sr.ht/~motiejus/undocker/archive/v${version}.tar.gz"
-checksum=58711d771a69ddd324966388aa5f158b58bf1d79ee61c9a5b340710ea0047aa5
+checksum=aee2e578213cf3547a37495e71d3d28f5835bca29ed9140218e9d1a9b3df7bdc
 
 post_install() {
 	vdoc README.md
