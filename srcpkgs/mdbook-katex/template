@@ -1,17 +1,15 @@
 # Template file for 'mdbook-katex'
 pkgname=mdbook-katex
-version=0.2.10
+version=0.2.11
 revision=1
 build_style=cargo
 short_desc="Preprocessor for mdbook to add LaTex equations to HTML at build time"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="MIT"
-homepage="https://github.com/lzanini/mdbook-katex"
-distfiles="https://github.com/lzanini/mdbook-katex/archive/v${version}.tar.gz"
-checksum=d8cb8a0515d641ff846b22fce154c7cca927ec635664bce604e85b26fd6e36ee
+homepage="https://github.com/sug0/mdbook-katex"
+distfiles="https://github.com/sug0/mdbook-katex/archive/v${version}.tar.gz"
+checksum=c172edcd07f396f4cd44f4d72beabe5d7a4960936f424633927c80a38e3b12fe
 
 post_install() {
-    :
-    # not part of this release yet
-	#vlicense LICENSE
+	vlicense LICENSE
 }
