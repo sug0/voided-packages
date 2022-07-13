@@ -1,0 +1,18 @@
+# Template file for 'unclog'
+pkgname=unclog
+version=0.5.0
+revision=1
+build_style=cargo
+wrksrc=${pkgname}-${version}
+hostmakedepends="pkg-config"
+makedepends="openssl-devel"
+short_desc="Tool used to unclog project changelog files"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="Apache-2.0"
+homepage="https://github.com/informalsystems/unclog"
+distfiles="https://github.com/informalsystems/unclog/archive/v${version}.tar.gz"
+checksum=46ed8b4749e5235ac525c6a36b0b385e99be70705599ad81436b022f52426dfe
+
+post_install() {
+	vlicense LICENSE
+}
