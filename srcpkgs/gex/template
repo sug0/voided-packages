@@ -1,0 +1,15 @@
+# Template file for 'gex'
+pkgname=gex
+version=0.3.2
+revision=1
+build_style=cargo
+short_desc="Cross-platform git workflow improvement tool inspired by Magit"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT"
+homepage="https://github.com/Piturnah/gex"
+distfiles="https://github.com/Piturnah/gex/archive/v${version}.tar.gz"
+checksum=2602d8cc777a2474fedc6df0d51a959bc1f728d355bd96ea8cfb07395a57c1b6
+
+post_install() {
+	vlicense LICENSE-MIT
+}
