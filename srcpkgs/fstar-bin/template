@@ -1,7 +1,7 @@
 # Template file for 'fstar-bin'
 pkgname=fstar-bin
-version=2022.05.06
-revision=2
+version=2022.08.10
+revision=1
 archs="x86_64"
 wrksrc="fstar"
 depends="z3"
@@ -9,8 +9,8 @@ short_desc="Proof-oriented programming language - binary package"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="Apache-2.0"
 homepage="https://www.fstar-lang.org"
-distfiles="https://github.com/FStarLang/FStar/releases/download/v2022.05.06/fstar_${version}_Linux_x86_64.tar.gz"
-checksum=933ae5d39d9a9087f696903777940f2e34885ce109801e14c0156f51ddf42c4b
+distfiles="https://github.com/FStarLang/FStar/releases/download/v${version}/fstar_${version}_Linux_x86_64.tar.gz"
+checksum=79715f68cf993684cf8624b77b30f890ebd434ca217e5aaa5b18779fbdd6f420
 
 do_install() {
 	vmkdir usr/lib/fstar
