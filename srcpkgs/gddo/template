@@ -1,7 +1,7 @@
 # Template file for 'gddo'
 pkgname=gddo
 version=1.10
-revision=1
+revision=2
 build_style=gnu-makefile
 wrksrc="${pkgname}-${version}"
 hostmakedepends="go git"
@@ -14,5 +14,6 @@ checksum=01b0e6f184d565982bf0d5df6ee08adccf185070cbb3e7e2387e4ae8cfea1a9e
 nopie=yes
 
 post_install() {
+	vdoc README.md
 	vlicense LICENSE
 }
