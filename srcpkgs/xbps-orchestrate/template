@@ -1,0 +1,21 @@
+# Template file for 'xbps-orchestrate'
+pkgname=xbps-orchestrate
+_project=163439062be303e1a9ee10b94dd4510c
+_hash=47999ca5d36053899e00301cf1696ff76ee399d8
+wrksrc="${_project}-${_hash}"
+version=20221025
+revision=1
+short_desc="Small utility program to spin up xbps sub-commands"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="0BSD"
+homepage="https://gist.github.com/sug0/${_project}"
+distfiles="https://gist.github.com/sug0/${_project}/archive/${_hash}.zip"
+checksum=66ff5b90e0a1db0a9a6792547d6ac45a025fdfbf973009e295e53e72908727c7
+
+do_build() {
+	gcc ${CFLAGS} -o xbps xbps.c
+}
+
+do_install() {
+	vbin xbps
+}
