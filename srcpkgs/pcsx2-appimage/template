@@ -2,14 +2,15 @@
 pkgname=pcsx2-appimage
 archs="x86_64"
 version=1.7.3493
-revision=1
+revision=2
 create_wrksrc=yes
 hostmakedepends="p7zip desktop-file-utils"
 short_desc="Sony PlayStation 2 emulator"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="GPL-3.0-or-later, GPL-2.0-or-later, LGPL-2.1-or-later, LGPL-3.0-or-later"
 homepage="http://www.pcsx2.net"
-distfiles="https://github.com/PCSX2/pcsx2/releases/download/v${version}/pcsx2-v${version}-linux-AppImage-64bit-AVX2-Qt.AppImage"
+_appimg="pcsx2-v${version}-linux-AppImage-64bit-AVX2-Qt.AppImage"
+distfiles="https://github.com/PCSX2/pcsx2/releases/download/v${version}/${_appimg}"
 checksum=172fc0d8d6005240b785c7ad203c836710e62fd812e87754b6b1221e12b20786
 _install=/opt/pcsx2
 noshlibprovides=yes
@@ -18,7 +19,7 @@ nostrip=yes
 nopie=yes
 
 do_extract() {
-	7z x ${XBPS_SRCDISTDIR}/pcsx2-appimage-${version}/pcsx2-v${version}-linux-AppImage-64bit-AVX2-Qt.AppImage
+	7z x ${XBPS_SRCDISTDIR}/pcsx2-appimage-${version}/${_appimg}
 	chmod +x usr/bin/pcsx2-qt
 	desktop-file-edit \
 		--set-key Exec \
