@@ -1,7 +1,7 @@
 # Template file for 'kernel-orangepi-pc'
 pkgname=kernel-orangepi-pc
-version=5.19.4
-_armbian_ver=22.08.1
+version=5.19.10
+_armbian_ver=22.08.2
 _armbian_rel=sid_edge
 revision=1
 archs="armv7l*"
@@ -14,7 +14,7 @@ homepage="https://www.armbian.com"
 _baseurl="https://imola.armbian.com/dl/orangepipc/archive"
 _armbian="Armbian_${_armbian_ver}_Orangepipc_${_armbian_rel}_${version}"
 distfiles="${_baseurl}/${_armbian}.img.xz"
-checksum=2d67b784a806debe9d3136557a46c061f192b809f59919bd291b52fa743bf22c
+checksum=fe88ef1b489e65cab7d610da62389a147b417bb84c65c1c5f9e482c097f88df4
 nopie=true
 
 post_extract() {
