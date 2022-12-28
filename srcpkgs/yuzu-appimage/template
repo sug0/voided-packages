@@ -1,0 +1,47 @@
+# Template file for 'yuzu-appimage'
+pkgname=yuzu-appimage
+archs="x86_64"
+version=1286
+revision=1
+_date=20221228
+_commit=554bc474d
+create_wrksrc=yes
+hostmakedepends="p7zip desktop-file-utils"
+short_desc="Nintendo Switch emulator"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="GPL-3.0-or-later"
+homepage="https://yuzu-emu.org"
+_appimg="yuzu-mainline-${_date}-${_commit}.AppImage "
+distfiles="https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-${version}/${_appimg}"
+checksum=ecceae293d1bba57dab52d71f1216c239aaa0f7491da664d5b11e1fced2e7c97
+_install=/opt/yuzu
+noshlibprovides=yes
+noverifyrdeps=yes
+nostrip=yes
+nopie=yes
+
+do_extract() {
+	7z x ${XBPS_SRCDISTDIR}/yuzu-appimage-${version}/${_appimg}
+	chmod +x usr/bin/yuzu
+	chmod +x usr/bin/yuzu-room
+	desktop-file-edit \
+		--set-key Exec \
+		--set-value ${_install}/usr/bin/yuzu \
+		--set-key TryExec \
+		--set-value ${_install}/usr/bin/yuzu \
+		usr/share/applications/org.yuzu_emu.yuzu.desktop
+}
+
+do_install() {
+	mkdir -p ${DESTDIR}/${_install}
+	mkdir -p ${DESTDIR}/usr/share/icons/hicolor/scalable/apps
+	mkdir -p ${DESTDIR}/usr/share/applications
+
+	cp -r usr ${DESTDIR}/${_install}/
+	ln -s \
+		${_install}/usr/share/applications/org.yuzu_emu.yuzu.desktop \
+		${DESTDIR}/usr/share/applications/org.yuzu_emu.yuzu.desktop
+	ln -s \
+		${_install}/usr/share/icons/hicolor/scalable/apps/org.yuzu_emu.yuzu.svg \
+		${DESTDIR}/usr/share/icons/hicolor/scalable/apps/org.yuzu_emu.yuzu.svg
+}
