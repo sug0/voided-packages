@@ -1,8 +1,8 @@
 # Template file for 'pcsx2-appimage'
 pkgname=pcsx2-appimage
 archs="x86_64"
-version=1.7.3493
-revision=2
+version=1.7.3806
+revision=1
 create_wrksrc=yes
 hostmakedepends="p7zip desktop-file-utils"
 short_desc="Sony PlayStation 2 emulator"
@@ -11,7 +11,7 @@ license="GPL-3.0-or-later, GPL-2.0-or-later, LGPL-2.1-or-later, LGPL-3.0-or-late
 homepage="http://www.pcsx2.net"
 _appimg="pcsx2-v${version}-linux-AppImage-64bit-AVX2-Qt.AppImage"
 distfiles="https://github.com/PCSX2/pcsx2/releases/download/v${version}/${_appimg}"
-checksum=172fc0d8d6005240b785c7ad203c836710e62fd812e87754b6b1221e12b20786
+checksum=91e315f2e5685d569679e6803d938dee6a9a88f2ba3d4998b485051a0f9463e4
 _install=/opt/pcsx2
 noshlibprovides=yes
 noverifyrdeps=yes
