@@ -1,0 +1,34 @@
+# Template file for 'Ryujinx-bin'
+pkgname=Ryujinx-bin
+version=1.1.494
+revision=1
+arch="x86_64"
+short_desc="Nintendo Switch emulator for .NET - binary package"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT"
+homepage="https://ryujinx.org"
+distfiles="https://github.com/Ryujinx/release-channel-master/releases/download/${version}/ryujinx-${version}-linux_x64.tar.gz"
+checksum=023fe0a1c0210332f6c481f1c837db9c702e0030d3bdc83c1e51dcedf1f2571e
+_install=/opt/Ryujinx
+nostrip=yes
+
+post_extract() {
+	chmod +x Ryujinx
+}
+
+do_install() {
+	vmkdir ${_install}/Logs
+	vmkdir usr/share/icons/hicolor/256x256/apps
+	vmkdir usr/share/applications
+	vmkdir usr/share/licenses/Ryujinx
+
+	chmod 777 ${DESTDIR}/${_install}/Logs
+	touch ${DESTDIR}/${_install}/Logs/.keepme
+
+	cp ${FILESDIR}/Ryujinx.desktop ${DESTDIR}/usr/share/applications/
+	cp ${FILESDIR}/Ryujinx.png ${DESTDIR}/usr/share/icons/hicolor/256x256/apps/
+	cp LICENSE.txt ${DESTDIR}/usr/share/licenses/Ryujinx/
+	cp THIRDPARTY.md ${DESTDIR}/usr/share/licenses/Ryujinx/
+	cp lib*.so* ${DESTDIR}/${_install}/
+	cp Ryujinx* ${DESTDIR}/${_install}/
+}

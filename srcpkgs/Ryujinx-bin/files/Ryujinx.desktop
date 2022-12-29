@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Name=Ryujinx
+StartupWMClass=Ryujinx
+Path=/opt/Ryujinx
+Exec=/opt/Ryujinx/Ryujinx
+Icon=Ryujinx
+Comment=Nintendo Switch emulator
+GenericName=Nintendo Switch Emulator
+Keywords=game;emulator;
+Categories=Game;Emulator;
