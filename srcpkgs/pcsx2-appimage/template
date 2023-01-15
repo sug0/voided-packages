@@ -1,7 +1,7 @@
 # Template file for 'pcsx2-appimage'
 pkgname=pcsx2-appimage
 archs="x86_64"
-version=1.7.3806
+version=1.7.3905
 revision=1
 create_wrksrc=yes
 hostmakedepends="p7zip desktop-file-utils"
@@ -11,7 +11,7 @@ license="GPL-3.0-or-later, GPL-2.0-or-later, LGPL-2.1-or-later, LGPL-3.0-or-late
 homepage="http://www.pcsx2.net"
 _appimg="pcsx2-v${version}-linux-AppImage-64bit-AVX2-Qt.AppImage"
 distfiles="https://github.com/PCSX2/pcsx2/releases/download/v${version}/${_appimg}"
-checksum=91e315f2e5685d569679e6803d938dee6a9a88f2ba3d4998b485051a0f9463e4
+checksum=2cabab7f36988efa4aebcccb047ffd8aec31e2de3c6177fd7b299faa99c8a1e2
 _install=/opt/pcsx2
 noshlibprovides=yes
 noverifyrdeps=yes
