@@ -1,22 +1,21 @@
 # Template file for 'dwl'
 pkgname=dwl
-version=0.2.2
-revision=2
+version=0.4
+revision=1
 hostmakedepends="pkg-config wayland-devel"
-makedepends="wlroots-devel libxcb-devel libxkbcommon-devel libinput-devel"
+makedepends="wlroots-devel libxcb-devel libxkbcommon-devel
+ libinput-devel xcb-util-wm-devel"
 depends="wayland-protocols xorg-server-xwayland"
 short_desc="Dynamic window manager for Wayland"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="GPL-3.0-only"
 homepage="https://github.com/djpohly/dwl"
 distfiles="https://github.com/djpohly/dwl/archive/v${version}.tar.gz"
-checksum=c629fa7f38050db9850dc0cdf487191c725e6fc68f0c497f6297b48e873c9e5e
+checksum=f03a260b169019ebdbfd6db1b19a3dc7861ba33609644581c530be019f22274c
 
 do_build() {
 	[ -e ${FILESDIR}/config.h ] && cp ${FILESDIR}/config.h config.h
-	sed -i "/CFLAGS/s|\${CPPFLAGS}|& $CFLAGS|g" config.mk
-	sed -i "/LDFLAGS/s|\-s|$LDFLAGS|g" config.mk
-	make CC=$CC CFLAGS+="-I. -I${XBPS_CROSS_BASE}/usr/include/pixman-1 -DXWAYLAND -DWLR_USE_UNSTABLE"
+	make CC=$CC CFLAGS+="-DXWAYLAND -DWLR_USE_UNSTABLE" LDFLAGS+="-lxcb -lxcb-icccm"
 }
 
 do_install() {
