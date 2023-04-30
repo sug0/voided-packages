@@ -1,0 +1,26 @@
+# Template file for 'seer'
+pkgname=seer
+version=1.17
+revision=1
+build_style=cmake
+build_wrksrc="src"
+hostmakedepends="pkg-config"
+makedepends="qt5-devel qt5-charts-devel"
+depends="gdb"
+short_desc="GUI frontend to gdb for Linux"
+maintainer="Orphaned <orphan@voidlinux.org>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/epasveer/seer"
+changelog="https://raw.githubusercontent.com/epasveer/seer/main/CHANGELOG.md"
+distfiles="https://github.com/epasveer/seer/archive/v${version}.tar.gz"
+checksum=085d096731d8d86a374107e36f01bb66582ac2509be4bafc2a443a4275973705
+
+post_build() {
+	cd resources
+	install -Dm644 'seergdb_32x32.png' "${DESTDIR}/usr/share/icons/hicolor/32x32/apps/seergdb.png"
+	install -Dm644 'seergdb_64x64.png' "${DESTDIR}/usr/share/icons/hicolor/64x64/apps/seergdb.png"
+	install -Dm644 'seergdb_128x128.png' "${DESTDIR}/usr/share/icons/hicolor/128x128/apps/seergdb.png"
+	install -Dm644 'seergdb_256x256.png' "${DESTDIR}/usr/share/icons/hicolor/256x256/apps/seergdb.png"
+	install -Dm644 'seergdb_512x512.png' "${DESTDIR}/usr/share/icons/hicolor/512x512/apps/seergdb.png"
+	install -Dm644 'seergdb.desktop' -t "${DESTDIR}/usr/share/applications"
+}
