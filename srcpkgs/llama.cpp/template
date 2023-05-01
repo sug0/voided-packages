@@ -1,0 +1,21 @@
+# Template file for 'llama.cpp'
+pkgname=llama.cpp
+version=20230501
+_hash=f4cef87
+wrksrc="llama.cpp-master-${_hash}"
+revision=1
+build_style=cmake
+hostmakedepends="pkg-config"
+makedepends="openblas-devel"
+short_desc="Port of Facebook's LLaMA model in C/C++"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT"
+homepage="https://github.com/ggerganov/llama.cpp"
+distfiles="https://github.com/ggerganov/llama.cpp/archive/master-${_hash}.tar.gz"
+checksum=6a113565a6051657c282b7559238711bb1859b403bf806eeee7b11a628a130dd
+
+do_install() {
+	vmkdir usr/bin
+	cp build/bin/main ${DESTDIR}/usr/bin/llama.cpp
+	vlicense LICENSE
+}
