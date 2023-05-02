@@ -1,8 +1,9 @@
 # Template file for 'kernel-orangepi-pc'
 pkgname=kernel-orangepi-pc
-version=5.19.10
-_armbian_ver=22.08.2
-_armbian_rel=sid_edge
+version=6.2.13
+_armbian_ver=23.5.0
+_armbian_rel=bookworm_edge
+_trunk=140
 revision=1
 archs="armv7l*"
 create_wrksrc=1
@@ -11,14 +12,18 @@ short_desc="Pre-compiled Armbian kernel for the Orange Pi PC"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="GPL-2.0-only"
 homepage="https://www.armbian.com"
-_baseurl="https://imola.armbian.com/dl/orangepipc/archive"
-_armbian="Armbian_${_armbian_ver}_Orangepipc_${_armbian_rel}_${version}"
+_baseurl="https://github.com/armbian-gama/os/releases/download/${_armbian_ver}-trunk.${_trunk}"
+_armbian="Armbian_${_armbian_ver}-trunk.${_trunk}_Orangepipc_${_armbian_rel}_${version}"
 distfiles="${_baseurl}/${_armbian}.img.xz"
-checksum=fe88ef1b489e65cab7d610da62389a147b417bb84c65c1c5f9e482c097f88df4
+checksum=118bc6c2ea8da4597edb6e31262222661c0acf6866415bce73916f0ed4754d8e
 nopie=true
 
 post_extract() {
-	7z x ${_armbian}.img
+	7z x ${_armbian}.img \
+		-i'!usr/lib/firmware' \
+		-i'!usr/lib/modules' \
+		-i"!boot/vmlinuz-${version}-sunxi" \
+		-i"!boot/dtb-${version}-sunxi"
 	rm ${_armbian}.img
 }
 
