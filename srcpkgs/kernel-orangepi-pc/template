@@ -1,9 +1,8 @@
 # Template file for 'kernel-orangepi-pc'
 pkgname=kernel-orangepi-pc
-version=6.2.13
-_armbian_ver=23.5.0
-_armbian_rel=bookworm_edge
-_trunk=140
+version=5.15.93
+_armbian_ver=23.02.2
+_armbian_rel=bullseye_current
 revision=1
 archs="armv7l*"
 create_wrksrc=1
@@ -12,10 +11,10 @@ short_desc="Pre-compiled Armbian kernel for the Orange Pi PC"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="GPL-2.0-only"
 homepage="https://www.armbian.com"
-_baseurl="https://github.com/armbian-gama/os/releases/download/${_armbian_ver}-trunk.${_trunk}"
-_armbian="Armbian_${_armbian_ver}-trunk.${_trunk}_Orangepipc_${_armbian_rel}_${version}"
+_baseurl="https://imola.armbian.com/dl/orangepipc/archive"
+_armbian="Armbian_${_armbian_ver}_Orangepipc_${_armbian_rel}_${version}"
 distfiles="${_baseurl}/${_armbian}.img.xz"
-checksum=118bc6c2ea8da4597edb6e31262222661c0acf6866415bce73916f0ed4754d8e
+checksum=93c62b6984a8bb249e0a9c7ff0c41633cf2ec1824d3ae5beb5719f70116eaa57
 nopie=true
 
 post_extract() {
