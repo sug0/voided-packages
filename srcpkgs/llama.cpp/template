@@ -3,7 +3,7 @@ pkgname=llama.cpp
 version=20230501
 _hash=f4cef87
 wrksrc="llama.cpp-master-${_hash}"
-revision=1
+revision=2
 build_style=cmake
 hostmakedepends="pkg-config"
 makedepends="openblas-devel"
@@ -16,6 +16,19 @@ checksum=6a113565a6051657c282b7559238711bb1859b403bf806eeee7b11a628a130dd
 
 do_install() {
 	vmkdir usr/bin
-	cp build/bin/main ${DESTDIR}/usr/bin/llama.cpp
+	cp build/bin/main ${DESTDIR}/usr/bin/llama
+	cp convert.py ${DESTDIR}/usr/bin/llama-convert
+	sed -i'' '1s|^|#!/usr/bin/env python3\n|' ${DESTDIR}/usr/bin/llama-convert
+	chmod +x ${DESTDIR}/usr/bin/llama-convert
 	vlicense LICENSE
+}
+
+llama.cpp-convert_package() {
+	pkgname=llama.cpp-convert
+	short_desc+=" - model converter"
+	# TODO: missing sentencepiece
+	depends="python3-numpy"
+	pkg_install() {
+		vmove usr/bin/llama-convert
+	}
 }
