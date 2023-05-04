@@ -1,6 +1,6 @@
 # Template file for 'rgbds'
 pkgname=rgbds
-version=0.5.2
+version=0.6.1
 revision=1
 build_style=gnu-makefile
 hostmakedepends="pkg-config bison"
@@ -10,29 +10,28 @@ maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="MIT"
 homepage="https://github.com/gbdev/rgbds"
 distfiles="https://github.com/gbdev/rgbds/archive/v${version}.tar.gz"
-checksum=29172a43c7a4f41e5809d8c40cb76b798a0d01dfc9f5340b160a405b89b3b182
+checksum=fdc48f5b416fd200598320dec7ffd1207516842771a55a15e5cdd04a243b0d74
 
 do_install() {
-	vmkdir usr/bin
-	vinstall rgbasm 755 usr/bin
-	vinstall rgbfix 755 usr/bin
-	vinstall rgblink 755 usr/bin
-	vinstall rgbgfx 755 usr/bin
+	vbin rgbasm
+	vbin rgbfix
+	vbin rgblink
+	vbin rgbgfx
 
 	vmkdir usr/share/man/man1
-	vinstall src/asm/rgbasm.1 644 usr/share/man/man1
-	vinstall src/fix/rgbfix.1 644 usr/share/man/man1
-	vinstall src/gfx/rgbgfx.1 644 usr/share/man/man1
-	vinstall src/link/rgblink.1 644 usr/share/man/man1
+	vinstall man/rgbasm.1 644 usr/share/man/man1
+	vinstall man/rgbfix.1 644 usr/share/man/man1
+	vinstall man/rgbgfx.1 644 usr/share/man/man1
+	vinstall man/rgblink.1 644 usr/share/man/man1
 
 	vmkdir usr/share/man/man5
-	vinstall src/rgbds.5 644 usr/share/man/man5
-	vinstall src/asm/rgbasm.5 644 usr/share/man/man5
-	vinstall src/link/rgblink.5 644 usr/share/man/man5
+	vinstall man/rgbds.5 644 usr/share/man/man5
+	vinstall man/rgbasm.5 644 usr/share/man/man5
+	vinstall man/rgblink.5 644 usr/share/man/man5
 
 	vmkdir usr/share/man/man7
-	vinstall src/rgbds.7 644 usr/share/man/man7
-	vinstall src/gbz80.7 644 usr/share/man/man7
+	vinstall man/rgbds.7 644 usr/share/man/man7
+	vinstall man/gbz80.7 644 usr/share/man/man7
 }
 
 post_install() {
