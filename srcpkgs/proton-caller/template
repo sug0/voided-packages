@@ -1,0 +1,15 @@
+# Template file for 'proton-caller'
+pkgname=proton-caller
+version=3.1.2
+revision=1
+build_style=cargo
+short_desc="Run any Windows program through Proton"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT"
+homepage="https://github.com/caverym/proton-caller"
+distfiles="https://github.com/caverym/proton-caller/archive/${version}.tar.gz"
+checksum=926733e48ff38b552de1d2623521b228182d32c0ab3fa9f644bfb5560856bdce
+
+post_install() {
+	vlicense LICENSE
+}
