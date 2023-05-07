@@ -1,23 +1,18 @@
 # Template file for 'yap'
 pkgname=yap
-version=6.2
+version=7.3.0
+_hash=602ac3e6df8475670542987a5b814971760a32d3
 revision=1
-wrksrc=yap-6.3-${version}
-build_style=gnu-configure
-configure_args="
- --enable-threads
- --enable-dynamic-loading
- --enable-max-performance
- --enable-max-memory"
+wrksrc=yap-${_hash}
+build_style=cmake
 hostmakedepends="pkg-config bison"
-makedepends="gmp-devel readline-devel openssl-devel"
+makedepends="gmpxx-devel readline-devel openssl-devel"
 short_desc="A high-performance Prolog compiler developed at Universidade do Porto"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="Artistic"
-homepage="https://github.com/vscosta/yap-6.3"
-distfiles="https://github.com/vscosta/yap-6.3/archive/${version}.tar.gz"
-checksum=d06eba7ce944684b6b6fc9150d5b28553f1e4f0b6498691635ec89e3ea916f6c
-patch_args="-p0"
+homepage="https://github.com/vscosta/yap"
+distfiles="https://github.com/vscosta/yap/archive/${_hash}.tar.gz"
+checksum=85413885ee9ee5ba9a47435149b37ef2ffb2dbb5a6bd28a9ae6301a0af44b63a
 
 post_install() {
 	vlicense Artistic
