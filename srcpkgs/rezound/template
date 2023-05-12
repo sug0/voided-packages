@@ -1,0 +1,35 @@
+# Template file for 'rezound'
+pkgname=rezound
+version=0.13.1beta
+revision=1
+build_style=gnu-configure
+hostmakedepends="pkg-config flex fox-utils desktop-file-utils"
+# TODO: fix no audio output
+makedepends="fox-devel boost-devel"
+short_desc="ReZound is a free, feature-rich graphical audio editor"
+maintainer="Orphaned <orphan@voidlinux.org>"
+license="GPL-2.0-only"
+homepage="https://sourceforge.net/projects/rezound"
+distfiles="${SOURCEFORGE_SITE}/rezound/ReZound/${pkgname}-${version}.tar.gz"
+checksum=9adc3450caae0d22996082fe0f184cdd5314362a212420eb9afdbfd869dd9223
+
+
+# TODO: add icon
+post_install() {
+	mv ${DESTDIR}/usr/doc ${DESTDIR}/usr/share/
+
+	mkdir -p ${DESTDIR}/usr/share/licenses/${pkgname}
+	mv ${DESTDIR}/usr/share/doc/rezound/COPYING \
+		${DESTDIR}/usr/share/licenses/${pkgname}/
+
+	mkdir -p ${DESTDIR}/usr/share/applications
+	touch ${DESTDIR}/usr/share/applications/rezound.desktop
+	desktop-file-edit \
+		--set-name="ReZound" \
+		--set-comment="Free, feature-rich graphical audio editor" \
+		--set-icon="ReZound" \
+		--add-category="AudioVideo;Audio;AudioVideoEditing;" \
+		--set-key="Exec" --set-value="rezound %F" \
+		--set-key="Type" --set-value="Application" \
+		${DESTDIR}/usr/share/applications/rezound.desktop
+}
