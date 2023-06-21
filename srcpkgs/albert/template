@@ -1,0 +1,46 @@
+# Template file for 'albert'
+pkgname=albert
+version=0.20.14
+revision=1
+build_style=cmake
+configure_args="-DQHOTKEY_INSTALL=OFF
+  -DBUILD_WIDGETSBOXMODEL=ON
+  -DBUILD_APPLICATIONS_XDG=ON
+  -DBUILD_CALCULATOR=ON
+  -DBUILD_CHROMIUM=ON
+  -DBUILD_DEBUG=OFF
+  -DBUILD_FILES=ON
+  -DBUILD_HASH=ON
+  -DBUILD_PYTHON=ON
+  -DBUILD_SNIPPETS=ON
+  -DBUILD_SSH=ON
+  -DBUILD_SYSTEM=ON
+  -DBUILD_TEMPLATE=OFF
+  -DBUILD_TERMINAL=ON
+  -DBUILD_URLHANDLER=ON
+  -DBUILD_WEBSEARCH=ON"
+hostmakedepends="pkg-config git"
+makedepends="libqalculate-devel qt6-scxml-devel qt6-svg-devel
+  muparser-devel python3-pybind11"
+depends="hicolor-icon-theme python3-urllib3 python3-pybind11"
+short_desc="Fast and flexible keyboard launcher"
+maintainer="Orphaned <orphan@voidlinux.org>"
+license="custom:Proprietary"
+homepage="https://albertlauncher.github.io"
+changelog="https://raw.githubusercontent.com/albert/archive/master/CHANGELOG.md"
+
+export pybind11_DIR=/usr/lib/python3.11/site-packages/pybind11
+
+do_fetch() {
+	[ -d albert-${version} ] || \
+		git clone https://github.com/albertlauncher/albert albert-${version}
+	cd albert-${version}
+	git checkout "v${version}"
+	git submodule update --init --recursive
+	cd ..
+}
+
+post_build() {
+	# TODO: include license in later versions
+	true
+}
