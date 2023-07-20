@@ -1,6 +1,6 @@
 # Template file for 'git-signify'
 pkgname=git-signify
-version=0.1.0
+version=0.2.0
 revision=1
 build_style=cargo
 wrksrc=${pkgname}-${version}
@@ -11,11 +11,7 @@ maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="MIT"
 homepage="https://github.com/sug0/git-signify"
 distfiles="https://github.com/sug0/git-signify/archive/v${version}.tar.gz"
-checksum=b9f73903731a66562a313eda4867cb8a2b859afa22ced35a8eb24d66c8e4f681
-
-pre_build() {
-	cargo generate-lockfile
-}
+checksum=6a1ea6cb7f29d0853f5ab4141875ae9c4aff648bf8d2e146ac430ae21cd0c0cd
 
 post_build() {
 	vlicense LICENSE
