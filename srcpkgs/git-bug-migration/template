@@ -1,0 +1,16 @@
+# Template file for 'git-bug-migration'
+pkgname=git-bug-migration
+version=0.3.4
+revision=1
+build_style=go
+go_import_path=github.com/MichaelMure/git-bug-migration
+go_ldflags="
+  -X main.GitExactTag=v${version}
+  -X main.GitLastTag=v${version}"
+hostmakedepends="git"
+short_desc="Distributed, offline-first bug tracker embedded in git, with bridges"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/MichaelMure/git-bug-migration"
+distfiles="https://github.com/MichaelMure/git-bug-migration/archive/v${version}.tar.gz"
+checksum=8dc5d43b286473e14074e245d0adeb7722c23fc3fc764bea1c671af0c14e1682
