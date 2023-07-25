@@ -1,22 +1,20 @@
 # Template file for 'git-bug'
 pkgname=git-bug
-version=0.7.2
+version=0.8.0
 revision=1
 build_style=go
 go_import_path=github.com/MichaelMure/git-bug
+go_ldflags="
+  -X ${go_import_path}/commands.GitExactTag=v${version}
+  -X ${go_import_path}/commands.GitLastTag=v${version}"
 hostmakedepends="git"
 short_desc="Distributed, offline-first bug tracker embedded in git, with bridges"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
-license="GPLv3"
+license="GPL-3.0-or-later"
 homepage="https://github.com/MichaelMure/git-bug"
 distfiles="https://github.com/MichaelMure/git-bug/archive/v${version}.tar.gz"
-checksum=b6313e10af13ce0ba288a6c9de92191ca1ab700d9c64bae11202c233ebdb4fc1
-
-pre_build() {
-	go generate
-}
+checksum=09b3e2d657ff9a06ae6599af63e0e64ae291d00607d7a1dd28c8f5908a88a6dc
 
 post_install() {
 	vdoc README.md
-	vlicense LICENSE
 }
