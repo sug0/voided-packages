@@ -1,0 +1,32 @@
+# Template file for 'cbatticon-ac'
+pkgname=cbatticon-ac
+conflicts="cbatticon"
+version=1.6.13ac
+revision=1
+build_style=gnu-makefile
+make_use_env=yes
+hostmakedepends="gettext pkg-config"
+makedepends="gtk+3-devel libnotify-devel"
+short_desc="Patched cbatticon with no persistent AC power notifications"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="GPL-2.0-only"
+homepage="https://github.com/sug0/cbatticon"
+changelog="https://raw.githubusercontent.com/sug0/cbatticon/master/Changelog"
+distfiles="https://github.com/sug0/cbatticon/archive/${version}.tar.gz"
+checksum=3b42c08a54bf3d7f592b20ee378d15582dd540970184863cb1308df35a5682e7
+
+post_install() {
+	mv ${DESTDIR}/usr/share/doc/cbatticon-${version%ac} ${DESTDIR}/usr/share/doc/cbatticon
+}
+
+cbatticon-ac-gtk2_package() {
+	build_style=meta
+	short_desc+=" (transitional dummy package)"
+	depends="${sourcepkg}>=${version}_${revision}"
+}
+
+cbatticon-ac-gtk3_package() {
+	build_style=meta
+	short_desc+=" (transitional dummy package)"
+	depends="${sourcepkg}>=${version}_${revision}"
+}
