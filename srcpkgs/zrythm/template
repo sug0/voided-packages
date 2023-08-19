@@ -1,6 +1,6 @@
 # Template file for 'zrythm'
 pkgname=zrythm
-_version=1.0.0-alpha.29.1.1
+_version=1.0.0-beta.4.11.1
 version=${_version/-/.}
 revision=1
 wrksrc="${pkgname}-${_version}"
@@ -12,20 +12,23 @@ configure_args="-Dcarla=disabled
 hostmakedepends="pkg-config sassc guile gettext help2man flex xdg-utils"
 makedepends="rubberband-devel fftw-devel gtk4-devel gtksourceview5-devel guile3-devel
  lilv-devel pcre2-devel reproc-devel vamp-plugin-sdk-devel xxHash-devel libzstd-devel
- libadwaita-devel libaudec-devel libaudec-devel libbacktrace-devel libcyaml-devel
- jack-devel alsa-lib-devel json-glib-devel libcurl-devel chromaprint-devel
+ libadwaita-devel libbacktrace-devel libcyaml-devel libsoxr-devel jack-devel Carla-devel
+ alsa-lib-devel json-glib-devel libcurl-devel chromaprint-devel libpanel-devel
  $(vopt_if graphviz graphviz-devel) $(vopt_if rtaudio rtaudio-devel)
  $(vopt_if rtmidi rtmidi-devel) $(vopt_if SDL2 SDL2-devel)"
 depends="breeze-icons"
-short_desc="A highly automated and intuitive digital audio workstation"
+short_desc="Highly automated and intuitive digital audio workstation"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="AGPL-3.0-or-later"
 homepage="https://www.zrythm.org"
 distfiles="https://www.zrythm.org/releases/zrythm-${_version}.tar.xz"
-checksum=d68917d99ef914197d06c60f50a7a935869d8030c96551aff5a4747df1dfea9e
+checksum=8d98fbf2519e24821d684b70b6ed060ac1e258667b7fa4eb0b6f18405c27403d
 
 build_options="graphviz rtaudio rtmidi SDL2"
 build_options_default="graphviz rtaudio rtmidi SDL2"
+
+# TODO: write new Carla template to use `main`; recent
+# zrythm depends on an alpha version of Carla :\
 
 # No error for several warnings
 CXXFLAGS="-Wno-deprecated-declarations -Wno-class-memaccess -Wno-format-truncation"
