@@ -1,0 +1,20 @@
+# Template file for 'samply'
+pkgname=samply
+version=0.11.0
+revision=1
+build_style=cargo
+build_wrksrc=samply
+short_desc="Command-line sampling profiler for macOS and Linux"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT"
+homepage="https://github.com/mstange/samply"
+distfiles="https://github.com/mstange/samply/archive/samply-v${version}.tar.gz"
+checksum=9b8e1491f76ee009dc407f289cf5a51452cc2200888a80645aee5187ca987f20
+
+pre_build() {
+	cargo generate-lockfile
+}
+
+post_build() {
+	vlicense ../LICENSE-MIT
+}
