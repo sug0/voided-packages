@@ -1,0 +1,16 @@
+# Template file for 'passgone'
+pkgname=passgone
+version=0.1.0
+revision=1
+build_style=cargo
+wrksrc=${pkgname}-${version}
+short_desc="CLI util to generate passwords, via mnemonics and counters"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT"
+homepage="https://github.com/sug0/passgone"
+distfiles="https://github.com/sug0/passgone/archive/v${version}.tar.gz"
+checksum=c4b44ea316502859a5690591234767748010fd1796f51e22289a8e4fa5f2457b
+
+post_build() {
+	vlicense LICENSE
+}
