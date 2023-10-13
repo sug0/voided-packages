@@ -1,0 +1,14 @@
+# Template file for 'Akira'
+pkgname=Akira
+version=0.0.16.void
+revision=1
+build_style=meson
+hostmakedepends="pkg-config vala"
+makedepends="gtk+3-devel granite-devel glib-devel libgee08-devel libxml2-devel
+ json-glib-devel libarchive-devel gettext-devel cairo-devel"
+short_desc="Native Linux App for UI and UX Design built in Vala and GTK"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/sug0/Akira"
+distfiles="https://github.com/sug0/Akira/archive/v${version}.tar.gz"
+checksum=dd0d61076d3c15bcc4be153f464c63a87be641486a69b300ca088dd524ff9fc8
