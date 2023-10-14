@@ -1,7 +1,7 @@
 # Template file for 'python3-undervolt'
 pkgname=python3-undervolt
-version=0.3.0
-revision=2
+version=0.4.0
+revision=1
 wrksrc="${pkgname#*-}-${version}"
 build_style=python3-module
 hostmakedepends="python3-setuptools"
@@ -11,7 +11,7 @@ maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="GPL-2.0-only"
 homepage="https://github.com/georgewhewell/undervolt"
 distfiles="https://github.com/georgewhewell/undervolt/archive/${version}.tar.gz"
-checksum=7a82df124b133ea86f5f1bf507f74ff0967a3fb0e3ebc8b14aec10040fb16095
+checksum=d7a0bbb96e6acb998b7dd05cc41f8ccd82867bba0ac6e416b6e5b60fa3a55533
 
 post_install() {
 	vdoc README.rst
