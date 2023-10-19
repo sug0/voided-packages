@@ -1,8 +1,10 @@
 # Template file for 'kernel-orangepi-pc'
 pkgname=kernel-orangepi-pc
-version=5.15.93
-_armbian_ver=23.02.2
-_armbian_rel=bullseye_current
+version=6.1.47
+_armbian_ver=23.8.1
+_armbian_rel=bookworm_current
+_kernsuffix=current-sunxi
+build_style=fetch
 revision=1
 archs="armv7l*"
 create_wrksrc=1
@@ -14,16 +16,18 @@ homepage="https://www.armbian.com"
 _baseurl="https://imola.armbian.com/dl/orangepipc/archive"
 _armbian="Armbian_${_armbian_ver}_Orangepipc_${_armbian_rel}_${version}"
 distfiles="${_baseurl}/${_armbian}.img.xz"
-checksum=93c62b6984a8bb249e0a9c7ff0c41633cf2ec1824d3ae5beb5719f70116eaa57
+checksum=efe3b5790ccb3241e72469138b806a25bc9fe0222f4f3733bae223e5878733ab
 nopie=true
 
 post_extract() {
+	if [ ! -f ${_armbian}.img ]; then
+		unxz ${_armbian}.img.xz
+	fi
 	7z x ${_armbian}.img \
 		-i'!usr/lib/firmware' \
 		-i'!usr/lib/modules' \
-		-i"!boot/vmlinuz-${version}-sunxi" \
-		-i"!boot/dtb-${version}-sunxi"
-	rm ${_armbian}.img
+		-i'!boot'"/vmlinuz-${version}-${_kernsuffix}" \
+		-i'!boot'"/dtb-${version}-${_kernsuffix}"
 }
 
 do_install() {
@@ -44,13 +48,13 @@ do_install() {
 		-a 42000000 \
 		-e 42000000 \
 		-c "Linux kernel" \
-		-d boot/vmlinuz-${version}-sunxi \
-		-b boot/dtb-${version}-sunxi/sun8i-h3-orangepi-pc.dtb \
+		-d boot/vmlinuz-${version}-${_kernsuffix} \
+		-b boot/dtb-${version}-${_kernsuffix}/sun8i-h3-orangepi-pc.dtb \
 		${DESTDIR}/boot/board.itb
 
 	# install kernel modules
 	vmkdir usr/lib/modules
-	cp -r usr/lib/modules/${version}-sunxi ${DESTDIR}/usr/lib/modules
+	cp -r usr/lib/modules/${version}-${_kernsuffix} ${DESTDIR}/usr/lib/modules
 
 	# install firmware files
 	vmkdir usr/lib
@@ -60,6 +64,7 @@ do_install() {
 firmware-orangepi-pc_package() {
 	pkgname=firmware-orangepi-pc
 	short_desc="Armbian firmware files for the Orange Pi PC"
+	nostrip_files="qcvss8280.mbn"
 	pkg_install() {
 		vmove usr/lib/firmware
 	}
