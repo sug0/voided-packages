@@ -1,0 +1,45 @@
+# Template file for 'bisq'
+pkgname=bisq
+version=1.9.14
+revision=2
+_jdk=11
+hostmakedepends="openjdk${_jdk} desktop-file-utils"
+depends="openjdk${_jdk}"
+short_desc="P2P bitcoin exchange network"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="AGPL-3.0-or-later"
+homepage="https://bisq.network"
+distfiles="https://bisq.network/downloads/archive/v${version}.tar.gz"
+checksum=e5c1a95a5a67798cbd38460d6fa7e0c753ff3c804091da0bd5917201df52fff8
+
+export JAVA_HOME=/usr/lib/jvm/openjdk${_jdk}
+
+do_build() {
+	sed -i'' \
+		'/vendor = JvmVendorSpec.AZUL/d' \
+		build-logic/commons/src/main/groovy/bisq.java-conventions.gradle
+	sed -i'' \
+		'/implementation = JvmImplementation.VENDOR_SPECIFIC/d' \
+		build-logic/commons/src/main/groovy/bisq.java-conventions.gradle
+	./gradlew clean :desktop:build -x test
+}
+
+do_install() {
+	vmkdir usr/share/pixmaps
+	cp desktop/package/linux/icon.png ${DESTDIR}/usr/share/pixmaps/bisq.png
+
+	vmkdir opt/bisq
+	cp -r desktop/build/* ${DESTDIR}/opt/bisq/
+
+	vmkdir usr/share/applications
+	touch ${DESTDIR}/usr/share/applications/bisq.desktop
+	desktop-file-edit \
+		--set-name="Bisq" \
+		--set-comment="P2P Bitcoin Exchange" \
+		--set-icon="bisq" \
+		--add-category="Utility;Finance;" \
+		--set-key="Exec" --set-value="env JAVA_HOME=${JAVA_HOME} /opt/bisq/app/bin/desktop" \
+		--set-key="Type" --set-value="Application" \
+		--set-key="Terminal" --set-value="false" \
+		${DESTDIR}/usr/share/applications/bisq.desktop
+}
