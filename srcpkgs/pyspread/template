@@ -1,0 +1,14 @@
+# Template file for 'pyspread'
+pkgname=pyspread
+version=2.2.3
+revision=1
+build_style=python3-module
+hostmakedepends="python3-setuptools"
+depends="python3-PyQt5 python3-PyQt5-svg python3-numpy python3-markdown2
+ python3-matplotlib python3-dateutil"
+short_desc="Non-traditional spreadsheet application based on and written in Python"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="GPL-3.0-only"
+homepage="https://pyspread.gitlab.io"
+distfiles="https://gitlab.com/pyspread/pyspread/-/archive/v${version}/pyspread-v${version}.tar.gz"
+checksum=2be1ca84e4ff10f70d7f3785333beb9128a9aae4afca5df5ba6a15c76de508c1
