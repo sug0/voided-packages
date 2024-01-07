@@ -1,0 +1,28 @@
+# Template file for 'SameBoy'
+pkgname=SameBoy
+version=0.16.1
+revision=1
+hostmakedepends="pkg-config rgbds"
+makedepends="SDL2-devel"
+depends="hicolor-icon-theme"
+short_desc="Accuracy-focused Game Boy/Game Boy Color emulator"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT"
+homepage="https://sameboy.github.io/"
+distfiles="https://github.com/LIJI32/SameBoy/archive/v${version}.tar.gz"
+checksum=7d98b3da42921e122e17c9287176957887733d4a70daf347441afc128edc29d0
+
+export CONF=release
+export DATA_DIR=/usr/share/games/sameboy/
+export FREEDESKTOP=true
+export PREFIX=/usr
+export DESTDIR=${DESTDIR}
+
+do_build() {
+	make sdl
+}
+
+do_install() {
+	make install
+	vlicense LICENSE
+}
