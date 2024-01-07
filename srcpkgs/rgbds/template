@@ -1,6 +1,6 @@
 # Template file for 'rgbds'
 pkgname=rgbds
-version=0.6.1
+version=0.7.0
 revision=1
 build_style=gnu-makefile
 hostmakedepends="pkg-config bison"
@@ -10,7 +10,7 @@ maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="MIT"
 homepage="https://github.com/gbdev/rgbds"
 distfiles="https://github.com/gbdev/rgbds/archive/v${version}.tar.gz"
-checksum=fdc48f5b416fd200598320dec7ffd1207516842771a55a15e5cdd04a243b0d74
+checksum=ef04d24d7a79c05ffadac0c08214f59b8d8812c7d1052a585e5ab0145f093b30
 
 do_install() {
 	vbin rgbasm
