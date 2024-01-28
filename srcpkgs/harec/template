@@ -1,0 +1,19 @@
+# Template file for 'harec'
+pkgname=harec
+version=20240128
+revision=1
+build_style=gnu-makefile
+make_use_env=yes
+_commit=770566a51aa972c320b545d2292626057aabe831
+wrksrc="${pkgname}-${_commit}"
+short_desc="Hare compiler written in C11 for POSIX-compliant systems"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+depends="qbe-next"
+license="GPL-3.0-or-later"
+homepage="https://harelang.org/"
+distfiles="https://git.sr.ht/~sircmpwn/harec/archive/${_commit}.tar.gz"
+checksum=aef84b12ed33e9f65b6d2d8890a1a5d819a57b6cf54f72c5011e369ef9edefe3
+
+pre_configure() {
+	cp configs/linux.mk config.mk
+}
