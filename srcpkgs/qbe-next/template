@@ -1,9 +1,10 @@
 # Template file for 'qbe-next'
 pkgname=qbe-next
 version=20240128
-revision=2
+revision=3
 conflicts=qbe
 build_style=gnu-makefile
+make_use_env=yes
 _commit=1f69842fb8bfbd6aecfdf0675a42104a2b1df568
 wrksrc="${pkgname}-${_commit}"
 short_desc="Pure C embeddable compiler backend"
@@ -12,8 +13,6 @@ license="MIT"
 homepage="https://c9x.me/compile"
 distfiles="https://gitlab.com/sug0/qbe/-/archive/${_commit}.tar.gz"
 checksum=822d7cf3a306b4e18d793cb04457764d16f12e77ce33a830bd12fa6efcdb1533
-
-export CFLAGS="-Wall -Wextra -std=c99 -g -pedantic"
 
 post_install() {
 	vlicense LICENSE
