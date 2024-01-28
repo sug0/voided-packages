@@ -1,16 +1,17 @@
-# Template file for 'qbe'
-pkgname=qbe
-version=20211029
+# Template file for 'qbe-next'
+pkgname=qbe-next
+version=20240128
 revision=2
+conflicts=qbe
 build_style=gnu-makefile
-_commit=4420727667b915042050b9bfa6eb381ce7a97ba5
+_commit=1f69842fb8bfbd6aecfdf0675a42104a2b1df568
 wrksrc="${pkgname}-${_commit}"
 short_desc="Pure C embeddable compiler backend"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="MIT"
 homepage="https://c9x.me/compile"
-distfiles="https://git.sr.ht/~mcf/qbe/archive/${_commit}.tar.gz"
-checksum=7fa1267f382338ea9d8484de77d20590c846f96b82d1cd8ac7637bb29b2bf757
+distfiles="https://gitlab.com/sug0/qbe/-/archive/${_commit}.tar.gz"
+checksum=822d7cf3a306b4e18d793cb04457764d16f12e77ce33a830bd12fa6efcdb1533
 
 export CFLAGS="-Wall -Wextra -std=c99 -g -pedantic"
 
@@ -20,5 +21,6 @@ post_install() {
 	vdoc doc/abi.txt
 	vdoc doc/il.txt
 	vdoc doc/llvm.txt
+	vdoc doc/rv64.txt
 	vdoc doc/win.txt
 }
