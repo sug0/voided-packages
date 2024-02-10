@@ -1,6 +1,6 @@
 # Template file for 'ytgrep'
 pkgname=ytgrep
-version=0.4.0
+version=0.4.1
 revision=1
 build_style=cargo
 wrksrc=${pkgname}-${version}
@@ -11,4 +11,4 @@ maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="MIT"
 homepage="https://github.com/sug0/ytgrep"
 distfiles="https://github.com/sug0/ytgrep/archive/v${version}.tar.gz"
-checksum=bbc8fcd90ed23b085f3d708999a9c3a7504eb5c1ba0aab3d1fcdbfb9c9ceb752
+checksum=537e133d9e07f2d4a1c608699ebe1fd46f08af69dccbd86e60f9219c450dc3a2
