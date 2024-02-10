@@ -1,7 +1,7 @@
 # Template file for 'font-tex-gyre-schola'
 pkgname=font-tex-gyre-schola
 version=20081229
-revision=1
+revision=2
 depends="font-util"
 create_wrksrc=1
 wrksrc="TeXGyreSchola"
@@ -10,7 +10,7 @@ maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="custom:GUST e-foundry License"
 homepage="https://www.fontsquirrel.com/fonts/tex-gyre-schola"
 distfiles="https://www.fontsquirrel.com/fonts/download/TeX-Gyre-Schola>TeXGyreSchola.zip"
-checksum=cf7bef5f7edc75f1d1913662fa16b1ce18a3e557d830e1aa2ac5d60ca807e78c
+checksum=0c302fd9fe70ab48a99639e2c81dc5d844666f162a6cd3c46a86d4b1fbacf1cc
 font_dirs=/usr/share/fonts/TeXGyreSchola
 
 do_install() {
