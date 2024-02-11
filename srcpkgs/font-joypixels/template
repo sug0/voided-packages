@@ -1,6 +1,6 @@
 # Template file for 'font-joypixels'
 pkgname=font-joypixels
-version=7.0.0
+version=8.0.0
 revision=1
 build_style=fetch
 depends="font-util"
@@ -13,7 +13,7 @@ distfiles="
   https://cdn.joypixels.com/arch-linux/license/free-license.pdf
   https://cdn.joypixels.com/arch-linux/appendix/joypixels-license-appendix.pdf"
 checksum="
-  ad28df711c496bf5d84e1511379762162eef3a585ebf0bea256ba11f7309acd7
+  7c95040bebcb69676e81963ee0a82e4138f342ee85b5b8dbbad7d05d1f657eae
   f98c05ac7ea2ee47468f7a43816205bbf2bd614898cf0e431554de6ad48a4526
   05084e4ddbbb0c241bb0ff4e307853a9e6236fa1c617b7cba44af31b6bfc5e2d"
 font_dirs="/usr/share/fonts/JoyPixels"
