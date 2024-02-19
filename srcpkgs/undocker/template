@@ -1,16 +1,18 @@
 # Template file for 'undocker'
 pkgname=undocker
-version=1.0.3
+version=1.2.0
+_commit=e6d1a95c02daffd2c09f677fe92df84bbda0a018
 revision=1
 build_style=go
 wrksrc="${pkgname}-v${version}"
-go_import_path="git.sr.ht/~motiejus/undocker"
+go_import_path="git.jakstys.lt/motiejus/undocker"
+go_ldflags="-X main.Version=${version} -X main.VersionHash=${_commit}"
 short_desc="Converts a Docker image (a bunch of layers) to a flattened \"rootfs\" tarball"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="MIT"
-homepage="https://sr.ht/~motiejus/undocker/"
-distfiles="https://git.sr.ht/~motiejus/undocker/archive/v${version}.tar.gz"
-checksum=aee2e578213cf3547a37495e71d3d28f5835bca29ed9140218e9d1a9b3df7bdc
+homepage="https://git.jakstys.lt/motiejus/undocker"
+distfiles="https://git.jakstys.lt/motiejus/undocker/archive/v${version}.tar.gz"
+checksum=fa0fa18ef5525a094f6843803e81ebb169cc5de1192c31472eef6eb4be85dd05
 
 post_install() {
 	vdoc README.md
