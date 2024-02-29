@@ -1,7 +1,7 @@
 # Template file for 'albert'
 pkgname=albert
-version=0.20.14
-revision=3
+version=0.22.17
+revision=1
 build_style=cmake
 configure_args="-DQHOTKEY_INSTALL=OFF
   -DBUILD_WIDGETSBOXMODEL=ON
@@ -21,8 +21,8 @@ configure_args="-DQHOTKEY_INSTALL=OFF
   -DBUILD_WEBSEARCH=ON
   -Dpybind11_DIR=${XBPS_CROSS_BASE}/${py3_sitelib}/pybind11/share/cmake/pybind11"
 hostmakedepends="pkg-config git"
-makedepends="libqalculate-devel qt6-scxml-devel qt6-svg-devel
-  muparser-devel python3-pybind11"
+makedepends="libqalculate-devel qt6-scxml-devel qt6-svg-devel qt6-declarative-devel
+  muparser-devel libarchive-devel python3-pybind11"
 depends="hicolor-icon-theme python3-urllib3 python3-pybind11"
 short_desc="Fast and flexible keyboard launcher"
 maintainer="Orphaned <orphan@voidlinux.org>"
@@ -38,4 +38,8 @@ do_fetch() {
 	git checkout "v${version}"
 	git submodule update --init --recursive
 	cd ..
+}
+
+post_install() {
+	vlicense LICENSE.md
 }
