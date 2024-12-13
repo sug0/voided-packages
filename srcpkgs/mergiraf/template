@@ -1,0 +1,20 @@
+# Template file for 'mergiraf'
+pkgname=mergiraf
+version=0.4.0
+revision=1
+build_style=cargo
+short_desc="Syntax-aware git merge driver"
+hostmakedepends="mdBook"
+maintainer="Tiago Carvalho <me@tcarvalho.dev>"
+license="GPLv3"
+homepage="https://mergiraf.org"
+distfiles="https://codeberg.org/mergiraf/mergiraf/archive/v${version}.tar.gz"
+checksum=354f1d90c192f85598d51f10fa2a3b793d89edabc2a55f2a0cecbd16efd87db8
+
+post_install() {
+	cd doc/
+	mdbook build
+
+	vmkdir usr/share/${pkgname}
+	cp -r book/ ${DESTDIR}/usr/share/${pkgname}/
+}
