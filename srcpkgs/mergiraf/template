@@ -1,7 +1,7 @@
 # Template file for 'mergiraf'
 pkgname=mergiraf
 version=0.4.0
-revision=1
+revision=2
 build_style=cargo
 short_desc="Syntax-aware git merge driver"
 hostmakedepends="mdBook"
@@ -15,6 +15,6 @@ post_install() {
 	cd doc/
 	mdbook build
 
-	vmkdir usr/share/${pkgname}
-	cp -r book/ ${DESTDIR}/usr/share/${pkgname}/
+	vmkdir usr/share/doc/${pkgname}
+	cp -r book/ ${DESTDIR}/usr/share/doc/${pkgname}
 }
