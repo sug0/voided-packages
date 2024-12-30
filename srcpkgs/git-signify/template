@@ -1,10 +1,10 @@
 # Template file for 'git-signify'
 pkgname=git-signify
 version=0.9.2
-revision=1
+revision=2
 build_style=cargo
 wrksrc=${pkgname}-${version}
-hostmakedepends="pkg-config libgit2-1.8-devel"
+hostmakedepends="pkg-config"
 makedepends="openssl-devel libgit2-1.8-devel"
 short_desc="Sign arbitrary objects in a git repository"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
@@ -15,4 +15,15 @@ checksum=80dd8322cd67ab6073f3c045ab994c8e1086e88d5e937e40e1387cfcf4ef1d66
 
 post_build() {
 	vlicense LICENSE
+
+	if [ -z "${XBPS_CROSS_RUST_TARGET}" ]; then
+		vmkdir usr/share/bash-completion/completions
+		vmkdir usr/share/zsh/site-functions
+
+		./target/${XBPS_RUST_TARGET}/release/git-signify shell-completions bash \
+			> ${DESTDIR}/usr/share/bash-completion/completions/git-signify
+
+		./target/${XBPS_RUST_TARGET}/release/git-signify shell-completions zsh \
+			> ${DESTDIR}/usr/share/zsh/site-functions/_git-signify
+	fi
 }
