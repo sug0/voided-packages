@@ -1,0 +1,16 @@
+# Template file for 'zigup'
+pkgname=zigup
+_version=2025_01_02
+version=${_version//_}
+revision=1
+build_style=zig-build
+short_desc="Commandline tool to download and manage zig compilers"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT-0"
+homepage="https://github.com/marler8997/zigup"
+distfiles="https://github.com/marler8997/zigup/archive/refs/tags/v${_version}.tar.gz"
+checksum=0b92de2a3afcecbf086102733215640189d744c4a17064b7492059ac198dd7f6
+
+post_install() {
+	vlicense LICENSE
+}
