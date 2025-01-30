@@ -1,7 +1,7 @@
 # Template file for 'kernel-orangepi-pc'
 pkgname=kernel-orangepi-pc
-version=6.1.47
-_armbian_ver=23.8.1
+version=6.6.72
+_armbian_ver=25.2.0-trunk.410
 _armbian_rel=bookworm_current
 _kernsuffix=current-sunxi
 build_style=fetch
@@ -13,11 +13,11 @@ short_desc="Pre-compiled Armbian kernel for the Orange Pi PC"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="GPL-2.0-only"
 homepage="https://www.armbian.com"
-_baseurl="https://imola.armbian.com/dl/orangepipc/archive"
-_armbian="Armbian_${_armbian_ver}_Orangepipc_${_armbian_rel}_${version}"
+_baseurl="https://github.com/armbian/community/releases/download/${_armbian_ver}"
+_armbian="Armbian_community_${_armbian_ver}_Orangepipc_${_armbian_rel}_${version}_minimal"
 distfiles="${_baseurl}/${_armbian}.img.xz"
-checksum=efe3b5790ccb3241e72469138b806a25bc9fe0222f4f3733bae223e5878733ab
-nopie=true
+checksum=2d8ad2429c92836b3cae46d7d891756f8d524befc8d2c621b4c01ef225df2f27
+nopie=yes
 
 post_extract() {
 	if [ ! -f ${_armbian}.img ]; then
@@ -64,7 +64,8 @@ do_install() {
 firmware-orangepi-pc_package() {
 	pkgname=firmware-orangepi-pc
 	short_desc="Armbian firmware files for the Orange Pi PC"
-	nostrip_files="qcvss8280.mbn"
+	nostrip=yes
+
 	pkg_install() {
 		vmove usr/lib/firmware
 	}
