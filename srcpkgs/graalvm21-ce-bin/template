@@ -1,0 +1,57 @@
+# Template file for 'graalvm21-ce-bin'
+pkgname=graalvm21-ce-bin
+version=21.0.2
+_graal=13.1
+revision=1
+archs="x86_64"
+wrksrc="graalvm-community-openjdk-${version}+${_graal}"
+short_desc="GraalVM targeting Java 21"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="GPL-2.0-or-later"
+homepage="https://www.graalvm.org/"
+distfiles="https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${version}/graalvm-community-jdk-${version}_linux-x64_bin.tar.gz"
+checksum=b048069aaa3a99b84f5b957b162cc181a32a4330cbc35402766363c5be76ae48
+nopie=true
+
+_jdk_home="graalvm21-ce-bin"
+
+alternatives="
+ java:/usr/bin/java:/${_jdk_home}/bin/java
+ java:/usr/bin/jfr:/${_jdk_home}/bin/jfr
+ java:/usr/bin/keytool:/${_jdk_home}/bin/keytool
+ java:/usr/bin/rmiregistry:/${_jdk_home}/bin/rmiregistry
+
+ jdk:/usr/bin/jar:/${_jdk_home}/bin/jar
+ jdk:/usr/bin/jarsigner:/${_jdk_home}/bin/jarsigner
+ jdk:/usr/bin/java:/${_jdk_home}/bin/java
+ jdk:/usr/bin/javac:/${_jdk_home}/bin/javac
+ jdk:/usr/bin/javadoc:/${_jdk_home}/bin/javadoc
+ jdk:/usr/bin/javap:/${_jdk_home}/bin/javap
+ jdk:/usr/bin/jcmd:/${_jdk_home}/bin/jcmd
+ jdk:/usr/bin/jconsole:/${_jdk_home}/bin/jconsole
+ jdk:/usr/bin/jdb:/${_jdk_home}/bin/jdb
+ jdk:/usr/bin/jdeprscan:/${_jdk_home}/bin/jdeprscan
+ jdk:/usr/bin/jdeps:/${_jdk_home}/bin/jdeps
+ jdk:/usr/bin/jfr:/${_jdk_home}/bin/jfr
+ jdk:/usr/bin/jhsdb:/${_jdk_home}/bin/jhsdb
+ jdk:/usr/bin/jimage:/${_jdk_home}/bin/jimage
+ jdk:/usr/bin/jinfo:/${_jdk_home}/bin/jinfo
+ jdk:/usr/bin/jlink:/${_jdk_home}/bin/jlink
+ jdk:/usr/bin/jmap:/${_jdk_home}/bin/jmap
+ jdk:/usr/bin/jmod:/${_jdk_home}/bin/jmod
+ jdk:/usr/bin/jpackage:/${_jdk_home}/bin/jpackage
+ jdk:/usr/bin/jps:/${_jdk_home}/bin/jps
+ jdk:/usr/bin/jrunscript:/${_jdk_home}/bin/jrunscript
+ jdk:/usr/bin/jshell:/${_jdk_home}/bin/jshell
+ jdk:/usr/bin/jstack:/${_jdk_home}/bin/jstack
+ jdk:/usr/bin/jstat:/${_jdk_home}/bin/jstat
+ jdk:/usr/bin/jstatd:/${_jdk_home}/bin/jstatd
+ jdk:/usr/bin/keytool:/${_jdk_home}/bin/keytool
+ jdk:/usr/bin/rmiregistry:/${_jdk_home}/bin/rmiregistry
+ jdk:/usr/bin/serialver:/${_jdk_home}/bin/serialver
+"
+
+do_install() {
+	vmkdir /usr/lib/jvm/graalvm21-ce-bin
+	cp -R ./* ${DESTDIR}/usr/lib/jvm/graalvm21-ce-bin
+}
