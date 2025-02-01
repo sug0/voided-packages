@@ -1,18 +1,19 @@
-# Template file for 'graalvm17-ce-bin'
-pkgname=graalvm17-ce-bin
-version=22.1.0
+# Template file for 'graalvm23-ce-bin'
+pkgname=graalvm23-ce-bin
+version=23.0.2
+_graal=7.1
 revision=1
 archs="x86_64"
-wrksrc="graalvm-ce-java17-${version}"
-short_desc="Official Reference Implementation for Java SE 17"
+wrksrc="graalvm-community-openjdk-${version}+${_graal}"
+short_desc="GraalVM targeting Java 23"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="GPL-2.0-or-later"
 homepage="https://www.graalvm.org/"
-distfiles="https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-${version}/graalvm-ce-java17-linux-amd64-${version}.tar.gz"
-checksum=f11d46098efbf78465a875c502028767e3de410a31e45d92a9c5cf5046f42aa2
+distfiles="https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${version}/graalvm-community-jdk-${version}_linux-x64_bin.tar.gz"
+checksum=0cf63e88153b759136947c14f0042c515ae1ff9abf346f143dc47af065b1d6dd
 nopie=true
 
-_jdk_home="graalvm17-ce-bin"
+_jdk_home="graalvm23-ce-bin"
 
 alternatives="
  java:/usr/bin/java:/${_jdk_home}/bin/java
@@ -51,6 +52,6 @@ alternatives="
 "
 
 do_install() {
-	vmkdir /usr/lib/jvm/graalvm17-ce-bin
-	cp -R ./* ${DESTDIR}/usr/lib/jvm/graalvm17-ce-bin
+	vmkdir /usr/lib/jvm/graalvm23-ce-bin
+	cp -R ./* ${DESTDIR}/usr/lib/jvm/graalvm23-ce-bin
 }
