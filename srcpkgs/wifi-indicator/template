@@ -1,6 +1,6 @@
 # Template file for 'wifi-indicator'
 pkgname=wifi-indicator
-version=0.3.0
+version=0.3.1
 revision=1
 build_style=cargo
 wrksrc=${pkgname}-${version}
@@ -12,7 +12,7 @@ maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="0BSD"
 homepage="https://codeberg.org/sugo/wifi-indicator"
 distfiles="https://codeberg.org/sugo/wifi-indicator/archive/v${version}.tar.gz"
-checksum=0c8473604c23ff09f236f8ac472f22eed78ae70d33ad5b4b905ec268e6f4ecfe
+checksum=2b08cbead08a47ece19ec1f8d8842e558fb5cea8aa7e45882d2004ca0bd2a011
 
 post_install() {
 	vlicense LICENSE
