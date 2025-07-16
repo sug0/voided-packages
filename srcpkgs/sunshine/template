@@ -1,12 +1,12 @@
 # Template file for 'sunshine'
 pkgname=sunshine
 version=0.23.1
-revision=1
+revision=2
 archs="x86_64* aarch64*"
 build_style=cmake
 configure_args="-Wno-dev -DBUILD_TESTS=OFF -DSUNSHINE_EXECUTABLE_PATH=/usr/bin/sunshine
  -DSUNSHINE_ASSETS_DIR=/usr/share/sunshine"
-hostmakedepends="boost cmake git make nodejs pkg-config wayland-devel"
+hostmakedepends="boost cmake git nodejs pkg-config wayland-devel"
 makedepends="boost-devel doxygen ffmpeg-devel graphviz libayatana-appindicator-devel libboost_filesystem
  libboost_locale libboost_program_options libcap-devel libcurl-devel libdrm-devel libevdev-devel
  libnuma-devel libnotify-devel libopusenc-devel libsvt-av1-devel libva-devel libvdpau-devel libX11-devel
@@ -91,11 +91,13 @@ post_extract() {
 	vsrcextract -C third-party/wayland-protocols wayland-protocols-${_wayland_protocols_ver}.tar.gz
 	vsrcextract -C third-party/wlr-protocols wlr-protocols-${_wlr_protocols_ver}.tar.gz
 }
+
 pre_configure() {
 	export BRANCH=master
 	export BUILD_VERSION=${version}
 	export COMMIT=v${version}
 }
+
 post_install() {
 	vsv sunshine
 }
