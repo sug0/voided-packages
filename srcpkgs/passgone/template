@@ -1,6 +1,6 @@
 # Template file for 'passgone'
 pkgname=passgone
-version=0.3.1
+version=0.4.0
 revision=1
 build_style=cargo
 wrksrc=${pkgname}-${version}
@@ -9,7 +9,7 @@ maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="MIT"
 homepage="https://github.com/sug0/passgone"
 distfiles="https://github.com/sug0/passgone/archive/v${version}.tar.gz"
-checksum=4c210e8d18324336721e16b03ea3573636d212f4454faf89d69994b6d814e80d
+checksum=232ea5a70cb0ef2b3a050f455306c8fc49292291f082dfad9d983c0922fd2e00
 
 post_build() {
 	vlicense LICENSE
