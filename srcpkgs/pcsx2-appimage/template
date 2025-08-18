@@ -1,17 +1,17 @@
 # Template file for 'pcsx2-appimage'
 pkgname=pcsx2-appimage
 archs="x86_64"
-version=1.7.3905
+version=2.5.113
 revision=1
 create_wrksrc=yes
 hostmakedepends="p7zip desktop-file-utils"
 short_desc="Sony PlayStation 2 emulator"
 maintainer="Tiago Carvalho <t1ago_@outlook.com>"
 license="GPL-3.0-or-later, GPL-2.0-or-later, LGPL-2.1-or-later, LGPL-3.0-or-later"
-homepage="http://www.pcsx2.net"
-_appimg="pcsx2-v${version}-linux-AppImage-64bit-AVX2-Qt.AppImage"
+homepage="https://pcsx2.net"
+_appimg="pcsx2-v${version}-linux-appimage-x64-Qt.AppImage"
 distfiles="https://github.com/PCSX2/pcsx2/releases/download/v${version}/${_appimg}"
-checksum=2cabab7f36988efa4aebcccb047ffd8aec31e2de3c6177fd7b299faa99c8a1e2
+checksum=f74298be0e08e0b67c51be9311c306c44a492bc306f60301bae296f550adc26f
 _install=/opt/pcsx2
 noshlibprovides=yes
 noverifyrdeps=yes
@@ -21,18 +21,18 @@ nopie=yes
 do_extract() {
 	7z x ${XBPS_SRCDISTDIR}/pcsx2-appimage-${version}/${_appimg}
 	chmod +x usr/bin/pcsx2-qt
-	desktop-file-edit \
-		--set-key Exec \
-		--set-value ${_install}/usr/bin/pcsx2-qt \
-		PCSX2.desktop
 }
 
 do_install() {
-	mkdir -p ${DESTDIR}/usr/share/applications
-	mkdir -p ${DESTDIR}/usr/share/icons/hicolor/64x64/apps
 	mkdir -p ${DESTDIR}/${_install}
-
-	cp PCSX2.desktop ${DESTDIR}/usr/share/applications/
-	cp PCSX2.png ${DESTDIR}/usr/share/icons/hicolor/64x64/apps/
+	mkdir -p ${DESTDIR}/usr/share
 	cp -r usr ${DESTDIR}/${_install}/
+	mv \
+		${DESTDIR}/${_install}/usr/share/icons \
+		${DESTDIR}/${_install}/usr/share/applications \
+		${DESTDIR}/usr/share/
+	desktop-file-edit \
+		--set-key Exec \
+		--set-value ${_install}/usr/bin/pcsx2-qt \
+		${DESTDIR}/usr/share/applications/net.pcsx2.PCSX2.desktop
 }
