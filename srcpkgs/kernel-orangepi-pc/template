@@ -1,8 +1,8 @@
 # Template file for 'kernel-orangepi-pc'
 pkgname=kernel-orangepi-pc
-version=6.6.72
-_armbian_ver=25.2.0-trunk.410
-_armbian_rel=bookworm_current
+version=6.12.47
+_armbian_ver=25.11.0-trunk.273
+_armbian_rel=trixie_current
 _kernsuffix=current-sunxi
 build_style=fetch
 revision=1
@@ -16,7 +16,7 @@ homepage="https://www.armbian.com"
 _baseurl="https://github.com/armbian/community/releases/download/${_armbian_ver}"
 _armbian="Armbian_community_${_armbian_ver}_Orangepipc_${_armbian_rel}_${version}_minimal"
 distfiles="${_baseurl}/${_armbian}.img.xz"
-checksum=2d8ad2429c92836b3cae46d7d891756f8d524befc8d2c621b4c01ef225df2f27
+checksum=6d83816da3141214cfad8a5be0ec93fa7e3003301314ebc902a174db59efd75c
 nopie=yes
 
 post_extract() {
@@ -24,6 +24,7 @@ post_extract() {
 		unxz ${_armbian}.img.xz
 	fi
 	7z x ${_armbian}.img \
+		-snld \
 		-i'!usr/lib/firmware' \
 		-i'!usr/lib/modules' \
 		-i'!boot'"/vmlinuz-${version}-${_kernsuffix}" \
