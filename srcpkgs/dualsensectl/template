@@ -1,0 +1,17 @@
+# Template file for 'dualsensectl'
+pkgname=dualsensectl
+version=0.7
+revision=1
+build_style=meson
+hostmakedepends="pkg-config"
+makedepends="eudev-libudev-devel hidapi-devel dbus-devel"
+short_desc="Linux tool for controlling PS5 DualSense controller "
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="GPL-2.0-or-later"
+homepage="https://github.com/nowrep/dualsensectl"
+distfiles="https://github.com/nowrep/dualsensectl/archive/v${version}.tar.gz"
+checksum=a615304596925738b12d0a499f31e1fe0cc3653da230edfe7c68637098ce6b72
+
+post_install() {
+	vlicense LICENSE
+}
