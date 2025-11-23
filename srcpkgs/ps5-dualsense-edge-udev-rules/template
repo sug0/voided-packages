@@ -1,0 +1,26 @@
+# Template file for 'ps5-dualsense-edge-udev-rules'
+pkgname=ps5-dualsense-edge-udev-rules
+version=20251123
+revision=1
+short_desc="Udev rules to support the PS5 DualSense Edge controller on Linux"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="WTFPL"
+homepage="https://www.sony.com"
+
+_udev_rules_path=usr/lib/udev/rules.d
+_dualsense_edge_rules=70-ps5-dualsense-edge.rules
+
+_write_udev_rules() {
+	cat <<EOF > ${DESTDIR}/${_udev_rules_path}/${_dualsense_edge_rules}
+# PS5 DualSense Edge controller over USB hidraw
+KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0df2", MODE="0660", TAG+="uaccess"
+
+# PS5 DualSense Edge controller over bluetooth hidraw
+KERNEL=="hidraw*", KERNELS=="*054C:0DF2*", MODE="0660", TAG+="uaccess"
+EOF
+}
+
+do_install() {
+	vmkdir ${_udev_rules_path}
+	_write_udev_rules
+}
