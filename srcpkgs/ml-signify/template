@@ -1,0 +1,15 @@
+# Template file for 'ml-signify'
+pkgname=ml-signify
+version=0.3.0
+revision=1
+build_style=cargo
+configure_args="--features=ml-signify-bin"
+wrksrc=${pkgname}-${version}
+hostmakedepends="pkg-config"
+makedepends="openssl-devel libgit2-1.8-devel"
+short_desc="Post-quantum signing utility inspired by OpenBSD signify(1)"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="MIT"
+homepage="https://github.com/sug0/ml-signify"
+distfiles="https://git.sr.ht/~sugo/ml-signify/archive/v${version}.tar.gz"
+checksum=c11b00dd09f2fa471d738d5f151d369c50913ad84f4f76ed57512a52bf146e73
