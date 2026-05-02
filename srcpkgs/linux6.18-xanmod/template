@@ -1,16 +1,16 @@
 # Template file for 'linux6.18-xanmod'
 pkgname=linux6.18-xanmod
-version=6.18.21
+version=6.18.25
 revision=1
 _xanmod=1
-_commit=9f068d0677076fabb21e505cea3fc2642fbb9efd
+_commit=b7e7f36157ebffb84c0a8c0b774914eb8055afc8
 wrksrc="linux-${version}-xanmod${_xanmod}-${_commit}"
 short_desc="Linux kernel and modules with Xanmod patches (${version%.*} series)"
 maintainer="Tiago Carvalho <me@tcarvalho.dev>"
 license="GPL-2.0-only"
 homepage="http://www.xanmod.org"
 distfiles="https://gitlab.com/xanmod/linux/-/archive/${version}-xanmod${_xanmod}/${version}-xanmod${_xanmod}.tar.gz"
-checksum=87125a0b08382d9b0ddd7c3297df71b256f0fd1787de21039ac552e9c8fadd17
+checksum=1a7e93633c874f1a3bcc97ba62b3c996d39a86002130880ca693d1e35c81f923
 
 python_version=3
 
