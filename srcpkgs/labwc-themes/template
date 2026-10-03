@@ -1,0 +1,17 @@
+# Template file for 'labwc-themes'
+pkgname=labwc-themes
+version=20261003
+_commit=a9c262a2156f38656982e4a771dcda889d5bdccb
+wrksrc="${pkgname}-${_commit}"
+revision=1
+build_style=meson
+short_desc="Themes for the labwc Wayland stacking window compositor"
+maintainer="Tiago Carvalho <t1ago_@outlook.com>"
+license="CC-BY-SA-4.0"
+homepage="https://github.com/labwc/labwc-themes"
+distfiles="https://github.com/labwc/labwc-themes/archive/${_commit}.tar.gz"
+checksum=b98531a4069cbb140bda581b8ebd335efb6d6311fae28b216cb377fe7f79780a
+
+post_install() {
+	vlicense LICENSE
+}
