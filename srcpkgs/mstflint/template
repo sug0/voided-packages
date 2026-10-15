@@ -1,0 +1,34 @@
+# Template file for 'mstflint'
+pkgname=mstflint
+_version=4.37.0-1
+version=${_version/-/.}
+revision=1
+build_style=gnu-configure
+hostmakedepends="pkg-config automake autoconf libtool gettext-devel"
+makedepends="zlib-devel rdma-core-devel openssl-devel"
+wrksrc="${pkgname}-${_version}"
+short_desc="Open source Mellanox firmware tools"
+maintainer="Tiago Carvalho <me@tcarvalho.dev>"
+license="BSD-2-Clause"
+homepage="https://github.com/Mellanox/mstflint"
+distfiles="https://github.com/Mellanox/mstflint/archive/v${_version}.tar.gz"
+checksum=75405d8c7594c25a686eba0edfa4101312f3b63cdabae4870b259b796041a15a
+
+pre_configure() {
+	autoreconf -fi
+}
+
+post_install() {
+	vlicense LICENSE
+}
+
+mstflint-devel_package() {
+	depends="${sourcepkg}>=${version}_${revision}"
+	short_desc+=" - development files"
+	pkg_install() {
+		vmove usr/include
+		vmove "usr/lib/*.a"
+		vmove "usr/lib/mstflint/*.a"
+		vmove usr/lib/mstflint/sdk/libresource_dump_sdk.so
+	}
+}
