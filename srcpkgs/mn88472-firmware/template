@@ -1,0 +1,18 @@
+# Template file for 'mn88472-firmware'
+pkgname=mn88472-firmware
+version=20140417
+revision=1
+create_wrksrc=yes
+repository=nonfree
+nostrip=yes
+skip_extraction="dvb-demod-mn88472-02.fw"
+short_desc="Firmware for Panasonic MN88472 DVB demodulator"
+maintainer="Tiago Carvalho <me@tcarvalho.dev>"
+license="custom:Proprietary"
+homepage="https://github.com/LibreELEC/dvb-firmware"
+distfiles="https://github.com/LibreELEC/dvb-firmware/raw/master/firmware/dvb-demod-mn88472-02.fw"
+checksum=7be4b8304b5fbf5330b7565b82a7bbc16c46850278782c639643056c2e9c6196
+
+do_install() {
+    vinstall "${XBPS_SRCDISTDIR}/${pkgname}-${version}/dvb-demod-mn88472-02.fw" 0644 usr/lib/firmware
+}
