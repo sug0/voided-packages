@@ -1,0 +1,13 @@
+# Template file for 'Emote'
+pkgname=Emote
+version=5.1.0
+revision=1
+build_style=meson
+hostmakedepends="python3-setuptools"
+depends="python3-setproctitle python3-xlib python3-libei"
+short_desc="Emoji Picker for Linux written in GTK4"
+maintainer="Tiago Carvalho <me@tcarvalho.dev>"
+license="GPL-3.0-only"
+homepage="https://snapcraft.io/emote"
+distfiles="https://github.com/tom-james-watson/emote/archive/v${version}.tar.gz"
+checksum=12cf837a789c1715aa40223750902c3404891ea2f4e19de44506d3ebadc0c510
