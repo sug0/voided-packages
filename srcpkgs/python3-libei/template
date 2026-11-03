@@ -1,0 +1,21 @@
+# Template file for 'python3-libei'
+pkgname=python3-libei
+version=0.8.0
+revision=1
+build_style=python3-module
+hostmakedepends="python3-setuptools"
+makedepends="libei-devel"
+short_desc="Python bindings for libei"
+maintainer="Tiago Carvalho <me@tcarvalho.dev>"
+license="MIT"
+homepage="https://github.com/ctrondlp/python-libei"
+distfiles="https://github.com/ctrondlp/python-libei/archive/v${version}.tar.gz"
+checksum=a1dfcf7b1aa1816c9b898fc3a173251f91e7729237ed49fa2538c08c4ae58d35
+
+pre_build() {
+	cp "${FILESDIR}/setup.py" .
+}
+
+post_install() {
+	vlicense LICENSE
+}
