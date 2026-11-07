@@ -1,0 +1,17 @@
+# Template file for 'mini-text'
+pkgname=mini-text
+version=1.0.0
+revision=1
+build_style=meson
+hostmakedepends="pkg-config gettext"
+makedepends="gtk4-devel"
+short_desc="Extremely simple Gtk4/Libadwaita text view app"
+maintainer="Tiago Carvalho <me@tcarvalho.dev>"
+license="GPL-3.0-or-later"
+homepage="https://flathub.org/en-GB/apps/io.github.nokse22.minitext"
+distfiles="https://github.com/Nokse22/mini-text/archive/v${version}.tar.gz"
+checksum=21dddba0028b1189af4e0a97206bda8d0c14e66c6ae552eceabea6f28e2f8e56
+
+post_install() {
+	chmod +x "${DESTDIR}/usr/bin/mini-text"
+}
