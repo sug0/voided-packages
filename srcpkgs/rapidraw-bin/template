@@ -1,0 +1,22 @@
+# Template file for 'rapidraw-bin'
+pkgname=rapidraw-bin
+version=1.6.9
+revision=1
+archs="x86_64"
+create_wrksrc=yes
+short_desc="Modern GPU-accelerated RAW image editor - binary package"
+maintainer="Tiago Carvalho <me@tcarvalho.dev>"
+license="AGPL-3.0-or-later"
+homepage="https://getrapidraw.com"
+changelog="https://github.com/CyberTimon/RapidRAW/releases"
+distfiles="https://github.com/CyberTimon/RapidRAW/releases/download/v${version}/03_RapidRAW_v${version}_ubuntu-24.04_amd64.deb>RapidRAW_v${version}_amd64.deb"
+checksum=a7396b25f7f18b514d216c86140ed4b81776ebb688a9b80396127de3691a5833
+noshlibprovides=yes
+
+do_install() {
+	vinstall usr/bin/RapidRAW 755 usr/bin
+	vcopy usr/lib/RapidRAW usr/lib
+	vinstall usr/share/applications/RapidRAW.desktop 644 usr/share/applications
+	vcopy usr/share/icons usr/share
+	vlicense usr/lib/RapidRAW/resources/licenses/AGPL-3.0.txt
+}
